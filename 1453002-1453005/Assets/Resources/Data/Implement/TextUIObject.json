@@ -82,6 +82,114 @@
       "Author": "Venus de Milo  ",
       "Culture": "Rome",
       "Content": "Lucius Verus (Latin: Lucius Aurelius Verus Augustus; 15 December 130 – 169) was the co-emperor of Rome with his adoptive brother Marcus Aurelius from 161 until his own death in 169."
+    },
+    {
+      "id": 10,
+      "Name": "Augustus",
+      "TextID": "roman_augustus",
+      "Time": "14 AD",
+      "Content": "Roman statue of Augustus as Pontifex Maximus, circa 17-14 BC. This statue of Augustus was typical of the approved style that Augustus used to control his public image. As Pontifex Maximus the statue emphasises the piety of the ruler and his reverence for the gods and traditions of Rome. Augustus thus revitalised the role and function of the most ancient Roman priesthoods and exalted the myths that narrated the origins of Rome. The statue is part of the political propaganda that Augustus used.",
+      "Author": "Unknown",
+      "Culture": "Rome"
+    },
+    {
+      "id": 11,
+      "TextID": "roman_sarcophagus1",
+      "Time": "5th - 4th Century B.C",
+      "Name": "Marble sarcophagus with the Triumph of Dionysus",
+      "Content": "The triumphal march of Dionysus through the lands of India was equated in Roman thought with the triumph of the deceased over death. At the left, Dionysus rides in a chariot pulled by panthers. Preceding him is a procession of his followers and exotic animals, including lions, elephants, and even a giraffe. A bird's nest is concealed in the tree at the far right; on the same tree a snake is pursuing a lizard. Many of the animals depicted had special significance in the mystery cult of Dionysus Sabazius. On the lid is the birth of Dionysus and his reception by nymphs, shown between satyr heads (on the ends), one smiling and one frowning. The enormous attention to detail on this sarcophagus exemplifies the talents of the best Roman relief carvers.",
+      "Culture": "Rome",
+      "Author": "Unknown"
+    },
+    {
+      "id": 12,
+      "TextID": "Tomb_Stone_girl",
+      "Name": "Stela from Greek tomb",
+      "Time": "4th Century B.C",
+      "Culture": "Greek",
+      "Content": "Stele (plural Stelai) a grave stone with reliefs. Many Stelai produced in the period 420-317 BC in Attica until Demetrios of Phaleron of Athens passed a law that prohibited the erection of elaborate stelai ( anti-sumptuary decree).",
+      "Author": "Unknown"
+    },
+    {
+      "id": 13,
+      "TextID": "roman_three_grace",
+      "Author": "Philip Pearlstein",
+      "Culture": "Greek",
+      "Name": "Marble relief of the Three Graces",
+      "Time": "2nd century CE",
+      "Content": "This sculptural wall decoration is inspired by the neoclassical statue of the daughters of Zeus.  It is made with a weather resistant Iberian marble and cement fondue to produce a superb decorative feature.  This wall sculpture is suitable for both exterior and interior display and has a metal hook on the back for hanging"
+    },
+    {
+      "id": 14,
+      "Time": "4th century A.D",
+      "Name": "The Roman Cult of Mithras",
+      "Author": "Andreas Praefcke",
+      "Content": "Mithraism, also known as the Mithraic mysteries, was a mystery religion centered around the god Mithras that was practised in the Roman Empire from about the 1st to the 4th century CE. The religion was inspired by Persian worship of the god Mithra (proto-Indo-Iranian Mitra), though the Greek Mithras was linked to a new and distinctive imagery, and the level of continuity between Persian and Greco-Roman practice is debated. The mysteries were popular in the Roman military",
+      "Culture": "Rome",
+      "TextID": "roman_mithra_barelief"
+    },
+    {
+      "id": 15,
+      "Time": "4th Century B.C",
+      "TextID": "Greek_golden_shield",
+      "Culture": "Greek",
+      "Name": "Marble Replica of the Shield of Athena Parthenos",
+      "Content": "Perseus used this shield to look at Medusa's reflection so he wouldn't be turned to stone. He killed her right when she had birth, which weakened her. After this, he returned to Polydectes' kingdom.  He gave the king Medusa's head and he was turned to stone when he looked at it.  After this, he returned the Shield, Helm, and Sandals. Athena also asked for the head, and, not wanting to upset a goddess, gave it to her. She fastened it to the shield so that any of her enemies would be turned to stone.  She uses it every time she goes to battle.",
+      "Author": "Unknown"
+    },
+    {
+      "id": 16,
+      "TextID": "roman_meleager_fragment",
+      "Time": "2nd century A.D.",
+      "Name": "Marble sarcophagus fragment",
+      "Culture": "Roman",
+      "Content": "The relief, which originally formed the front panel of a large sarcophagus, depicts the death of the Greek hero Meleager, famous for killing the Calydonian boar. On other Roman sarcophagi this scene accompanies that of the hunt itself, showing Meleager spearing the ferocious boar. However, here the focus is on the dying hero who is being carried home surrounded by his grieving father and companions",
+      "Author": "Paul Hartwig"
+    },
+    {
+      "id": 17,
+      "Name": "Hermes ",
+      "TextID": "roman_hermes_statue",
+      "Time": "5th - 4th Century B.C",
+      "Culture": "Greek",
+      "Content": "The antique Roman sculpture is 8-foot high and made of marble. It depicts the Greek messenger god Hermes. Hermes stands in the courtyard of the Villa Terrace Decorative Arts Museum. In Greek mythology, Hermes is the son of Zeus and one of the twelve principal gods of Olympus. Greek mythology remembers him as graceful and athletic. His standard attributes are winged sandals and a hat. Hermes is also commonly seen with a magic wand (caduceus) that is a symbol of the medical profession because of its ability to reconcile conflicts",
+      "Author": "Unknown"
+    },
+    {
+      "id": 18,
+      "Time": "5th century B.C",
+      "TextID": "Eleusinian Relief",
+      "Culture": "Roman",
+      "Content": "Demeter, the goddess of agricultural abundance, stands at the left, clad in a peplos and himation (cloak) and holding a scepter. At the right is Persephone, her daughter and the wife of Hades, the god of the underworld. She is dressed in a chiton and himation. Each goddess extends her right hand toward a nude youth, but it is no longer possible to determine what they held. The boy is thought to be Triptolemos, who was sent by Demeter to teach men how to cultivate grain",
+      "Name": "Ten marble fragments of the Great Eleusinian Relief",
+      "Author": "Unknown"
+    },
+    {
+      "id": 19,
+      "TextID": "Roman_woman_bust2",
+      "Name": "Roman Woman of the Sevreran Period",
+      "Content": "Marble Roman portrait of a woman who lived during the Severan period (ca. 193-211 CE) now in the Metropolitan Museum of Art in New York (inv. 30.11.11; Fletcher Fund). She wears a hairstyle that is probably in imitation of Julia Domna, wife of the emperor Septimius Severus. In the early third century portrait busts could include the upper torso of the body, including the arms and hands of the subject.",
+      "Time": "193 - 211 A.D",
+      "Culture": "Roman",
+      "Author": "Unknown"
+    },
+    {
+      "id": 20,
+      "Name": "Portrait of a Young Woman",
+      "TextID": "roman_woman_bust",
+      "Time": "200 - 250 A.D",
+      "Content": "The subject of this extremely fine portrait wears her hair in a fashion associated with Otacilia Severa, wife of the emperor Philip the Roman (r. A.D. 200–250). The wavy hair is parted in the center, looped back over the ears to form a wide flat braid pinned to the back of the head.",
+      "Author": "Rogers Fund",
+      "Culture": "Roman"
+    },
+    {
+      "id": 21,
+      "Time": "180 - 220 A.D",
+      "TextID": "roman_child_bust",
+      "Content": "Son of Caligula. Assassinated at a young age by the Roman noble Otho, who then proclaimed himself emperor and began the Turmoil.",
+      "Name": "Sextus Julius Caesar Augustus",
+      "Culture": "Roman",
+      "Author": "Unknown"
     }
   ]
 }
