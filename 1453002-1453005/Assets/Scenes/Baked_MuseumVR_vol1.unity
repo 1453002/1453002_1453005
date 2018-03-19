@@ -2575,6 +2575,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e16bf2d0b273ca449bb6c559a725800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TextCanvas: {fileID: 1866528253550656, guid: 3ed9332b71ce76548a1aa26c4e312095, type: 2}
+  VideoCanvas: {fileID: 1516858856086086, guid: c885db4ccb569bf418255673452f6102,
+    type: 2}
 --- !u!114 &732946620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3008,7 +3011,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 450206, guid: 3bd52ce91e7307647950803e490b30b5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 14.23
+      value: 97.5
       objectReference: {fileID: 0}
     - target: {fileID: 450206, guid: 3bd52ce91e7307647950803e490b30b5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3217,7 +3220,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 404074, guid: b765f12fb744b7048b8131cbd9dd5fba, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 14.3
+      value: 97.57001
       objectReference: {fileID: 0}
     - target: {fileID: 404074, guid: b765f12fb744b7048b8131cbd9dd5fba, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4050,6 +4053,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 136670, guid: ae5d2c3343e8e5b4aae4e93141a1ef3f, type: 2}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6423160, guid: ae5d2c3343e8e5b4aae4e93141a1ef3f, type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
