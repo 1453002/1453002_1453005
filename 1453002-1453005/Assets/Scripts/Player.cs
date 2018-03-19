@@ -46,8 +46,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if(this.gameObject.scene.name != "TestObject")
-            transform.position = GamePlay.instance.spawnPoint;
+       
 	}
 
     public void SetState(PlayerState state)
