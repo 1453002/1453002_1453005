@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: ad90f3a5a867efe4685e04f8b8fe80cd
+timeCreated: 1521433930
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Component1_001
+    100004: Component2_001
+    100006: Component3_001
+    100008: Component4_001
+    100010: Component_001
+    400000: //RootNode
+    400002: Component1_001
+    400004: Component2_001
+    400006: Component3_001
+    400008: Component4_001
+    400010: Component_001
+    2300000: Component1_001
+    2300002: Component2_001
+    2300004: Component3_001
+    2300006: Component4_001
+    2300008: Component_001
+    3300000: Component1_001
+    3300002: Component2_001
+    3300004: Component3_001
+    3300006: Component4_001
+    3300008: Component_001
+    4300000: Component4_001
+    4300002: Component3_001
+    4300004: Component2_001
+    4300006: Component1_001
+    4300008: Component_001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 9f76944148758494d98c359a8c3053ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component1_001
+    second: {fileID: 2100000, guid: be9db281e4d50e0488b0b7a7f8fdc64f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component1_002
+    second: {fileID: 2100000, guid: 745c470ce9a106b4c981153ad71c99ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_001
+    second: {fileID: 2100000, guid: 108789ea2f33dfa4b986d4b5cdb308bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_002
+    second: {fileID: 2100000, guid: 597844758214a964eafac43a09d42024, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_003
+    second: {fileID: 2100000, guid: a7c2deb88038dbc43b7726f8204d328c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_004
+    second: {fileID: 2100000, guid: 189587b09834a5f45bd36be6538a2d37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_005
+    second: {fileID: 2100000, guid: e856fd7be798685469673c2999ab371b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_006
+    second: {fileID: 2100000, guid: 3289a4ffb03c42445b01a243eb70b288, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_007
+    second: {fileID: 2100000, guid: 3297e694556f2004d8a84ffc99e76307, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_008
+    second: {fileID: 2100000, guid: 0fa81c8ce1a86ae469a021377e591f5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_009
+    second: {fileID: 2100000, guid: 1d79762cb102ee246b1762c22b19e78d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_010
+    second: {fileID: 2100000, guid: bae562059c2134c4fba21599d22408ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dbl_Component_011
+    second: {fileID: 2100000, guid: 82f8372f544eb9f48a6a6b17b29ae5f9, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
