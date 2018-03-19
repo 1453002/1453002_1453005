@@ -5,7 +5,7 @@ using UnityEngine;
 public class SceneObjectManager : MonoBehaviour {
 
     public static SceneObjectManager instance;
-    
+    public GameObject TextCanvas, VideoCanvas;
     private void Awake()
     {
         instance = this;
@@ -62,13 +62,13 @@ public class SceneObjectManager : MonoBehaviour {
                     Transform ClipPos = scnObj.transform.findChildRecursively("ClipPos");
                     if (TextPos)
                     {
-                        GameObject temp = Resources.Load<GameObject>("Prefabs/TextCanVas");
+                        GameObject temp = TextCanvas;
                         GameObject createdObject = Instantiate(temp,TextPos);
                         createdObject.transform.position = TextPos.position;
                     }
                     if(ClipPos)
                     {
-                        GameObject videoMarker = Resources.Load<GameObject>("Prefabs/ClipCanvas");
+                        GameObject videoMarker = VideoCanvas;
                         GameObject clipCanvas = Instantiate(videoMarker, ClipPos);
                         clipCanvas.transform.position = ClipPos.position;
                     }

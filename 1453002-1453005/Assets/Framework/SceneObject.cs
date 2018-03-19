@@ -25,11 +25,11 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);
 
         if (sceneObjectEvent.trigger1 == Trigger.DROP)
-            implementDrop(this.gameObject);
+            initDrop(this.gameObject);
         if (sceneObjectEvent.trigger2 == Trigger.DROP)
-            implementDrop(this.gameObject);
+            initDrop(this.gameObject);
         if (sceneObjectEvent.trigger3 == Trigger.DROP)
-            implementDrop(this.gameObject);
+            initDrop(this.gameObject);
     }
 
     #region common
@@ -107,7 +107,7 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);    
         if (sceneObjectEvent.trigger3 == Trigger.HOVER)    
             implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);
-        isHover = true;
+        
     }
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -117,7 +117,7 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);     
         if (sceneObjectEvent.trigger3 == Trigger.EXIT)   
             implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);
-        isHover = false;
+      
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -132,27 +132,28 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (isHover)
-            Debug.Log("SELECTED!!!!");
+        
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (isHover)
-            Debug.Log("DESELECTED!!!!");
+        
     }
 
     void implementAction(Action action, string param)
     {
-        if (action == Action.RUNSCRIPT) FBScriptManager.instance.runScript(param);
-        //if (action == Action.PLAYSOUND) SoundResonanceManager.instance.playSfx(this.gameObject, param);
-        //if (action == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-        //if (action == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
-        //if (action == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
-        if (action == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(param, this.gameObject);
-        if (action == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
-        if (action == Action.SHOWVIDEO) BaseUI.instance.PlayVideo(param, this.gameObject);
-        if (action == Action.HIDEVIDEO) BaseUI.instance.PauseVideo(this.gameObject);
+        if (this.gameObject)
+        {
+            if (action == Action.RUNSCRIPT) FBScriptManager.instance.runScript(param);
+            //if (action == Action.PLAYSOUND) SoundResonanceManager.instance.playSfx(this.gameObject, param);
+            //if (action == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            //if (action == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
+            //if (action == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (action == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(param, this.gameObject);
+            if (action == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
+            if (action == Action.SHOWVIDEO) BaseUI.instance.PlayVideo(param, this.gameObject);
+            if (action == Action.HIDEVIDEO) BaseUI.instance.PauseVideo(this.gameObject);
+        }
         
     }
    
@@ -165,13 +166,12 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
 
     #region Drop
     
-    bool isHover = false;
-  
-
-     
-    void implementDrop(GameObject obj)
+    void initDrop(GameObject obj)
     {
-       obj.AddComponent<DaydreamElements.ObjectManipulation.MoveablePhysicsObject>();
+        //obj.AddComponent<Rigidbody>();
+        //obj.GetComponent<Rigidbody>().useGravity = true;
+        //obj.GetComponent<Rigidbody>().isKinematic = false;
+        obj.AddComponent<DaydreamElements.ObjectManipulation.MoveablePhysicsObject>();
     }
     #endregion
 }
