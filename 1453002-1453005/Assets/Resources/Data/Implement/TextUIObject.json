@@ -1,0 +1,87 @@
+{
+  "id": 5,
+  "name": "TextUIObject",
+  "data": [
+    {
+      "id": 1,
+      "Name": "Terracotta Panathenaic prize amphora",
+      "TextID": "greek_amphora1",
+      "Time": "ca. 530 B.C. Archaic",
+      "Author": "None",
+      "Culture": "Greek, Attic",
+      "Content": "The Euphiletos Painter was trained in the black-figure technique. It is interesting to compare the firm, deliberate incision in his works with the looser, freer line of artists like the Berlin Painter. The footrace is one of the earliest known events in the Panathenaic games."
+    },
+    {
+      "id": 2,
+      "Name": "The marathon boy",
+      "TextID": "greek_boy_head",
+      "Time": "340-330BC",
+      "Author": "None",
+      "Culture": "Aegean and Mediterranean",
+      "Content": "The Museum suggests that the subject is the winner of an athletic competition. With its soft musculature and exaggerated contrapposto, its style is associated with the school of Praxiteles."
+    },
+    {
+      "id": 3,
+      "Name": "Pericles with the Corinthian helmet",
+      "TextID": "greek_general_bust",
+      "Time": "430 BC.",
+      "Author": "Max Kunze",
+      "Culture": "Attic",
+      "Content": "The Roman copies of the bust of Pericles derive from a bronze statue made by the sculptor Kresilas. This life-size statue was probably installed on the Athenian Acropolis at or shortly after the death of the politician."
+    },
+    {
+      "id": 4,
+      "Name": "Variant of the Head of the Aphrodite of Cnidos",
+      "TextID": "greek_girl_head",
+      "Time": "99 - 75 B.C.",
+      "Author": "Nicolas Koutoulakis",
+      "Culture": "Greek",
+      "Content": "This female head is slightly over life-size. The back of the head is a wedge-shaped flat surface with cuttings for the attachment of separately carved pieces that would have completed the anatomy of the head. The eyes are almond shaped and hollowed out for inlay."
+    },
+    {
+      "id": 5,
+      "Name": "Torso of the Diadoumenos",
+      "TextID": "greek_man_torso",
+      "Time": "430 BC",
+      "Author": "None",
+      "Culture": "Greek",
+      "Content": "This powerful torso was part of a copy of the \"Diadoumenos,\" a Greek statue by the famous master sculptor Polykleitos that has not survived. The original depicted a youthful nude athlete with both arms raised to tie a ribbon, the prize of athletic victory, around his head. The statue was much admired for the skillful representation of the musculature of the chest and the naturalistic and supple pose."
+    },
+    {
+      "id": 6,
+      "Name": "Venus de Milo",
+      "TextID": "greek_woman_statue",
+      "Time": "Between 130 and 100 BC",
+      "Author": "Alexandros of Antioch",
+      "Culture": "ancient Greek",
+      "Content": "Aphrodite of Milos (Greek: Αφροδίτη της Μήλου, Aphroditi tis Milou), better known as the Venus de Milo, is an ancient Greekstatue and one of the most famous works of ancient Greek sculpture. Initially it was attributed to the sculptor Praxiteles, however from an inscription that was on its plinth, the statue is thought to be the work of Alexandros of Antioch"
+    },
+    {
+      "id": 7,
+      "Name": "greek_woman_torso",
+      "TextID": "greek_woman_torso ",
+      "Time": "4th century B.C.",
+      "Author": "None",
+      "Culture": "Greek, South Italian, Tarentine",
+      "Content": "Reproduction of sculpture of a Green woman. Statue of great quality in reconstituted marble (marble with resin powder). Completion of archaeological aspect.Metal base"
+    },
+    {
+      "id": 8,
+      "Name": "Marble statue of a kouros (youth)",
+      "TextID": "greek_youth_archaic",
+      "Time": " ca. 590–580 B.C.",
+      "Author": "Fletcher Fund",
+      "Culture": "Greek, Attic",
+      "Content": "This is one of the earliest marble statues of a human figure carved in Attica. The rigid stance, with the left leg forward and arms at the side, was derived from Egyptian art. The pose provided a clear, simple formula that was used by Greek sculptors throughout the sixth century B.C."
+    },
+    {
+      "id": 9,
+      "Name": "Lucius Verus",
+      "TextID": "lucius_verus_bust",
+      "Time": "None",
+      "Author": "Venus de Milo  ",
+      "Culture": "Rome",
+      "Content": "Lucius Verus (Latin: Lucius Aurelius Verus Augustus; 15 December 130 – 169) was the co-emperor of Rome with his adoptive brother Marcus Aurelius from 161 until his own death in 169."
+    }
+  ]
+}
