@@ -126,7 +126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1902109682616282
 GameObject:
   m_ObjectHideFlags: 1
@@ -253,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 1281957977429048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -7.83, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4615570725621396}
   - {fileID: 4642689671410080}
@@ -289,8 +289,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.03
-  far clip plane: 1000
+  near clip plane: 0.5
+  far clip plane: 450
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b02a763c27cdb44a2a2afae43fb232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHeight: 1.6
+  playerHeight: 1.2
   defaultLaser: {fileID: 1296361287175430}
   visualPlayer: {fileID: 0}
   teleportController: {fileID: 114420890699604602}
@@ -594,8 +594,8 @@ MonoBehaviour:
   raycastMode: 0
   overridePointerCamera: {fileID: 0}
   drawDebugRays: 0
-  maxPointerDistance: 20
-  defaultReticleDistance: 20
+  maxPointerDistance: 50
+  defaultReticleDistance: 50
   overrideCameraRayIntersectionDistance: 2.5
 --- !u!114 &114412291514088080
 MonoBehaviour:
@@ -650,7 +650,7 @@ MonoBehaviour:
   raycastMask:
     serializedVersion: 2
     m_Bits: 1
-  maxDistance: 5
+  maxDistance: 20
   maxSurfaceAngle: 45
   maxControllerPitch: 60
   maxVerticalGain: 10

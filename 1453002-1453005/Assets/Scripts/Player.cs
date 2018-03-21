@@ -80,6 +80,19 @@ public class Player : MonoBehaviour {
     {
         teleportController.gameObject.SetActive(true);
     }
+    public void enableTeleport(bool value)
+    {
+        if(value)
+        {
+            teleportController.gameObject.SetActive(true);
+            defaultLaser.SetActive(false);
+        }
+        else
+        {
+            teleportController.gameObject.SetActive(false);
+            defaultLaser.SetActive(true);
+        }
+    }
 
     void UpdateState()
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
+using DaydreamElements.ObjectManipulation;
  
 public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                            IPointerExitHandler,IPointerClickHandler,IPointerUpHandler
@@ -107,6 +108,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);    
         if (sceneObjectEvent.trigger3 == Trigger.HOVER)    
             implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);
+        Player.instance.enableTeleport(false);
+
         
     }
     public void OnPointerExit(PointerEventData eventData)
@@ -117,22 +120,26 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);     
         if (sceneObjectEvent.trigger3 == Trigger.EXIT)   
             implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);
-      
+        Player.instance.SetState(Player.PlayerState.None);
+        
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(sceneObjectEvent.trigger1 == Trigger.CLICK) 
-            implementAction(sceneObjectEvent.action1, sceneObjectEvent.param1);
-        if (sceneObjectEvent.trigger2 == Trigger.CLICK)
-            implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);  
-        if (sceneObjectEvent.trigger3 == Trigger.CLICK)    
-            implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);      
+        if (Player.instance.currentState != Player.PlayerState.None)
+            return;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        
+        if (sceneObjectEvent.trigger1 == Trigger.CLICK)
+            implementAction(sceneObjectEvent.action1, sceneObjectEvent.param1);
+        if (sceneObjectEvent.trigger2 == Trigger.CLICK)
+            implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);
+        if (sceneObjectEvent.trigger3 == Trigger.CLICK)
+            implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);
+
+      
     }
 
     public void OnPointerUp(PointerEventData eventData)
