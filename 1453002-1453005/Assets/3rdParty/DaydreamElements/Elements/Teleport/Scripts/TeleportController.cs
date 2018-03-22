@@ -180,7 +180,9 @@ namespace DaydreamElements.Teleport {
       // trigger to see if one should start.
       if (selectionIsActive == false) {
         if (teleportStartTrigger.TriggerActive()) {
-          StartTeleportSelection();
+                    if (Player.instance.currentState != Player.PlayerState.None)
+                        return;
+                    StartTeleportSelection();
         }
       }
 
@@ -223,17 +225,21 @@ namespace DaydreamElements.Teleport {
       }
     }
 
-    private void StartTeleportSelection() {
+    private void StartTeleportSelection()
+        {
+      Player.instance.SetState(Player.PlayerState.Teleporting);
       detector.StartSelection(currentController);
       visualizer.StartSelection(currentController);
       selectionIsActive = true;
-    }
+            
+        }
 
     private void EndTeleportSelection() {
       detector.EndSelection();
       visualizer.EndSelection();
       selectionIsActive = false;
-    }
+            Player.instance.SetState(Player.PlayerState.None);
+        }
 
     private float DetectPlayerHeight() {
       RaycastHit hit;

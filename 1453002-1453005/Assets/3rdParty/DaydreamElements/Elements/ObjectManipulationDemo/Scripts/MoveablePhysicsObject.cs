@@ -15,7 +15,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-
+using DG.Tweening;
 namespace DaydreamElements.ObjectManipulation {
 
   /// Used for responding to pointer events, and implementing an interactive
@@ -86,7 +86,7 @@ namespace DaydreamElements.ObjectManipulation {
     private bool isKinematicDefault;
 
     // The distance between the control transform and the controller transform.
-    private float controlZDistance;
+    private float controlZDistance; 
     private float targetControlZDistance;
     private float controlZDistanceSpeed;
 
@@ -135,15 +135,44 @@ namespace DaydreamElements.ObjectManipulation {
       UpdateControlTransform();
     }
 
+        Transform marker;
     // Evaluate rigidbody physics in FixedUpdate().
     void FixedUpdate() {
       // While the object is selected, update the rigidbody.
-      if (State == ObjectState.Selected) {
+      if (State == ObjectState.Selected)
+      {
         DragRigidbody();
+                if (isDropable())
+                {
+                    float dist = Vector3.Distance(this.gameObject.transform.position, marker.position);
+                    if (dist < 0.25f)
+                    {
+                        Deselect();
+                        Player.instance.SetState(Player.PlayerState.PlayingGame);
+                        if (this.gameObject.GetComponent<Rigidbody>())
+                            this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                        this.gameObject.transform.DOMove(marker.position, 0.1f);
+                        this.gameObject.SetActive(false);
+                        marker.GetComponent<MeshRenderer>().enabled = true;
+
+                    }
+                }
       }
     }
+        bool isDropable()
+        {
+            if (TestDrop.instance.listMarker.Count != 0)
+                return true;
+            else
+                return false;
+        }
 
-    protected override void OnSelect(){
+        protected override void OnSelect(){
+            if (isDropable())
+            {
+                if (TestDrop.instance.markers[this.gameObject.name])
+                    marker = TestDrop.instance.markers[this.gameObject.name].transform;
+            }
       // Perform the transformation relative to control.
       Vector3 vectorToObject = transform.position - ControlPosition;
       float d = vectorToObject.magnitude;
@@ -188,7 +217,7 @@ namespace DaydreamElements.ObjectManipulation {
       base.OnDeselect();
       ObjectManipulationPointer.ReleaseSelected(gameObject.transform);
       ResetRigidbody();
-    }
+    }   
 
     private void UpdateControlTransform() {
 

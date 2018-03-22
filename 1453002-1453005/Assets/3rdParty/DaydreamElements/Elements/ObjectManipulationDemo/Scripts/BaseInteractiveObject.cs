@@ -129,9 +129,11 @@ namespace DaydreamElements.ObjectManipulation {
 
     // GvrEventSystem may not throw click events in the correct frame (unverified...), so we respond on Down.
     public void OnPointerDown(PointerEventData data) {
+            if (Player.instance.currentState != Player.PlayerState.Selecting)
+                return;
 
-      // If the state is ready for selection, select the object.
-      if (state == ObjectState.None) {
+            // If the state is ready for selection, select the object.
+            if (state == ObjectState.None) {
         Select();
       // Otherwise, try to deselect it.
       } else if (state == ObjectState.Selected) {
@@ -140,14 +142,25 @@ namespace DaydreamElements.ObjectManipulation {
     }
 
     public void OnPointerEnter(PointerEventData data){
-      Hover = true;
+
+            if (Player.instance.currentState != Player.PlayerState.None)
+                return;
+            Hover = true;
+            Player.instance.currentState = Player.PlayerState.Selecting;
     }
 
     public void OnPointerExit(PointerEventData data){
-      Hover = false;
+
+            //if (Player.instance.currentState != Player.PlayerState.None)
+            //    return;
+            Hover = false;
+            Player.instance.SetState(Player.PlayerState.None);
+
     }
 
-    protected virtual void OnSelect() {
+    protected virtual void OnSelect()
+     {
+            Player.instance.currentState = Player.PlayerState.Selecting;
       totalTouchpadMotionSinceSelection = Vector2.zero;
       initialControllerOrientation = controlTransform.rotation;
 
