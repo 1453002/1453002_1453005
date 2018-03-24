@@ -102,6 +102,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4981559933082704}
+  - component: {fileID: 114855621391225604}
+  - component: {fileID: 114316348325592304}
   m_Layer: 0
   m_Name: GVR
   m_TagString: Untagged
@@ -261,6 +263,20 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114316348325592304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816285428731076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4002ce2e537ee93408fb1db1b48c5cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avatarPrefabs: {fileID: 1340722146096514, guid: 2536a413bd8570043b05290b82b6075b,
+    type: 2}
+  interactiveObjectPrefabs: {fileID: 0}
 --- !u!114 &114394032580586924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,6 +355,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emulatorConnectionMode: 1
+--- !u!114 &114855621391225604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816285428731076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 559f48fc42271374da4a7bdcb442a906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VRplayer: {fileID: 0}
+  spawnPoint: {x: 0, y: 0, z: 0}
+  status: {fileID: 0}
 --- !u!114 &114905422394158694
 MonoBehaviour:
   m_ObjectHideFlags: 1
