@@ -141,7 +141,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
         }
         else
         {
-            this.transform.DOMove(correctPos, 0.3f).SetEase(Ease.Linear);
+            this.transform.DOMove(correctPos, 0.3f);
             
         }
 
