@@ -19,8 +19,7 @@ new List<GvrPermissionsRequester.PermissionStatus>();
     private void Awake()
     {
         spawnPoint = new Vector3(0, -12, 0);
-        if (gameObject.scene.name == "Showroom2_01")
-            spawnPoint = new Vector3(-0.8460226f, 0.8363843f, 9.676474f);
+       
         
         instance = this;
     }

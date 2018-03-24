@@ -24,7 +24,7 @@ public class BaseUI : MonoBehaviour {
     }
 
     public void ShowTextObject(string textID, GameObject obj)
-    {
+    {        
         FBClassData TextObject = FBGameData.instance.getClassData("TextUIObject");
         FBClassObject objTmp = TextObject.getObject("TextID", new FBValue(FBDataType.String, textID));
         string name = TextObject.getObject("TextID", new FBValue(FBDataType.String, textID)).getFieldValue("Name").stringValue;
@@ -36,9 +36,8 @@ public class BaseUI : MonoBehaviour {
         obj.transform.findChildRecursively("Culture").GetComponentInChildren<Text>().text = culture;
         obj.transform.findChildRecursively("Author").GetComponentInChildren<Text>().text = author;
         obj.transform.findChildRecursively("Content").GetComponentInChildren<Text>().text = content;
-
-        if (obj.transform.findChildRecursively("UIManager").GetComponent<UIElement>())
-            obj.transform.findChildRecursively("UIManager").GetComponent<UIElement>().Show(true);
+                
+        obj.transform.findChildRecursively("UIManager").GetComponent<UIElement>().Show(true);
     }
     public void HideTextObject(GameObject obj) {
         obj.transform.Find(textPosName).GetComponentInChildren<UIElement>().Hide(false);
