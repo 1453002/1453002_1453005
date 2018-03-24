@@ -14,7 +14,9 @@ public class NetworkPlayer : Photon.MonoBehaviour {
     public float health;
 
     private Vector3 lowerJawInitPos;
-    
+
+    Vector3 correctPos;
+    Quaternion correctRot;
 
 #region Voice Regconition
     public AudioSource audioSource;
@@ -39,6 +41,20 @@ public class NetworkPlayer : Photon.MonoBehaviour {
     }
 
     #endregion
+
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+        else
+        {
+            this.correctPos = (Vector3)stream.ReceiveNext();
+            this.correctRot = (Quaternion)stream.ReceiveNext();
+        }
+    }
 
     // Use this for initialization
     void Start () {
@@ -122,6 +138,11 @@ public class NetworkPlayer : Photon.MonoBehaviour {
                // visualHandTransform.position = controllerTransform.position;
             }
            
+        }
+        else
+        {
+            this.transform.DOMove(correctPos, 0.3f).SetEase(Ease.Linear);
+            
         }
 
 
