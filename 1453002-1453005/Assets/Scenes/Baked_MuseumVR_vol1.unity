@@ -3819,7 +3819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &867951482
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6675,6 +6675,16 @@ Prefab:
       propertyPath: maxDistance
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114363401624078564, guid: 93ad0fec8cff07845aabc5c24b889357,
+        type: 2}
+      propertyPath: maxPointerDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114363401624078564, guid: 93ad0fec8cff07845aabc5c24b889357,
+        type: 2}
+      propertyPath: defaultReticleDistance
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93ad0fec8cff07845aabc5c24b889357, type: 2}
   m_IsPrefabParent: 0
@@ -8185,6 +8195,10 @@ Prefab:
     - target: {fileID: 4097253035476660, guid: f85a4236fe46acb4d88ecc0d7a0bed4e, type: 2}
       propertyPath: m_LocalScale.z
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101457256065998, guid: f85a4236fe46acb4d88ecc0d7a0bed4e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f85a4236fe46acb4d88ecc0d7a0bed4e, type: 2}

@@ -108,8 +108,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             implementAction(sceneObjectEvent.action2, sceneObjectEvent.param2);    
         if (sceneObjectEvent.trigger3 == Trigger.HOVER)    
             implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);
-        Player.instance.enableTeleport(false);
-
+        
+        Player.instance.SetState(Player.PlayerState.Selecting);
         
     }
     public void OnPointerExit(PointerEventData eventData)

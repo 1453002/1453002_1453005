@@ -187,50 +187,50 @@ public class AccountService
     /// <param name="result"></param>
     private void ParseResult(string result)
     {
-        //if (string.IsNullOrEmpty(result))
-        //{
-        //    this.Message = "Server's response was empty. Please register through account website during this service interruption.";
-        //    return;
-        //}
+        if (string.IsNullOrEmpty(result))
+        {
+            this.Message = "Server's response was empty. Please register through account website during this service interruption.";
+            return;
+        }
 
-        //Dictionary<string, string> values = JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
-        //if (values == null)
-        //{
-        //    this.Message = "Service temporarily unavailable. Please register through account website.";
-        //    return;
-        //}
+        Dictionary<string, string> values = JsonConvert.DeserializeObject<Dictionary<string, string>>(result);
+        if (values == null)
+        {
+            this.Message = "Service temporarily unavailable. Please register through account website.";
+            return;
+        }
 
-        //int returnCodeInt = -1;
-        //string returnCodeString = string.Empty;
-        //string message;
-        //string messageDetailed;
+        int returnCodeInt = -1;
+        string returnCodeString = string.Empty;
+        string message;
+        string messageDetailed;
 
-        //values.TryGetValue("ReturnCode", out returnCodeString);
-        //values.TryGetValue("Message", out message);
-        //values.TryGetValue("MessageDetailed", out messageDetailed);
+        values.TryGetValue("ReturnCode", out returnCodeString);
+        values.TryGetValue("Message", out message);
+        values.TryGetValue("MessageDetailed", out messageDetailed);
 
-        //int.TryParse(returnCodeString, out returnCodeInt);
+        int.TryParse(returnCodeString, out returnCodeInt);
 
-        //this.ReturnCode = returnCodeInt;
-        //if (returnCodeInt == 0)
-        //{
-        //    // returnCode == 0 means: all ok. message is new AppId
-        //    this.AppId = message;
-        //    if (PhotonEditorUtils.HasVoice)
-        //    {
-        //        this.AppId2 = messageDetailed;
-        //    }
-        //}
-        //else
-        //{
-        //    // any error gives returnCode != 0
-        //    this.AppId = string.Empty;
-        //    if (PhotonEditorUtils.HasVoice)
-        //    {
-        //        this.AppId2 = string.Empty;
-        //    }
-        //    this.Message = message;
-        //}
+        this.ReturnCode = returnCodeInt;
+        if (returnCodeInt == 0)
+        {
+            // returnCode == 0 means: all ok. message is new AppId
+            this.AppId = message;
+            if (PhotonEditorUtils.HasVoice)
+            {
+                this.AppId2 = messageDetailed;
+            }
+        }
+        else
+        {
+            // any error gives returnCode != 0
+            this.AppId = string.Empty;
+            if (PhotonEditorUtils.HasVoice)
+            {
+                this.AppId2 = string.Empty;
+            }
+            this.Message = message;
+        }
     }
 }
 #endif
