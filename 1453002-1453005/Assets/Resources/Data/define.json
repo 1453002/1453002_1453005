@@ -112,6 +112,27 @@
     ]
   },
   {
+    "id": 4,
+    "name": "ImageUIObject",
+    "ignore": false,
+    "data": [
+      {
+        "fieldName": "ObjectName",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "ImageID",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      }
+    ]
+  },
+  {
     "id": 5,
     "name": "TextUIObject",
     "ignore": false,

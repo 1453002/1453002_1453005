@@ -19,7 +19,27 @@ public class SceneObjectManager : MonoBehaviour {
     {
         if (rootObjects == null)
             rootObjects = scene.GetRootGameObjects();
-        initInteractiveObjects(scene.name, rootObjects);        
+        initInteractiveObjects(scene.name, rootObjects);     
+        if(scene.name == "Showroom2_01")
+        {
+            for(int i = 0; i<rootObjects.Length; i++)
+            {
+                if(rootObjects[i].name.Contains("-image"))
+                {
+                    MediaManager.instance.initImage(rootObjects[i].gameObject);
+                }
+                if(rootObjects[i].name.Contains("BenhPhoi"))
+                {
+                    foreach(Transform child in rootObjects[i].transform)
+                    {
+                        if(child.gameObject.name.Contains("-image"))
+                        {
+                            MediaManager.instance.initImage(child.gameObject);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void initInteractiveObjects(string sceneName, GameObject[] rootObjects)
@@ -71,7 +91,7 @@ public class SceneObjectManager : MonoBehaviour {
                         GameObject videoMarker = VideoCanvas;
                         GameObject clipCanvas = Instantiate(videoMarker, ClipPos);
                         clipCanvas.transform.position = ClipPos.position;
-                    }
+                    }                  
                     objectDict[objectName] = scnObj;
                 }
             }
