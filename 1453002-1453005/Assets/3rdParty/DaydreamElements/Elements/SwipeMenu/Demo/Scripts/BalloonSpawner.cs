@@ -21,7 +21,7 @@ namespace DaydreamElements.SwipeMenu {
     private const float MAX_SPAWN_RADIUS = 16.0f;
     private const float MIN_SPAWN_HEIGHT = 0.0f;
     private const float MAX_SPAWN_HEIGHT = 10.0f;
-    private const int TARGET_NUM_BALLOONS = 25;
+    private const int TARGET_NUM_BALLOONS = 4;
     private const float MIN_DIST_BETWEEN_BALLOONS = 3.0f;
 
     private int numBalloons = 0;
