@@ -180,5 +180,61 @@
         "criteria": "[a-zA-Z0-9]"
       }
     ]
+  },
+  {
+    "id": 9,
+    "name": "Question",
+    "ignore": false,
+    "data": [
+      {
+        "fieldName": "QuestionID",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Content",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Option1",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Option2",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Option3",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Option4",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      },
+      {
+        "fieldName": "Answer",
+        "dataType": -1,
+        "min": 0,
+        "max": 256,
+        "criteria": "[a-zA-Z0-9]"
+      }
+    ]
   }
 ]
