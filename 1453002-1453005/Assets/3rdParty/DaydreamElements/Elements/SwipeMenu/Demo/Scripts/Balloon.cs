@@ -54,14 +54,58 @@ namespace DaydreamElements.SwipeMenu {
       startScale = transform.localScale;
       startTime = Time.realtimeSinceStartup + Random.Range(0.0f, FLOATING_PERIOD);
       type = ColorUtil.RandomColor();
+
+            //baonh   
+      
+      checkCurrentColor((int)type);
+            testSwipeColor.instance.balloonIns.Add(this.gameObject.name, this.gameObject);
+            this.gameObject.AddComponent<multipleChoice>();
+            GameObject player = GameObject.Find("Player");
+           //testSwipeColor.instance.balloonIns.Add(this.gameObject.name, this.gameObject);
+      if (this.gameObject.transform.findChildRecursively("Answer"))
+      {
+                GameObject answer = this.gameObject.transform.findChildRecursively("Answer").gameObject;
+        answer.transform.LookAt(player.transform);
+      }
+
       ColorUtil.Colorize(type, gameObject);
       transform.localScale = Vector3.zero;
       float randAngle = Random.Range(0.0f, 360.0f);
       transform.localRotation = Quaternion.Euler(0.0f, randAngle, 0.0f);
+      if(this.gameObject.scene.name == "Showroom2_01")
+            {
+                startScale *= 0.1f;                
+                startPosition.x = Random.Range(player.transform.position.x - 3 , player.transform.position.x + 3);
+                startPosition.y = player.transform.position.y ; 
+                startPosition.z = Random.Range(player.transform.position.z - 2 , player.transform.position.z +2);
+            }
+    }
+
+    //baonh
+    void checkCurrentColor(int param)
+    {
+        if(param == 0) { testSwipeColor.instance.currentColor += 1; this.gameObject.name = "A"; }
+        if (param == 1) { testSwipeColor.instance.currentColor += 2; this.gameObject.name = "B"; }
+        if (param == 2) { testSwipeColor.instance.currentColor += 4; this.gameObject.name = "C"; }
+        if (param == 3) { testSwipeColor.instance.currentColor += 8; this.gameObject.name = "D"; }
+
+
+        }
+    void checkAnswer()
+    {
+       if(this.gameObject.name.Equals(testSwipeColor.instance.getAnswer(testSwipeColor.instance.currentQuestion)))
+       {
+                testSwipeColor.instance.score += 10;
+       }
+       if(testSwipeColor.instance.currentQuestion + 1 <= testSwipeColor.instance.maxQuestion)
+       {
+                testSwipeColor.instance.currentQuestion += 1;
+                testSwipeColor.instance.loadQuestion(testSwipeColor.instance.currentQuestion);
+       }
     }
 
     void Update() {
-      if (isAppearing) {
+      if (isAppearing) {    
         float scale = Mathf.Min(appearingTimer / APPEARING_TIME, 1.0f);
         appearingTimer += Time.deltaTime;
         transform.localScale = startScale * scale;
@@ -82,7 +126,13 @@ namespace DaydreamElements.SwipeMenu {
       Sign.IncScore();
       if (spawner != null) {
         spawner.BalloonDestroyed(balloonIx);
-      }
+         testSwipeColor.instance.balloonIns.Remove(this.gameObject.name);
+                checkAnswer();
+        if((int)type == 0) { testSwipeColor.instance.currentColor -= 1; }
+        if((int)type == 1) { testSwipeColor.instance.currentColor -= 2; }
+        if ((int)type == 2) { testSwipeColor.instance.currentColor -= 4; }
+        if ((int)type == 3) { testSwipeColor.instance.currentColor -= 8; }
+            }
     }
 
     void OnCollisionEnter(Collision collision) {
@@ -94,8 +144,10 @@ namespace DaydreamElements.SwipeMenu {
         Destroy(collision.gameObject);
         isPopping = true;
       } else {
-        rigidPencil.Spin();
-      }
+                //rigidPencil.Spin();
+                Destroy(collision.gameObject);
+                isPopping = true;
+            }
     }
 
     private void ApplyFloatingAnimation() {

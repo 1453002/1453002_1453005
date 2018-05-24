@@ -17,11 +17,20 @@ using UnityEngine;
 namespace DaydreamElements.SwipeMenu {
 
   public class BalloonSpawner : MonoBehaviour {
-    private const float MIN_SPAWN_RADIUS = 8.0f;
-    private const float MAX_SPAWN_RADIUS = 16.0f;
-    private const float MIN_SPAWN_HEIGHT = 0.0f;
-    private const float MAX_SPAWN_HEIGHT = 10.0f;
-    private const int TARGET_NUM_BALLOONS = 4;
+
+        //baonh custom for medical scene :
+        //private const float MIN_SPAWN_RADIUS = 1f;
+        //private const float MAX_SPAWN_RADIUS = 3f;
+        //private const float MIN_SPAWN_HEIGHT = 1f;
+        //private const float MAX_SPAWN_HEIGHT = 4f;
+
+
+
+        private const float MIN_SPAWN_RADIUS = 10.0f;
+        private const float MAX_SPAWN_RADIUS = 10.0f;
+        private const float MIN_SPAWN_HEIGHT = 3.0f;
+        private const float MAX_SPAWN_HEIGHT = 7.0f;
+        private const int TARGET_NUM_BALLOONS = 4;
     private const float MIN_DIST_BETWEEN_BALLOONS = 3.0f;
 
     private int numBalloons = 0;

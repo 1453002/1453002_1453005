@@ -28,7 +28,7 @@ public class SceneObjectManager : MonoBehaviour {
                 {
                     MediaManager.instance.initImage(rootObjects[i].gameObject);
                 }
-                if(rootObjects[i].name.Contains("BenhPhoi"))
+                if(rootObjects[i].name.Contains("Benh1") || rootObjects[i].name.Contains("Benh2"))
                 {
                     foreach(Transform child in rootObjects[i].transform)
                     {
@@ -106,6 +106,6 @@ public class SceneObjectManager : MonoBehaviour {
             }
         }
     }
-
+    
     #endregion
 }

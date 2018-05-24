@@ -54,8 +54,30 @@ namespace DaydreamElements.SwipeMenu {
       }
     }
 
-    public static Type RandomColor() {
-      return (Type)Random.Range(0, NumColors);
+    //public static Type RandomColor() {
+    //  return (Type)Random.Range(0, NumColors);
+    //}
+
+        //baonh
+        public static Type RandomColor()
+        {
+            Type cur = 0;
+            switch(testSwipeColor.instance.currentColor)
+            {
+                case 0:
+                case 14:
+                    cur = (Type)0; break;
+                case 1:
+                case 13:
+                    cur = (Type)1; break;
+                case 3:
+                case 11:
+                    cur =  (Type)2; break;
+                case 7:
+                    cur= (Type)3; break;
+               
+            }
+            return cur;
+        }
     }
-  }
 }
