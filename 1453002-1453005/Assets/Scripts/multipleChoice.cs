@@ -49,7 +49,7 @@ public class multipleChoice : MonoBehaviour, IPointerDownHandler, IPointerEnterH
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (this.gameObject.scene.name == "MultipleChoice")
+        if (this.gameObject.scene.name == "MultipleChoice" || this.gameObject.scene.name == "Baked_MuseumVR_vol1")
         {
             if (Exam1GamePlay.instance.getAnswer(Exam1GamePlay.instance.currentQuestion).Equals(this.gameObject.transform.GetChild(0).name))
                 Exam1GamePlay.instance.score += 10;
