@@ -67,6 +67,7 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     public struct SceneObjectEvent
     {
         public Trigger trigger1, trigger2, trigger3;
+
         public Action action1, action2, action3;
         public string param1, param2, param3;
 

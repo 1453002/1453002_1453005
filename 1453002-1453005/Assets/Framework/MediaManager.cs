@@ -7,9 +7,7 @@ public class MediaManager : MonoBehaviour {
 
     //List of images
     public List<Texture> listImages;
-    public Dictionary<string,Texture> dicImages;
-
-    public GameObject SwipeObject;
+    public Dictionary<string,Texture> dicImages;    
     static public MediaManager instance;
 
     private void Awake()
@@ -52,31 +50,6 @@ public class MediaManager : MonoBehaviour {
     //    obj.transform.findChildRecursively("TextPos").gameObject.GetComponent<Text>().text = content;
     }
 
-    public void playTestSwipe()
-    {
-        GameObject player = GameObject.Find("Player").gameObject;
-        GameObject swipePlayer = Instantiate(MainSceneScript.instance.dictionaryPlayers["SwipePlayer"]);
-        swipePlayer.transform.position = player.transform.position;
-        swipePlayer.transform.rotation = player.transform.rotation;
 
-        //Create spawner balloons
-        SwipeObject.SetActive(true);
-         
-        Destroy(player);
-        swipePlayer.name = "Player";    
-
-    }
-
-    public void stopTestSwipe()
-    {
-        GameObject swipePlayer = GameObject.Find("Player");
-        GameObject player = Instantiate(MainSceneScript.instance.dictionaryPlayers["Player"]);
-        player.transform.position = swipePlayer.transform.position;
-        player.transform.rotation = swipePlayer.transform.rotation;
-
-        Destroy(swipePlayer);
-        player.name = "Player";
-
-    }
    
 }

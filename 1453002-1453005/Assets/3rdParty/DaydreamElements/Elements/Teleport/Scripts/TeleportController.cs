@@ -107,10 +107,9 @@ namespace DaydreamElements.Teleport {
     /// Returns true if the user is currently teleporting.
     public bool IsTeleporting {
       get {
-        if (transition == null) {
+        if (transition == null ) {                   
           return false;
-        }
-
+        }              
         return transition.IsTransitioning;
       }
     }
@@ -163,13 +162,14 @@ namespace DaydreamElements.Teleport {
 
       currentController = GetControllerTransform();
 
-      // Complete active teleport transitions.
-      if (IsTeleporting) {
-        visualizer.OnTeleport();
-        // Update the visualization.
-        visualizer.UpdateSelection(currentController, selectionResult);
-        return;
-      }
+      //baonh fix bug stop teleporting
+      //// Complete active teleport transitions.
+      //if (IsTeleporting) {
+      //  visualizer.OnTeleport();
+      //  // Update the visualization.
+      //  visualizer.UpdateSelection(currentController, selectionResult);
+      //  return;
+      //}
 
       // If rotation is allowed, handle player rotations.
       if (allowRotation) {
@@ -178,8 +178,10 @@ namespace DaydreamElements.Teleport {
 
       // If a teleport selection session has not started, check the appropriate
       // trigger to see if one should start.
-      if (selectionIsActive == false) {
-        if (teleportStartTrigger.TriggerActive()) {
+      if (selectionIsActive == false)
+      {
+        if (teleportStartTrigger.TriggerActive())
+        {
                     if (Player.instance.currentState != Player.PlayerState.None)
                         return;
                     StartTeleportSelection();
