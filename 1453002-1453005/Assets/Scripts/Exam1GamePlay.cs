@@ -24,9 +24,9 @@ public class Exam1GamePlay : MonoBehaviour
 
     void Start () {
 
-        maxQ = UI.transform.findChildRecursively("MaxQuestion").gameObject.GetComponent<Text>();
-        curQ = UI.transform.findChildRecursively("CurQuestion").gameObject.GetComponent<Text>();
-        scoreUI = UI.transform.findChildRecursively("Score").gameObject.GetComponent<Text>();
+        //maxQ = UI.transform.findChildRecursively("MaxQuestion").gameObject.GetComponent<Text>();
+        //curQ = UI.transform.findChildRecursively("CurQuestion").gameObject.GetComponent<Text>();
+        //scoreUI = UI.transform.findChildRecursively("Score").gameObject.GetComponent<Text>();
         
         
         a = board.transform.findChildRecursively("A").gameObject;
@@ -36,7 +36,7 @@ public class Exam1GamePlay : MonoBehaviour
         content = board.transform.findChildRecursively("Content").gameObject;
         loadQuestion(currentQuestion);
         maxQuestion = FBGameData.instance.getClassData("Question").objects.Count;
-        maxQ.text = "Total question : " + maxQuestion;
+       //maxQ.text = "Total question : " + maxQuestion;
         cubeImage = board.transform.findChildRecursively("cube-image").gameObject;
         cubeImage.SetActive(false);
     }	
@@ -77,7 +77,7 @@ public class Exam1GamePlay : MonoBehaviour
             cubeImage.GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages[questionID];
         }
        
-        updateUI();
+        //updateUI();
     }
   
     public string getAnswer(int ques)

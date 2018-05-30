@@ -19,7 +19,7 @@ public class multipleChoice : MonoBehaviour, IPointerDownHandler, IPointerEnterH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (this.gameObject.scene.name == "MultipleChoice")
+        if (this.gameObject.scene.name == "MultipleChoice" || this.gameObject.scene.name == "Baked_MuseumVR_vol1")
         {
             this.gameObject.transform.localScale = new Vector3(7f, 7f, 1f);
             this.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
@@ -31,7 +31,7 @@ public class multipleChoice : MonoBehaviour, IPointerDownHandler, IPointerEnterH
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (this.gameObject.scene.name == "MultipleChoice")
+        if (this.gameObject.scene.name == "MultipleChoice" || this.gameObject.scene.name == "Baked_MuseumVR_vol1")
         {
             this.gameObject.transform.localScale = new Vector3(6f, 6f, 1f);
             this.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;

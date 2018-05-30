@@ -97,16 +97,6 @@ public class testSwipeColor : MonoBehaviour {
 
     }
 
-    public void playTestSwipe()
-    {
-        GameObject player = GameObject.Find("Player").gameObject ;
-        GameObject swipePlayer =  Instantiate(MainSceneScript.instance.dictionaryPlayers["SwipePlayer"], player.transform);
 
-        player.name = "tmp";
-        player.SetActive(false);
-        swipePlayer.name = "Player";
-        swipePlayer.SetActive(true);
-
-    }
     
 }

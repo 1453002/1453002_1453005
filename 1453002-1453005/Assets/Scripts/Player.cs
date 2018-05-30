@@ -98,13 +98,13 @@ public class Player : MonoBehaviour {
     {
         if (currentState == PlayerState.None)
         {
-
+      
         }
-        else if (currentState == PlayerState.Selecting)
+         if (currentState == PlayerState.Selecting)
         {
             teleportController.gameObject.SetActive(false);
         }
-        else if (currentState == PlayerState.PlayingGame)
+         if (currentState == PlayerState.PlayingGame)
         {
             teleportController.gameObject.SetActive(false);
         }

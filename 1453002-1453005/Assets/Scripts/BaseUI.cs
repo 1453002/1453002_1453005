@@ -38,7 +38,7 @@ public class BaseUI : MonoBehaviour {
         obj.transform.findChildRecursively("Content").GetComponentInChildren<Text>().text = content;
                 
         obj.transform.findChildRecursively("UIManager").GetComponent<UIElement>().Show(false);
-        Debug.Log("dfsfdfdsfdsfdsfd");
+        
     }
     public void HideTextObject(GameObject obj) {
         obj.transform.Find(textPosName).GetComponentInChildren<UIElement>().Hide(false);
