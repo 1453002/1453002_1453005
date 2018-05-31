@@ -25,7 +25,7 @@ public class MediaManager : MonoBehaviour {
         for (int i = 0; i < listImages.Count; i++)
         {
             dicImages.Add(listImages[i].name, listImages[i]);
-            Debug.Log(dicImages[listImages[i].name].name);
+           
         }
     }
     // Tool : Object - NameImage
@@ -46,6 +46,7 @@ public class MediaManager : MonoBehaviour {
         {
            // obj.GetComponent<Renderer>().material.SetTexture(dicImages[imgName].name, dicImages[imgName]);
             obj.GetComponent<MeshRenderer>().material.mainTexture = dicImages[imgName];
+            Debug.Log(dicImages[imgName] + "----" + imgName);
         }
     //    obj.transform.findChildRecursively("TextPos").gameObject.GetComponent<Text>().text = content;
     }

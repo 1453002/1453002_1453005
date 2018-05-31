@@ -46,7 +46,13 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-       
+       if(this.gameObject.scene.name == "Showroom2_01")
+        {
+            if(this.gameObject.transform.position.y !=0  && gameObject.transform.position.z !=0)
+            {
+                gameObject.transform.position = new Vector3(0, 0, 0);
+            }
+        }
 	}
 
     public void SetState(PlayerState state)
@@ -98,7 +104,7 @@ public class Player : MonoBehaviour {
     {
         if (currentState == PlayerState.None)
         {
-      
+                
         }
          if (currentState == PlayerState.Selecting)
         {
@@ -117,7 +123,7 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-    
+       
         //test voice
        
         UpdateState();

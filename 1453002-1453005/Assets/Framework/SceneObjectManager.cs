@@ -32,10 +32,14 @@ public class SceneObjectManager : MonoBehaviour {
                 {
                     foreach(Transform child in rootObjects[i].transform)
                     {
-                        if(child.gameObject.name.Contains("-image"))
+                        foreach(Transform childtmp in child)
                         {
-                            MediaManager.instance.initImage(child.gameObject);
+                            if (childtmp.gameObject.name.Contains("-image"))
+                            {
+                                MediaManager.instance.initImage(childtmp.gameObject);
+                            }
                         }
+                       
                     }
                 }
             }

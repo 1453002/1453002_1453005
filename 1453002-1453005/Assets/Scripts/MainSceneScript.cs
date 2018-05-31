@@ -36,9 +36,14 @@ public class MainSceneScript : MonoBehaviour {
         }
 
         player = dicPlayers["GVR-1"];
-        GamePlay.instance.VRplayer = player.transform.findChildRecursively("Player").gameObject;
-        GamePlay.instance.VRplayer.transform.position = GamePlay.instance.spawnPoint;
+      //  GamePlay.instance.VRplayer = player.transform.findChildRecursively("Player").gameObject;
+      
         testRequire.SetActive(false);
+        if (this.gameObject.scene.name == "Showroom2_01")
+        {
+            MainSceneScript.instance.player.transform.position = new Vector3(0, 1.35f, -13.51f);
+            MainSceneScript.instance.player.transform.findChildRecursively("Player").position = new Vector3(0, 0, 0);
+        }
     }
 
     // Update is called once per frame

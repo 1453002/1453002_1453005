@@ -20,11 +20,13 @@ new List<GvrPermissionsRequester.PermissionStatus>();
     {
         if(this.gameObject.scene.name == "Baked_MuseumVR_vol1")
             spawnPoint = new Vector3(0, -12, 0);
+
         if (this.gameObject.scene.name == "Showroom2_01")
-            spawnPoint = new Vector3(0, 0, 0);
-       
-        
-        instance = this;
+        {
+            spawnPoint = new Vector3(0,0,0);
+        }
+
+            instance = this;
     }
     // Use this for initialization
     void Start () {
@@ -35,8 +37,8 @@ new List<GvrPermissionsRequester.PermissionStatus>();
         RequestPermissions(permissionNames, status);
 #endif
         //spawn VR player to screen
-       // VRplayer.transform.position = spawnPoint;
-	}
+        VRplayer.transform.position = spawnPoint;
+    }
 
 	
 	// Update is called once per frame
