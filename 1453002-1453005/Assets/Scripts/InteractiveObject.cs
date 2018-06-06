@@ -1,37 +1,66 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
-
-public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+using DG.Tweening;
+public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,
+                           IPointerExitHandler, IPointerClickHandler, IPointerUpHandler
 {
-    
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    
-    
-    //event system
+    bool upCheck = false;
     public void OnPointerDown(PointerEventData eventData)
     {
-        this.GetComponent<Renderer>().material.color = Color.yellow;
-        Debug.Log("OnPointerDown");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        this.GetComponent<Renderer>().material.color = Color.blue;
-        Debug.Log("OnPointerEnter");
+        if (this.gameObject.scene.name == "Showroom2_01")
+        {
+            Player.instance.SetState(Player.PlayerState.Selecting);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        this.GetComponent<Renderer>().material.color = Color.red;
-        Debug.Log("OnPointerExit");
+        Debug.Log("EXIT");
+        if (this.gameObject.scene.name == "Showroom2_01")
+        {
+            Player.instance.SetState(Player.PlayerState.None);
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (this.gameObject.scene.name == "Showroom2_01")
+        {
+            if (this.gameObject.name == "stiege")
+            {
+                upCheck = !upCheck;
+                Transform getPoint;
+                Vector3  nextPos;
+                if (upCheck == true)
+                {
+                    getPoint = GameObject.Find("Up-point").transform;
+                    upCheck = false;
+                    Debug.Log("Go up");
+                }
+                else
+                {
+                    getPoint = GameObject.Find("Down-point").transform;
+                    upCheck = true;
+                    Debug.Log("Go down");
+                }
+                nextPos = new Vector3(getPoint.position.x, getPoint.position.y, getPoint.position.z);
+                MainSceneScript.instance.player.transform.DOMove(nextPos, 1.5f);
+                MainSceneScript.instance.player.transform.findChildRecursively("Player").localPosition = new Vector3(0, 0, 0);
+                MainSceneScript.instance.player.transform.findChildRecursively("Player").rotation = getPoint.transform.rotation;
+
+                //MainSceneScript.instance.player.transform.findChildRecursively("Player").transform.DOMove(nextPos, 1.5f);
+                Player.instance.SetState(Player.PlayerState.None);
+            }
+        }
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+
     }
 }
