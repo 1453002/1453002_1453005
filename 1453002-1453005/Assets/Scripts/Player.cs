@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
             visualPlayer.transform.DOMove(correctPos, 1f);
             visualPlayer.transform.rotation = rot;
         }
+    
 
     }
     #endregion
@@ -126,12 +127,12 @@ public class Player : MonoBehaviour {
        
         //test voice
        
-        UpdateState();
+        //UpdateState();
 
-        if (visualPlayer)
-        {
-            visualPlayer.transform.position = this.transform.position;
-            visualPlayer.transform.rotation = this.transform.rotation;
-        }
+        //if (visualPlayer)
+        //{
+        //    visualPlayer.transform.position = this.transform.position;
+        //    visualPlayer.transform.rotation = this.transform.rotation;
+        //}
     }
 }
