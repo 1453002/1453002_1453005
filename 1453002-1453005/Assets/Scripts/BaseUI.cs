@@ -9,6 +9,8 @@ public class BaseUI : MonoBehaviour {
     string textPosName = "TextPos";
     string clipPosName = "ClipPos";
     string picPosName = "PicPos";
+    bool isPlaying1 = false;
+    bool isPlaying2 = false;
     [HideInInspector]
     public Dictionary<string, VideoClip> VideoClips;
 
@@ -43,14 +45,43 @@ public class BaseUI : MonoBehaviour {
     public void HideTextObject(GameObject obj) {
         obj.transform.Find(textPosName).GetComponentInChildren<UIElement>().Hide(false);
     }
-    public void PlayVideo(string clipName, GameObject obj)
+    public void PlayVideo(GameObject obj)
     {
-        obj.transform.Find(clipPosName).GetComponentInChildren<UIElement>().Show(false);
-        StartCoroutine(PlayProcess(VideoClips[clipName], obj));
+        if (obj.name == "Desease-Video1")
+        {
+            if (isPlaying1 == false)
+            {
+                obj.GetComponent<VideoPlayer>().Play();
+                obj.GetComponent<AudioSource>().Play();
+                isPlaying1 = true;
+            }
+            else
+            {
+                obj.GetComponent<VideoPlayer>().Stop();
+                obj.GetComponent<AudioSource>().Stop();
+                isPlaying1 = false;
+            }
+        }
+        else
+        {
+            if (isPlaying2 == false)
+            {
+                obj.GetComponent<VideoPlayer>().Play();
+                obj.GetComponent<AudioSource>().Play();
+                isPlaying2 = true;
+            }
+            else
+            {
+                obj.GetComponent<VideoPlayer>().Stop();
+                obj.GetComponent<AudioSource>().Stop();
+                isPlaying2 = false;
+            }
+        }
+        
     }
     public void PauseVideo(GameObject obj) {
-        obj.transform.Find(clipPosName).GetComponentInChildren<VideoPlayer>().Pause();
-        obj.transform.Find(clipPosName).GetComponentInChildren<UIElement>().Hide(false);
+        obj.GetComponent<VideoPlayer>().Stop();
+        obj.GetComponent<AudioSource>().Stop();
     }
     public void ShowTextOnClick(string content, Vector3 pos, float delaytime = 0)
     {

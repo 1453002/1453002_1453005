@@ -118,7 +118,7 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 
             if (GvrControllerInput.TouchDown)
             {
-                Debug.Log("hitting point:" + GvrPointerInputModule.CurrentRaycastResult.worldPosition);
+               // Debug.Log("hitting point:" + GvrPointerInputModule.CurrentRaycastResult.worldPosition);
                 Vector3 endPoint = GvrPointerInputModule.CurrentRaycastResult.worldPosition;
                 endPoint.y = playerGO.transform.position.y;
                 

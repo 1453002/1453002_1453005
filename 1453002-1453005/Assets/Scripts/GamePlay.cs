@@ -23,10 +23,11 @@ new List<GvrPermissionsRequester.PermissionStatus>();
 
         if (this.gameObject.scene.name == "Showroom2_01")
         {
-            spawnPoint = new Vector3(0,100,0);
+ 
+            spawnPoint = new Vector3(-0.89f,1.26f,-11.95f);
         }
 
-            instance = this;
+        instance = this;
     }
     // Use this for initialization
     void Start () {
@@ -49,12 +50,12 @@ new List<GvrPermissionsRequester.PermissionStatus>();
         {
             if (Time.time - lastClickTime < catchTime)
             {
-                Debug.Log("double click");
+                //Debug.Log("double click");
             }
             else
             {
                 //normal click
-                Debug.Log("single click");
+                //Debug.Log("single click");
             }
             lastClickTime = Time.time;
         }
