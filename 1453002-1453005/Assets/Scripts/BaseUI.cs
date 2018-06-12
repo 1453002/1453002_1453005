@@ -47,7 +47,7 @@ public class BaseUI : MonoBehaviour {
     }
     public void PlayVideo(GameObject obj)
     {
-        if (obj.name == "Desease-Video1")
+        if (obj.name == "Disease1-Video")
         {
             if (isPlaying1 == false)
             {

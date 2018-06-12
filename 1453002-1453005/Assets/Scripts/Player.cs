@@ -49,10 +49,12 @@ public class Player : MonoBehaviour {
 	void Start () {
        if(this.gameObject.scene.name == "Showroom2_01")
         {
-            if(this.gameObject.transform.position.y !=0  && gameObject.transform.position.z !=0)
-            {
-                gameObject.transform.position = new Vector3(0, 0, 0);
-            }
+            //if(this.gameObject.transform.position.y !=0  && gameObject.transform.position.z !=0)
+            //{
+            //    gameObject.transform.position = new Vector3(0.01f, 0.78f, -11.78f);
+            //}
+            //Debug.Log("Set pos");
+            //this.gameObject.transform.position = new Vector3(0.01f, 100f, -11.78f);
         }
 	}
 

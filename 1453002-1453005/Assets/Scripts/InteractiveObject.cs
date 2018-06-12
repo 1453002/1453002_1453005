@@ -6,6 +6,8 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
                            IPointerExitHandler, IPointerClickHandler, IPointerUpHandler
 {
     GameObject player;
+    public GameObject video1;
+    public GameObject video2;
     void Start() {
            player=GameObject.Find("GVR-1");
     }
@@ -20,6 +22,7 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
         if (this.gameObject.scene.name == "Showroom2_01")
         {
             Player.instance.SetState(Player.PlayerState.Selecting);
+            Debug.Log(this.gameObject.name);
         }
     }
 
@@ -38,48 +41,38 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
         {
             if (this.gameObject.name == "stiege")
             {
-                //upCheck = !upCheck;
                 Transform getPoint;
-                Vector3  nextPos;
-                //if (upCheck == true)
-                //{
-                //    getPoint = GameObject.Find("Up-point").transform;
-                //    upCheck = false;
-                //    Debug.Log("Go up");
-                //}
-                //else
-                //{
-                //    getPoint = GameObject.Find("Down-point").transform;
-                //    upCheck = true;
-                //    Debug.Log("Go down");
-                //}
-                getPoint = GameObject.Find("Up-Point").transform;
+                Vector3 nextPos;
+                if (upCheck == false)
+                {
+                    getPoint = GameObject.Find("Up-Point").transform;
+                    Debug.Log("Go up");
+                }
+                else
+                {
+                    getPoint = GameObject.Find("Down-Point").transform;
+                    Debug.Log("Go down");
+                }
+
                 nextPos = new Vector3(getPoint.position.x, getPoint.position.y, getPoint.position.z);
                 Debug.Log("UPUPUPUPU");
-                //player.transform.DOMove(nextPos, 1.5f,true);
-                //MainSceneScript.instance.player.transform.findChildRecursively("Player").localPosition = new Vector3(0, 0, 0);
-                //MainSceneScript.instance.player.transform.findChildRecursively("Player").rotation = getPoint.transform.rotation;
 
-                //player.transform.transform.DOMove(nextPos,1.5f,false);
-                player.transform.findChildRecursively("Player").transform.DOComplete();
-                player.transform.findChildRecursively("Player").transform.DOMove(nextPos,1.5f);
-                //Player tmp = player.GetComponentInChildren<Player>();
-                //if(tmp)
-                //{
-                //    tmp.MoveTo(nextPos, Quaternion.identity);
-                //}
-                Player.instance.SetState(Player.PlayerState.None);
+                player.transform.findChildRecursively("Player").transform.DOMove(nextPos, 1.5f);
+
+                upCheck = !upCheck;
+
             }
-            GameObject temp;
-            if (this.gameObject.name == "PlayCube1" )
+            if (this.gameObject.name == "PlayCube1")
             {
-                temp = GameObject.Find("Disease1-Video");
-                BaseUI.instance.PlayVideo(temp);
+                    BaseUI.instance.PlayVideo(video1);
             }
             if (this.gameObject.name == "PlayCube2")
             {
-                temp = GameObject.Find("Disease2-Video");
-                BaseUI.instance.PlayVideo(temp);
+                BaseUI.instance.PlayVideo(video2);
+            }
+            if (this.gameObject.name.Contains("Upstair"))
+            {
+                player.transform.findChildRecursively("Player").transform.DOMove(this.transform.position, 1.5f);
             }
         }
     }

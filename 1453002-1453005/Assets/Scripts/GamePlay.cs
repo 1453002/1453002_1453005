@@ -23,8 +23,8 @@ new List<GvrPermissionsRequester.PermissionStatus>();
 
         if (this.gameObject.scene.name == "Showroom2_01")
         {
- 
-            spawnPoint = new Vector3(-0.89f,1.26f,-11.95f);
+            //Debug.Log("set");
+            //spawnPoint = new Vector3(0.1f, 100f, -11.78f);
         }
 
         instance = this;
