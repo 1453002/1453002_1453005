@@ -11,9 +11,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 namespace DaydreamElements.SwipeMenu {
 
   public class Balloon : MonoBehaviour {
@@ -42,13 +42,12 @@ namespace DaydreamElements.SwipeMenu {
     private float appearingTimer = 0.0f;
     private bool isPopping = false;
     private bool isAppearing = true;
-
     public BalloonSpawner spawner;
     public int balloonIx;
 
     public GameObject explodedQuad;
     public GameObject popSound;
-
+    
     void Start() {
       startPosition = transform.localPosition;
       startScale = transform.localScale;
@@ -59,16 +58,33 @@ namespace DaydreamElements.SwipeMenu {
       
       checkCurrentColor((int)type);
             testSwipeColor.instance.balloonIns.Add(this.gameObject.name, this.gameObject);
-            this.gameObject.AddComponent<multipleChoice>();
+           // this.gameObject.AddComponent<multipleChoice>();
             GameObject player = GameObject.Find("Player");
-           //testSwipeColor.instance.balloonIns.Add(this.gameObject.name, this.gameObject);
-      if (this.gameObject.transform.findChildRecursively("Answer"))
-      {
-                GameObject answer = this.gameObject.transform.findChildRecursively("Answer").gameObject;
-        answer.transform.LookAt(player.transform);
-      }
+            Dictionary<string, GameObject> balloonIns = testSwipeColor.instance.balloonIns;
+            if (!balloonIns.ContainsKey(this.gameObject.name))
+            {
+                balloonIns.Add(this.gameObject.name, this.gameObject);
+            }
+          
 
-      ColorUtil.Colorize(type, gameObject);
+      if(balloonIns.ContainsKey("A"))
+            {
+                balloonIns["A"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option1").stringValue;
+            }
+            if (balloonIns.ContainsKey("B"))
+            {
+                balloonIns["B"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option2").stringValue;
+            }
+            if (balloonIns.ContainsKey("C"))
+            {
+                balloonIns["C"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option3").stringValue;
+            }
+            if (balloonIns.ContainsKey("D"))
+            {
+                balloonIns["D"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option4").stringValue;
+            }
+
+            ColorUtil.Colorize(type, gameObject);
       transform.localScale = Vector3.zero;
       float randAngle = Random.Range(0.0f, 360.0f);
       transform.localRotation = Quaternion.Euler(0.0f, randAngle, 0.0f);
