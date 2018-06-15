@@ -8,6 +8,11 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
     GameObject player;
     public GameObject video1;
     public GameObject video2;
+    public GameObject checkPlay;
+    public GameObject gamePlay;
+    public GameObject GVR1;
+    public GameObject GVR2;
+
     void Start() {
            player=GameObject.Find("GVR-1");
     }
@@ -19,7 +24,7 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
     public void OnPointerEnter(PointerEventData eventData)
     {
 
-        if (this.gameObject.scene.name == "Showroom2_01")
+        if (this.gameObject.scene.name == "Showroom2_01" && Player.instance.currentState != Player.PlayerState.PlayingGame)
         {
             Player.instance.SetState(Player.PlayerState.Selecting);
             Debug.Log(this.gameObject.name);
@@ -29,7 +34,7 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
     public void OnPointerExit(PointerEventData eventData)
     {
    
-        if (this.gameObject.scene.name == "Showroom2_01")
+        if (this.gameObject.scene.name == "Showroom2_01" && Player.instance.currentState!=Player.PlayerState.PlayingGame)
         {
             Player.instance.SetState(Player.PlayerState.None);
         }
@@ -70,10 +75,24 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
             {
                 BaseUI.instance.PlayVideo(video2);
             }
-            if (this.gameObject.name.Contains("Upstair"))
+            if (this.gameObject.name.Contains("Upstair") && Player.instance.currentState != Player.PlayerState.PlayingGame)
             {
-                player.transform.findChildRecursively("Player").transform.DOMove(this.transform.position, 1.5f);
+                if (this.gameObject.name == "Upstair6" && Player.instance.currentState != Player.PlayerState.PlayingGame)
+                {
+                    checkPlay.SetActive(true);
+                }
+                Vector3 temp = new Vector3(this.transform.position.x,this.transform.position.y+1,this.transform.position.z);
+                player.transform.findChildRecursively("Player").transform.DOMove(temp, 1.5f);
             }
+            //if (this.gameObject.name == "btnOk")
+            //{
+            //    gamePlay.SetActive(true);
+            //    this.transform.parent.gameObject.SetActive(false);
+            //    GVR1.gameObject.SetActive(false);
+            //    GVR2.gameObject.SetActive(true);
+            //    GVR2.transform.findChildRecursively("PlayerPlay").transform.position = GVR2.transform.findChildRecursively("PlayerPlay").transform.position;
+            //    GVR2.transform.findChildRecursively("PlayerPlay").transform.rotation = GVR2.transform.findChildRecursively("PlayerPlay").transform.rotation;
+            //}
         }
     }
 

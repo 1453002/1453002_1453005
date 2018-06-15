@@ -17,8 +17,8 @@ public class testSwipeColor : MonoBehaviour {
     public int score = 0;
     public int maxQuestion = 0;
     public FBClassData classQuestion = null;
-
-
+    public GameObject countDown;
+    int countdown = 50;
     private void Awake()
     {
         instance = this;
@@ -27,16 +27,15 @@ public class testSwipeColor : MonoBehaviour {
     // Use this for initialization
     void Start () {
         spawnerBalloons.SetActive(true);
-        maxQ = UI.transform.findChildRecursively("MaxQuestion").gameObject.GetComponent<Text>();
-        maxQ.text = "Total Question : " + maxQuestion;
-        curQ = UI.transform.findChildRecursively("CurQuestion").gameObject.GetComponent<Text>();
-        scoreQ = UI.transform.findChildRecursively("Score").gameObject.GetComponent<Text>();
+        //maxQ = UI.transform.findChildRecursively("MaxQuestion").gameObject.GetComponent<Text>();
+        //maxQ.text = "Total Question : " + maxQuestion;
+        //curQ = UI.transform.findChildRecursively("CurQuestion").gameObject.GetComponent<Text>();
+        //scoreQ = UI.transform.findChildRecursively("Score").gameObject.GetComponent<Text>();
 
         loadQuestion(currentQuestion);
         maxQuestion = FBGameData.instance.getClassData("Question").objects.Count;
         classQuestion = FBGameData.instance.getClassData("Question");
-
-        
+        StartCoroutine(Minus());
     }	
     public void loadQuestion(int curQues)
     {
@@ -44,32 +43,42 @@ public class testSwipeColor : MonoBehaviour {
         gameObject.transform.findChildRecursively("Content").gameObject.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Content").stringValue;
         if(balloonIns.ContainsKey("A"))
         {
-            balloonIns["A"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Option1").stringValue;
+            balloonIns["A"].transform.findChildRecursively("Text").GetComponent<Text>().text = classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Option1").stringValue;
         }
         if (balloonIns.ContainsKey("B"))
         {
-            balloonIns["B"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Option2").stringValue;
+            balloonIns["B"].transform.findChildRecursively("Text").GetComponent<Text>().text = classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Option2").stringValue;
         }
         if (balloonIns.ContainsKey("C"))
         {
-            balloonIns["C"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Option3").stringValue;
+            balloonIns["C"].transform.findChildRecursively("Text").GetComponent<Text>().text = classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Option3").stringValue;
         }
         if (balloonIns.ContainsKey("D"))
         {
-            balloonIns["D"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Option4").stringValue;
+            balloonIns["D"].transform.findChildRecursively("Text").GetComponent<Text>().text = classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Option4").stringValue;
         }
-        updateUI();
+        //updateUI();
     }
 
-    private void Update()
+    void Update()
     {
-        if(Input.GetKeyDown("space"))
-        {
-            foreach (Transform child in UI.transform)
-                Debug.Log(child.name);
-        }
-    }
+        //if (Input.GetKeyDown("space"))
+        //{
+        //    foreach (Transform child in UI.transform)
+        //        Debug.Log(child.name);
+        //}
 
+    }
+    IEnumerator Minus()
+    {
+        yield return new WaitForSeconds(1);
+        countdown--;
+        countDown.GetComponent<Text>().text = countdown.ToString();
+        if (countdown >= 0) {
+            StartCoroutine(Minus());
+        }
+      
+    }
     public string getAnswer(int ques)
     {
         string answer = FBGameData.instance.getClassData("Question").getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)).getFieldValue("Answer").stringValue;
@@ -92,8 +101,8 @@ public class testSwipeColor : MonoBehaviour {
     }
     void updateUI()
     {
-        curQ.text = "Current Question : " + currentQuestion;
-        scoreQ.text = "Score : " + score;
+        //curQ.text = "Current Question : " + currentQuestion;
+        //scoreQ.text = "Score : " + score;
 
     }
 
