@@ -18,6 +18,8 @@ public class testSwipeColor : MonoBehaviour {
     public int maxQuestion = 0;
     public FBClassData classQuestion = null;
     public GameObject countDown;
+    public GameObject scoreOBJ;
+    public GameObject questionNum;
     int countdown = 50;
     private void Awake()
     {
@@ -57,7 +59,7 @@ public class testSwipeColor : MonoBehaviour {
         {
             balloonIns["D"].transform.findChildRecursively("Text").GetComponent<Text>().text = classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + curQues)).getFieldValue("Option4").stringValue;
         }
-        //updateUI();
+        updateUI();
     }
 
     void Update()
@@ -103,6 +105,8 @@ public class testSwipeColor : MonoBehaviour {
     {
         //curQ.text = "Current Question : " + currentQuestion;
         //scoreQ.text = "Score : " + score;
+        scoreOBJ.GetComponent<Text>().text = score.ToString();
+        questionNum.GetComponent<Text>().text = currentQuestion.ToString();
 
     }
 

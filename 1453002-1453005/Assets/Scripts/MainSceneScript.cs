@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class MainSceneScript : MonoBehaviour {
 
     public static MainSceneScript instance;
@@ -48,17 +48,30 @@ public class MainSceneScript : MonoBehaviour {
 
     // Update is called once per frame
     private void Update()
-    {
-        if (GvrController.AppButtonUp && Player.instance.currentState != Player.PlayerState.PlayingGame)
-        {
-            testRequire.SetActive(true);
-            Player.instance.SetState(Player.PlayerState.Selecting);
-        }
-        if (GvrController.AppButtonUp && Player.instance.currentState == Player.PlayerState.PlayingGame)
-        {
-            RequireTest.instance.stopTest();
+   {
+    //    if (GvrController.AppButtonUp && Player.instance.currentState != Player.PlayerState.PlayingGame)
+    //    {
+    //        testRequire.SetActive(true);
+    //        Player.instance.SetState(Player.PlayerState.Selecting);
+    //    }
+    //    if (GvrController.AppButtonUp && Player.instance.currentState == Player.PlayerState.PlayingGame)
+    //    {
+    //        RequireTest.instance.stopTest();
 
-        }        
+    //    }        
+        if(this.gameObject.scene.name == "Showroom2_01" && GvrController.AppButtonUp)
+        {
+            if (player.transform.findChildRecursively("Player").transform.position.y >= 3)
+            {
+                Transform getPoint = GameObject.Find("Down-Point").transform;
+                Vector3 temp = getPoint.transform.position;
+                player.transform.findChildRecursively("Player").transform.DOMove(temp, 1.5f);
+            }
+            else {
+                Player.instance.SetState(Player.PlayerState.None);
+                TestDrop.instance.onOutGame();
+            }
+        }
     
     }
 

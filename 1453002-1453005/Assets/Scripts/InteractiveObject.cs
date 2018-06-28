@@ -12,11 +12,12 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
     public GameObject gamePlay;
     public GameObject GVR1;
     public GameObject GVR2;
-
+    public GameObject boneReal;
+    public GameObject boneMarker;
+    public GameObject fakeWall;
     void Start() {
            player=GameObject.Find("GVR-1");
     }
-    bool upCheck = false;
     public void OnPointerDown(PointerEventData eventData)
     {
     }
@@ -48,23 +49,12 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
             {
                 Transform getPoint;
                 Vector3 nextPos;
-                if (upCheck == false)
-                {
-                    getPoint = GameObject.Find("Up-Point").transform;
-                    Debug.Log("Go up");
-                }
-                else
-                {
-                    getPoint = GameObject.Find("Down-Point").transform;
-                    Debug.Log("Go down");
-                }
 
+                getPoint = GameObject.Find("Up-Point").transform;
                 nextPos = new Vector3(getPoint.position.x, getPoint.position.y, getPoint.position.z);
-                Debug.Log("UPUPUPUPU");
 
                 player.transform.findChildRecursively("Player").transform.DOMove(nextPos, 1.5f);
 
-                upCheck = !upCheck;
 
             }
             if (this.gameObject.name == "PlayCube1")
@@ -84,15 +74,18 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
                 Vector3 temp = new Vector3(this.transform.position.x,this.transform.position.y+1,this.transform.position.z);
                 player.transform.findChildRecursively("Player").transform.DOMove(temp, 1.5f);
             }
-            //if (this.gameObject.name == "btnOk")
-            //{
-            //    gamePlay.SetActive(true);
-            //    this.transform.parent.gameObject.SetActive(false);
-            //    GVR1.gameObject.SetActive(false);
-            //    GVR2.gameObject.SetActive(true);
-            //    GVR2.transform.findChildRecursively("PlayerPlay").transform.position = GVR2.transform.findChildRecursively("PlayerPlay").transform.position;
-            //    GVR2.transform.findChildRecursively("PlayerPlay").transform.rotation = GVR2.transform.findChildRecursively("PlayerPlay").transform.rotation;
-            //}
+            if (this.gameObject.name == "Bone-Build")
+            {
+                Vector3 temp1 = new Vector3(this.transform.position.x, this.transform.position.y+1f, this.transform.position.z+0.5f);
+                player.transform.findChildRecursively("Player").transform.DOMove(temp1, 1.5f);
+                foreach (Transform t in boneReal.transform)
+                {
+                    t.GetComponent<BoxCollider>().enabled=true;
+                    t.GetComponent<Rigidbody>().useGravity=true;
+                    t.GetComponent<Rigidbody>().isKinematic = false;
+                }
+                fakeWall.SetActive(true);
+            }
         }
     }
 
