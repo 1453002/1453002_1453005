@@ -46,30 +46,30 @@ public class Exam1GamePlay : MonoBehaviour
     {
         FBClassData Questions = FBGameData.instance.getClassData("Question");
         string cnt = null; 
-        if (Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)) !=null)
+        if (Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques)) !=null)
         {
-            cnt = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)).getFieldValue("Content").stringValue;
-        }else if (Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques+"-img")) !=null)
+            cnt = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques)).getFieldValue("Content").stringValue;
+        }else if (Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques+"-img")) !=null)
         {
-            cnt = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques + "-img")).getFieldValue("Content").stringValue;
+            cnt = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques + "-img")).getFieldValue("Content").stringValue;
         }
         content.GetComponent<TextMesh>().text = cnt;
         string questionID = null;
-        if (Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)) != null)
+        if (Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques)) != null)
         {
-            questionID = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)).getFieldValue("QuestionID").stringValue;
-            a.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)).getFieldValue("Option1").stringValue;
-            b.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)).getFieldValue("Option2").stringValue;
-            c.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)).getFieldValue("Option3").stringValue;
-            d.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)).getFieldValue("Option4").stringValue;
+            questionID = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques)).getFieldValue("QuestionID").stringValue;
+            a.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques)).getFieldValue("Option1").stringValue;
+            b.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques)).getFieldValue("Option2").stringValue;
+            c.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques)).getFieldValue("Option3").stringValue;
+            d.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques)).getFieldValue("Option4").stringValue;
         }
-        else if (Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques + "-img")) !=null)
+        else if (Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques + "-img")) !=null)
         {
-            questionID = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques + "-img")).getFieldValue("QuestionID").stringValue;
-            a.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques + "-img")).getFieldValue("Option1").stringValue;
-            b.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques + "-img")).getFieldValue("Option2").stringValue;
-            c.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques + "-img")).getFieldValue("Option3").stringValue;
-            d.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques + "-img")).getFieldValue("Option4").stringValue;
+            questionID = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques + "-img")).getFieldValue("QuestionID").stringValue;
+            a.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques + "-img")).getFieldValue("Option1").stringValue;
+            b.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques + "-img")).getFieldValue("Option2").stringValue;
+            c.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques + "-img")).getFieldValue("Option3").stringValue;
+            d.GetComponent<TextMesh>().text = Questions.getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques + "-img")).getFieldValue("Option4").stringValue;
         }
         if(questionID.Contains("-img"))
         {
@@ -82,7 +82,7 @@ public class Exam1GamePlay : MonoBehaviour
   
     public string getAnswer(int ques)
     {
-        string answer = FBGameData.instance.getClassData("Question").getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + ques)).getFieldValue("Answer").stringValue;
+        string answer = FBGameData.instance.getClassData("Question").getObject("QuestionID", new FBValue(FBDataType.String, "bt-question" + ques)).getFieldValue("Answer").stringValue;
         return convert2Answer(answer);
     }
     

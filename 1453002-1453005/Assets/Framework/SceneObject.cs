@@ -159,8 +159,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             //if (action == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
             if (action == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(param, this.gameObject);
             if (action == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
-            if (action == Action.SHOWVIDEO) BaseUI.instance.PlayVideo(param, this.gameObject);
-            if (action == Action.HIDEVIDEO) BaseUI.instance.PauseVideo(this.gameObject);
+           // if (action == Action.SHOWVIDEO) BaseUI.instance.PlayVideo(param, this.gameObject);
+         //   if (action == Action.HIDEVIDEO) BaseUI.instance.PauseVideo(this.gameObject);
         }
         
     }

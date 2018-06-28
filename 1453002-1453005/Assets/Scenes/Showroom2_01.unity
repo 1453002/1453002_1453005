@@ -442,6 +442,8 @@ MonoBehaviour:
   video2: {fileID: 0}
   checkPlay: {fileID: 0}
   gamePlay: {fileID: 0}
+  GVR1: {fileID: 0}
+  GVR2: {fileID: 0}
 --- !u!1001 &56138291
 Prefab:
   m_ObjectHideFlags: 0
@@ -4300,6 +4302,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4756721493591382, guid: 066542e7e6139754ba217ef7822cc4cc,
     type: 2}
   m_PrefabInternal: {fileID: 114286838}
+--- !u!1 &124802719 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1491213335244376, guid: 6e378964fc9cc9d4194bf7117d11fac1,
+    type: 2}
+  m_PrefabInternal: {fileID: 2112685207}
 --- !u!1001 &167573781
 Prefab:
   m_ObjectHideFlags: 0
@@ -12540,32 +12547,32 @@ Prefab:
         type: 2}
       propertyPath: listImages.Array.data[36]
       value: 
-      objectReference: {fileID: 2800000, guid: dcf42b1e8983e174f9d93862a8c53256, type: 3}
+      objectReference: {fileID: 2800000, guid: 4a1f48ccb45e66143aca5c5270c4272f, type: 3}
     - target: {fileID: 114746187823973556, guid: f9111779b95af62419bf8d0e7587af23,
         type: 2}
       propertyPath: listImages.Array.data[37]
       value: 
-      objectReference: {fileID: 2800000, guid: 366e48bdcfe28e347bb1759dfd6f0493, type: 3}
+      objectReference: {fileID: 2800000, guid: a147abe5dcdeab54f8c3fd6e61ac4eeb, type: 3}
     - target: {fileID: 114746187823973556, guid: f9111779b95af62419bf8d0e7587af23,
         type: 2}
       propertyPath: listImages.Array.data[38]
       value: 
-      objectReference: {fileID: 2800000, guid: 07becd75d636c0d40916cee40c422b17, type: 3}
+      objectReference: {fileID: 2800000, guid: 3fc5e6697d8a05e4eaf6cd64410217bc, type: 3}
     - target: {fileID: 114746187823973556, guid: f9111779b95af62419bf8d0e7587af23,
         type: 2}
       propertyPath: listImages.Array.data[39]
       value: 
-      objectReference: {fileID: 2800000, guid: afc455f5b5411194dbdc0a93945d4708, type: 3}
+      objectReference: {fileID: 2800000, guid: d0724320c4e42fc49acfde85bee250a0, type: 3}
     - target: {fileID: 114746187823973556, guid: f9111779b95af62419bf8d0e7587af23,
         type: 2}
       propertyPath: listImages.Array.data[40]
       value: 
-      objectReference: {fileID: 2800000, guid: 1de54df934c531c4997800dc8795c2b5, type: 3}
+      objectReference: {fileID: 2800000, guid: a6c923f5a10923e40b0457d900f6b369, type: 3}
     - target: {fileID: 114746187823973556, guid: f9111779b95af62419bf8d0e7587af23,
         type: 2}
       propertyPath: listImages.Array.data[41]
       value: 
-      objectReference: {fileID: 2800000, guid: 7e1ab78c20a9ddc439b4211170cf016b, type: 3}
+      objectReference: {fileID: 2800000, guid: 6559f68911f1ed94c9ba3a482a609573, type: 3}
     - target: {fileID: 114746187823973556, guid: f9111779b95af62419bf8d0e7587af23,
         type: 2}
       propertyPath: listImages.Array.data[42]
@@ -16686,6 +16693,8 @@ MonoBehaviour:
   video2: {fileID: 0}
   checkPlay: {fileID: 0}
   gamePlay: {fileID: 0}
+  GVR1: {fileID: 0}
+  GVR2: {fileID: 0}
 --- !u!65 &579709945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16885,14 +16894,12 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
@@ -17424,6 +17431,8 @@ MonoBehaviour:
   video2: {fileID: 606847179}
   checkPlay: {fileID: 0}
   gamePlay: {fileID: 0}
+  GVR1: {fileID: 0}
+  GVR2: {fileID: 0}
 --- !u!1 &676946661
 GameObject:
   m_ObjectHideFlags: 0
@@ -21546,7 +21555,7 @@ RectTransform:
   m_GameObject: {fileID: 853181678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.01, y: 1.61, z: -10.279}
-  m_LocalScale: {x: 0.0017602142, y: 0.0017602142, z: 0.0017602142}
+  m_LocalScale: {x: 0.0015604061, y: 0.0015604061, z: 0.0015604061}
   m_Children:
   - {fileID: 970359223}
   - {fileID: 1033416379}
@@ -21806,6 +21815,8 @@ MonoBehaviour:
   video2: {fileID: 0}
   checkPlay: {fileID: 0}
   gamePlay: {fileID: 0}
+  GVR1: {fileID: 0}
+  GVR2: {fileID: 0}
 --- !u!1001 &941503854
 Prefab:
   m_ObjectHideFlags: 0
@@ -23428,6 +23439,8 @@ MonoBehaviour:
   video2: {fileID: 606847179}
   checkPlay: {fileID: 0}
   gamePlay: {fileID: 0}
+  GVR1: {fileID: 0}
+  GVR2: {fileID: 0}
 --- !u!1 &1120152503
 GameObject:
   m_ObjectHideFlags: 0
@@ -23564,6 +23577,8 @@ MonoBehaviour:
   video2: {fileID: 0}
   checkPlay: {fileID: 853181678}
   gamePlay: {fileID: 0}
+  GVR1: {fileID: 0}
+  GVR2: {fileID: 0}
 --- !u!65 &1154928541
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24023,7 +24038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balloonPrefab: {fileID: 1000010666459242, guid: c674ced77ceea864c84615c361a24c1b,
     type: 2}
-  chooseMenu: {fileID: 853181678}
 --- !u!1001 &1276260563
 Prefab:
   m_ObjectHideFlags: 0
@@ -24608,6 +24622,8 @@ MonoBehaviour:
   video2: {fileID: 0}
   checkPlay: {fileID: 0}
   gamePlay: {fileID: 0}
+  GVR1: {fileID: 0}
+  GVR2: {fileID: 0}
 --- !u!1 &1399738380
 GameObject:
   m_ObjectHideFlags: 0
@@ -25688,6 +25704,10 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4033912251208466, guid: b052fdb23ccdc8e4bba0023eae6be05c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b052fdb23ccdc8e4bba0023eae6be05c, type: 2}
   m_IsPrefabParent: 0
@@ -26581,14 +26601,12 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 1
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
   m_Looping: 0
@@ -35296,7 +35314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1971703919
 Transform:
   m_ObjectHideFlags: 0
@@ -39014,6 +39032,8 @@ MonoBehaviour:
   video2: {fileID: 0}
   checkPlay: {fileID: 0}
   gamePlay: {fileID: 0}
+  GVR1: {fileID: 0}
+  GVR2: {fileID: 0}
 --- !u!1 &2041338945
 GameObject:
   m_ObjectHideFlags: 0
@@ -39072,6 +39092,8 @@ MonoBehaviour:
   video2: {fileID: 0}
   checkPlay: {fileID: 0}
   gamePlay: {fileID: 0}
+  GVR1: {fileID: 0}
+  GVR2: {fileID: 0}
 --- !u!1 &2075123134
 GameObject:
   m_ObjectHideFlags: 0
@@ -39347,6 +39369,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 1.821
       objectReference: {fileID: 0}
+    - target: {fileID: 114485625551159280, guid: 6e378964fc9cc9d4194bf7117d11fac1,
+        type: 2}
+      propertyPath: VRplayer
+      value: 
+      objectReference: {fileID: 124802719}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e378964fc9cc9d4194bf7117d11fac1, type: 2}
   m_IsPrefabParent: 0

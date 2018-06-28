@@ -45,12 +45,22 @@
     {
       "id": 8,
       "Content": "content 5",
-      "QuestionID": "yte-question5-img",
+      "QuestionID": "yte-question5",
       "Option1": "opt 1",
       "Option2": "opt 2",
       "Option3": "opt 3",
       "Option4": "opt 4",
       "Answer": "Option1"
+    },
+    {
+      "id": 9,
+      "Content": "Eleusinian Relief xuất phát từ đâu",
+      "QuestionID": "bt-question1-img",
+      "Option1": "Hy Lạp",
+      "Option2": "Roma",
+      "Option3": "Trung Đông",
+      "Option4": "Tây Âu",
+      "Answer": "Option3"
     }
   ]
 }
