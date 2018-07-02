@@ -38,17 +38,10 @@ public class MediaManager : MonoBehaviour {
         FBClassData imageObject = FBGameData.instance.getClassData("ImageUIObject");
         FBClassData textObject = FBGameData.instance.getClassData("TextUIObject");
         string imgName = imageObject.getObject("ObjectName", new FBValue(FBDataType.String, obj.name)).getFieldValue("ImageID").stringValue;
-        
-        
-        
-        //string content = textObject.getObject("TextID", new FBValue(FBDataType.String, imgName)).getFieldValue("Content").stringValue;
         if(dicImages.ContainsKey(imgName))
         {
-           // obj.GetComponent<Renderer>().material.SetTexture(dicImages[imgName].name, dicImages[imgName]);
             obj.GetComponent<MeshRenderer>().material.mainTexture = dicImages[imgName];
-            Debug.Log(dicImages[imgName] + "----" + imgName);
         }
-    //    obj.transform.findChildRecursively("TextPos").gameObject.GetComponent<Text>().text = content;
     }
 
 
