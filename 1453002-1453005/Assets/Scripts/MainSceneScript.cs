@@ -12,12 +12,10 @@ public class MainSceneScript : MonoBehaviour {
     Vector3 lastPosOfPlayer;
     public List<GameObject> listPlayer;
     public Dictionary<string, GameObject> dicPlayers;
-
-
+    public GameObject menuPlay;
     [HideInInspector]
     public GoogleVR.Demos.DemoInputManager demoInputManager;
-
-    public GameObject testRequire;
+    public GameObject chooseMenu;
 
     private void Awake()
     {
@@ -36,9 +34,8 @@ public class MainSceneScript : MonoBehaviour {
         }
 
         player = dicPlayers["GVR-1"];
-      //  GamePlay.instance.VRplayer = player.transform.findChildRecursively("Player").gameObject;
-      
-        testRequire.SetActive(false);
+
+        chooseMenu.SetActive(false);
         if (this.gameObject.scene.name == "Showroom2_01")
         {
             MainSceneScript.instance.player.transform.position = new Vector3(0.01f, 1.61f, -12.6f);
@@ -49,33 +46,35 @@ public class MainSceneScript : MonoBehaviour {
     // Update is called once per frame
     private void Update()
    {
-    //    if (GvrController.AppButtonUp && Player.instance.currentState != Player.PlayerState.PlayingGame)
-    //    {
-    //        testRequire.SetActive(true);
-    //        Player.instance.SetState(Player.PlayerState.Selecting);
-    //    }
-    //    if (GvrController.AppButtonUp && Player.instance.currentState == Player.PlayerState.PlayingGame)
-    //    {
-    //        RequireTest.instance.stopTest();
-
-    //    }        
         if(this.gameObject.scene.name == "Showroom2_01" && GvrController.AppButtonUp)
         {
             if (player.transform.findChildRecursively("Player").transform.position.y >= 3)
             {
-                Transform getPoint = GameObject.Find("Down-Point").transform;
-                Vector3 temp = getPoint.transform.position;
-                player.transform.findChildRecursively("Player").transform.DOMove(temp, 1.5f);
+                //Game upstair off
+                if (!listPlayer[0].activeSelf)
+                {
+                    listPlayer[0].SetActive(true);
+                    listPlayer[1].SetActive(false);
+                    menuPlay.SetActive(false);
+                    Player.instance.SetState(Player.PlayerState.None);
+                    testSwipeColor.instance.UnActiveGame();
+                }
+                else
+                {
+                    //Go down stair
+                    Transform getPoint = GameObject.Find("Down-Point").transform;
+                    Vector3 temp = getPoint.transform.position;
+                    player.transform.findChildRecursively("Player").transform.DOMove(temp, 1.5f);
+                }
             }
             else {
+                //Game skeleton out
                 Player.instance.SetState(Player.PlayerState.None);
                 TestDrop.instance.onOutGame();
             }
         }
     
     }
-
-
     public void createPlayer()
     {
         player.transform.position = lastPosOfPlayer;
@@ -84,7 +83,26 @@ public class MainSceneScript : MonoBehaviour {
     public void destroyPlayer()
     {
         lastPosOfPlayer = player.transform.position;
-        testRequire.SetActive(true);
+        chooseMenu.SetActive(true);
     }
-     
+    public void changeGVRStyle()
+    {
+        if (Player.instance.currentState != Player.PlayerState.PlayingGame)
+        {
+            menuPlay.SetActive(true);
+            chooseMenu.SetActive(false);
+            Player.instance.SetState(Player.PlayerState.PlayingGame);
+            Vector3 temp = listPlayer[0].transform.findChildRecursively("Player").transform.position;
+            Quaternion quaTemp = listPlayer[0].transform.findChildRecursively("Player").transform.rotation;
+            listPlayer[0].gameObject.SetActive(false);
+            listPlayer[1].gameObject.SetActive(true);
+            listPlayer[1].transform.findChildRecursively("PlayerPlay").transform.position = temp;
+            listPlayer[1].transform.findChildRecursively("PlayerPlay").transform.rotation = quaTemp;
+
+        }
+    }
+    public void TurnOffChooseMenu() {
+        chooseMenu.SetActive(false);
+    }
+
 }

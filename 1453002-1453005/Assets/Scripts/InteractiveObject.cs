@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using System.Collections.Generic;
 public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,
                            IPointerExitHandler, IPointerClickHandler, IPointerUpHandler
 {
@@ -15,6 +16,7 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
     public GameObject boneReal;
     public GameObject boneMarker;
     public GameObject fakeWall;
+    public List<GameObject> upStairs = new List<GameObject>();
     void Start() {
            player=GameObject.Find("GVR-1");
     }
@@ -54,7 +56,10 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
                 nextPos = new Vector3(getPoint.position.x, getPoint.position.y, getPoint.position.z);
 
                 player.transform.findChildRecursively("Player").transform.DOMove(nextPos, 1.5f);
-
+                for(int i=0;i<upStairs.Count;i++)
+                {
+                    upStairs[i].gameObject.SetActive(true);
+                }
 
             }
             if (this.gameObject.name == "PlayCube1")
@@ -71,7 +76,7 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
                 {
                     checkPlay.SetActive(true);
                 }
-                Vector3 temp = new Vector3(this.transform.position.x,this.transform.position.y+1,this.transform.position.z);
+                Vector3 temp = new Vector3(this.transform.position.x,this.transform.position.y+1.5f,this.transform.position.z);
                 player.transform.findChildRecursively("Player").transform.DOMove(temp, 1.5f);
             }
             if (this.gameObject.name == "Bone-Build")
