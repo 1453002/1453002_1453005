@@ -414,7 +414,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1184017539257006}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.94, z: 6.17}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4138505305584166}
@@ -431,7 +431,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869015777103322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.94, z: -6.17}
+  m_LocalPosition: {x: 0.01, y: 0.78, z: -11.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4012093395411050}
@@ -976,7 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 559f48fc42271374da4a7bdcb442a906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VRplayer: {fileID: 0}
+  VRplayer: {fileID: 1491213335244376}
   spawnPoint: {x: 0, y: 0, z: 0}
   status: {fileID: 0}
 --- !u!114 &114495543534133882
@@ -1050,7 +1050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b02a763c27cdb44a2a2afae43fb232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHeight: 1.2
+  playerHeight: 1
   defaultLaser: {fileID: 1493700506673888}
   visualPlayer: {fileID: 1340722146096514, guid: 2536a413bd8570043b05290b82b6075b,
     type: 2}
@@ -1233,7 +1233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5606e9e3448dc48f3886ff361a4e5d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionSpeed: 100
+  transitionSpeed: 10
 --- !u!114 &114939700996052234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1274,11 +1274,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   validTeleportLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967003
   raycastMask:
     serializedVersion: 2
-    m_Bits: 1
-  maxDistance: 10
+    m_Bits: 289
+  maxDistance: 3
   maxSurfaceAngle: 45
   maxControllerPitch: 60
   maxVerticalGain: 10
@@ -1288,7 +1288,7 @@ MonoBehaviour:
   openFloorOffset: 0.25
   openSpaceLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967291
+    m_Bits: 4294967003
   active: 0
   debugRaycasting: 0
 --- !u!120 &120803510067329278
