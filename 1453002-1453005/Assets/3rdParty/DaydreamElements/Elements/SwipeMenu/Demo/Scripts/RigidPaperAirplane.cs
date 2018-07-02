@@ -26,7 +26,7 @@ namespace DaydreamElements.SwipeMenu {
 
     public bool isSpinning = false;
     public ColorUtil.Type type;
-
+    int deleteTime = 50;
     void Start() {
       audioSource = GetComponent<GvrAudioSource>();
       rigidBody = GetComponent<Rigidbody>();
@@ -36,6 +36,14 @@ namespace DaydreamElements.SwipeMenu {
     }
 
     void Update () {
+            if (deleteTime >= 0)
+            {
+                deleteTime--;
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
       // Remove game object when it falls under the floor.
       if (transform.position.y < killHeight) {
         Destroy(gameObject);

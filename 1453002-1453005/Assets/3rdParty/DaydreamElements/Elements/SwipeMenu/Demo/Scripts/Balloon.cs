@@ -44,23 +44,23 @@ namespace DaydreamElements.SwipeMenu {
     private bool isAppearing = true;
     public BalloonSpawner spawner;
     public int balloonIx;
-
+        Dictionary<string, GameObject> balloonIns;
     public GameObject explodedQuad;
     public GameObject popSound;
-    
-    void Start() {
+    GameObject answer;
+   void Start() {
       startPosition = transform.localPosition;
       startScale = transform.localScale;
       startTime = Time.realtimeSinceStartup + Random.Range(0.0f, FLOATING_PERIOD);
       type = ColorUtil.RandomColor();
-
+      answer= this.gameObject.transform.findChildRecursively("Answer").gameObject;
             //baonh   
-      
-      checkCurrentColor((int)type);
+
+            checkCurrentColor((int)type);
             testSwipeColor.instance.balloonIns.Add(this.gameObject.name, this.gameObject);
            // this.gameObject.AddComponent<multipleChoice>();
             GameObject player = GameObject.Find("Player");
-            Dictionary<string, GameObject> balloonIns = testSwipeColor.instance.balloonIns;
+            balloonIns = testSwipeColor.instance.balloonIns;
             if (!balloonIns.ContainsKey(this.gameObject.name))
             {
                 balloonIns.Add(this.gameObject.name, this.gameObject);
@@ -69,38 +69,35 @@ namespace DaydreamElements.SwipeMenu {
 
       if(balloonIns.ContainsKey("A"))
             {
-                balloonIns["A"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option1").stringValue;
+                balloonIns["A"].transform.findChildRecursively("Text").GetComponent<Text>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option1").stringValue;
             }
             if (balloonIns.ContainsKey("B"))
             {
-                balloonIns["B"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option2").stringValue;
+                balloonIns["B"].transform.findChildRecursively("Text").GetComponent<Text>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option2").stringValue;
             }
             if (balloonIns.ContainsKey("C"))
             {
-                balloonIns["C"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option3").stringValue;
+                balloonIns["C"].transform.findChildRecursively("Text").GetComponent<Text>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option3").stringValue;
             }
             if (balloonIns.ContainsKey("D"))
             {
-                balloonIns["D"].transform.findChildRecursively("Content").GetComponent<TextMesh>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option4").stringValue;
+                balloonIns["D"].transform.findChildRecursively("Text").GetComponent<Text>().text = testSwipeColor.instance.classQuestion.getObject("QuestionID", new FBValue(FBDataType.String, "yte-question" + testSwipeColor.instance.currentQuestion)).getFieldValue("Option4").stringValue;
             }
 
             ColorUtil.Colorize(type, gameObject);
       transform.localScale = Vector3.zero;
       float randAngle = Random.Range(0.0f, 360.0f);
       transform.localRotation = Quaternion.Euler(0.0f, randAngle, 0.0f);
-      if(this.gameObject.scene.name == "Showroom2_01")
+            if (this.gameObject.scene.name == "Showroom2_01")
             {
-                startScale *= 0.1f;                
-                startPosition.x = Random.Range(player.transform.position.x - 3 , player.transform.position.x + 3);
-                startPosition.y = player.transform.position.y ; 
-                startPosition.z = Random.Range(player.transform.position.z - 2 , player.transform.position.z +2);
+                startScale *= 0.3f;
             }
-    }
+        }
 
     //baonh
     void checkCurrentColor(int param)
     {
-        if(param == 0) { testSwipeColor.instance.currentColor += 1; this.gameObject.name = "A"; }
+        if (param == 0) { testSwipeColor.instance.currentColor += 1; this.gameObject.name = "A"; }
         if (param == 1) { testSwipeColor.instance.currentColor += 2; this.gameObject.name = "B"; }
         if (param == 2) { testSwipeColor.instance.currentColor += 4; this.gameObject.name = "C"; }
         if (param == 3) { testSwipeColor.instance.currentColor += 8; this.gameObject.name = "D"; }
@@ -117,11 +114,14 @@ namespace DaydreamElements.SwipeMenu {
        {
                 testSwipeColor.instance.currentQuestion += 1;
                 testSwipeColor.instance.loadQuestion(testSwipeColor.instance.currentQuestion);
+                if (testSwipeColor.instance.currentQuestion == testSwipeColor.instance.maxQuestion) {
+                }
        }
     }
 
     void Update() {
-      if (isAppearing) {    
+        answer.transform.LookAt(GameObject.Find("PlayerPlay").transform);
+        if (isAppearing) {    
         float scale = Mathf.Min(appearingTimer / APPEARING_TIME, 1.0f);
         appearingTimer += Time.deltaTime;
         transform.localScale = startScale * scale;
@@ -142,8 +142,11 @@ namespace DaydreamElements.SwipeMenu {
       Sign.IncScore();
       if (spawner != null) {
         spawner.BalloonDestroyed(balloonIx);
-         testSwipeColor.instance.balloonIns.Remove(this.gameObject.name);
-                checkAnswer();
+      if(balloonIns.ContainsKey(this.gameObject.name))
+      {
+          balloonIns.Remove(this.gameObject.name);
+      }
+        checkAnswer();
         if((int)type == 0) { testSwipeColor.instance.currentColor -= 1; }
         if((int)type == 1) { testSwipeColor.instance.currentColor -= 2; }
         if ((int)type == 2) { testSwipeColor.instance.currentColor -= 4; }

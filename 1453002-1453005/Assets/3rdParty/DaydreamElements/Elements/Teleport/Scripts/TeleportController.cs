@@ -96,7 +96,7 @@ namespace DaydreamElements.Teleport {
 
     // The selection result returned by the detector.
     private BaseTeleportDetector.Result selectionResult;
-
+    private bool alreadyMove = false;
     /// Returns true if the user is currently selecting a location to teleport to.
     public bool IsSelectingTeleportLocation {
       get {
@@ -175,7 +175,9 @@ namespace DaydreamElements.Teleport {
       if (allowRotation) {
         HandlePlayerRotations();
       }
-
+      if (transition.IsTransitioning) {
+            Player.instance.SetState(Player.PlayerState.None);
+      }
       // If a teleport selection session has not started, check the appropriate
       // trigger to see if one should start.
       if (selectionIsActive == false)
@@ -191,17 +193,16 @@ namespace DaydreamElements.Teleport {
       // Get the current selection result from the detector.
       float playerHeight = DetectPlayerHeight();
       selectionResult = detector.DetectSelection(currentController, playerHeight);
-
+        
       // Update the visualization.
       visualizer.UpdateSelection(currentController, selectionResult);
 
       // If not actively teleporting, just return.
-      if (selectionIsActive == false) {
+      if (selectionIsActive == false ) {
         return;
       }
-
-      // Check for the optional cancel trigger.
-      if (teleportCancelTrigger != null &&
+            // Check for the optional cancel trigger.
+            if (teleportCancelTrigger != null &&
           teleportCancelTrigger.TriggerActive() &&
           !teleportCommitTrigger.TriggerActive()) {
         EndTeleportSelection();
@@ -211,16 +212,10 @@ namespace DaydreamElements.Teleport {
       // When trigger deactivates we finish the teleport.
       if (selectionIsActive && teleportCommitTrigger.TriggerActive()) {
         if (selectionResult.selectionIsValid) {
-          Vector3 nextPlayerPosition = new Vector3(
-            selectionResult.selection.x,
-            selectionResult.selection.y + playerHeight,
-            selectionResult.selection.z);
+          Vector3 nextPlayerPosition = new Vector3(selectionResult.selection.x,selectionResult.selection.y + playerHeight,selectionResult.selection.z);
 
           // Start a transition to move the player.
-          transition.StartTransition(
-            player,
-            currentController,
-            nextPlayerPosition);
+          transition.StartTransition(player,currentController,nextPlayerPosition);
         }
 
         EndTeleportSelection();
@@ -298,6 +293,8 @@ namespace DaydreamElements.Teleport {
       }
 
       return false;
+    }
+    public void changeTarget() {
     }
 
     // Make sure we have required modules for teleporting.

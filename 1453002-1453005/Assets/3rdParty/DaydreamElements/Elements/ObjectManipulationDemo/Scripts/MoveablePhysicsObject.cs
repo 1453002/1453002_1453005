@@ -115,7 +115,6 @@ namespace DaydreamElements.ObjectManipulation {
     private Quaternion targetRotationDelta;
 
     private bool swiping;
-
     const float MAX_ANGULAR_DELTA = 15f;
     const float MIN_MASS = 1f;
     const float MAX_MASS = 10f;
@@ -147,6 +146,7 @@ namespace DaydreamElements.ObjectManipulation {
                     float dist = Vector3.Distance(this.gameObject.transform.position, marker.position);
                     if (dist < 0.25f)
                     {
+                        Debug.Log(dist);
                         Deselect();
                         Player.instance.SetState(Player.PlayerState.PlayingGame);
                         if (this.gameObject.GetComponent<Rigidbody>())
@@ -170,6 +170,7 @@ namespace DaydreamElements.ObjectManipulation {
         protected override void OnSelect(){
             if (isDropable())
             {
+                Player.instance.SetState(Player.PlayerState.PlayingGame);
                 if (TestDrop.instance.markers[this.gameObject.name])
                     marker = TestDrop.instance.markers[this.gameObject.name].transform;
             }
@@ -217,7 +218,8 @@ namespace DaydreamElements.ObjectManipulation {
       base.OnDeselect();
       ObjectManipulationPointer.ReleaseSelected(gameObject.transform);
       ResetRigidbody();
-    }   
+      this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }   
 
     private void UpdateControlTransform() {
 
@@ -391,7 +393,6 @@ namespace DaydreamElements.ObjectManipulation {
       targetYRotationFromInput = 0f;
       controlTension = 0f;
     }
-
     // Reset rigidbody properties.
     private void ResetRigidbody() {
       rigidbodyCmp.useGravity = useGravityDefault;

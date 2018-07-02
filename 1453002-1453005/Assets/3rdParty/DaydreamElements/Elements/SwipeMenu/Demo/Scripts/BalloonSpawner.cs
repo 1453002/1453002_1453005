@@ -17,82 +17,35 @@ using UnityEngine;
 namespace DaydreamElements.SwipeMenu {
 
   public class BalloonSpawner : MonoBehaviour {
-
-        //baonh custom for medical scene :
-        //private const float MIN_SPAWN_RADIUS = 1f;
-        //private const float MAX_SPAWN_RADIUS = 3f;
-        //private const float MIN_SPAWN_HEIGHT = 1f;
-        //private const float MAX_SPAWN_HEIGHT = 4f;
-
-
-
-        private const float MIN_SPAWN_RADIUS = 10.0f;
-        private const float MAX_SPAWN_RADIUS = 10.0f;
-        private const float MIN_SPAWN_HEIGHT = 3.0f;
-        private const float MAX_SPAWN_HEIGHT = 7.0f;
-        private const int TARGET_NUM_BALLOONS = 4;
-    private const float MIN_DIST_BETWEEN_BALLOONS = 3.0f;
-
+    private const int TARGET_NUM_BALLOONS = 4;
     private int numBalloons = 0;
     private GameObject[] balloons = new GameObject[TARGET_NUM_BALLOONS];
-
     public GameObject balloonPrefab;
-
     void Update() {
       // Initialize all balloons
       for (int i = 0; i < TARGET_NUM_BALLOONS; ++i) {
-        if (balloons[i] == null) {
-          SpawnBalloon(i);
-          return;
-        }
+                if (balloons[i] == null)
+                {
+                    SpawnBalloon(i);
+                }
+          
       }
     }
-
+    private void OnEnable()
+    {
+            numBalloons = 0;
+    }
     private void SpawnBalloon(int balloonIx) {
-      // Get random cylindrical coordinates.
-      float spawnRadius = Random.Range(MIN_SPAWN_RADIUS, MAX_SPAWN_RADIUS);
-      float spawnHeight = Random.Range(MIN_SPAWN_HEIGHT, MAX_SPAWN_HEIGHT);
-      float spawnAngle = Random.Range(-Mathf.PI, Mathf.PI);
-
-      // Convert cylindrical coordinates to Cartesian coordinates.
-      float spawnX = spawnRadius * Mathf.Cos(spawnAngle);
-      float spawnY = spawnHeight;
-      float spawnZ = spawnRadius * Mathf.Sin(spawnAngle);
-      Vector3 spawnPosition = new Vector3(spawnX, spawnY, spawnZ);
-
-      // If the balloon is too close to other balloons, then try again in
-      // a later frame.  This makes sure balloons appear intermittently
-      // rather than all on the same frame.
-      if (IsTooClose(spawnPosition)) {
-        return;
-      }
-
-      // Spawn a new balloon at the random coordinate.
       GameObject balloonSpawn = Instantiate(balloonPrefab);
-      balloonSpawn.transform.position = spawnPosition;
+      balloonSpawn.transform.position = new Vector3(Random.Range(-6f,6f),Random.Range(2.41f,6.56f),Random.Range(8.57f,11.73f));
       balloonSpawn.GetComponent<Balloon>().spawner = this;
       balloonSpawn.GetComponent<Balloon>().balloonIx = balloonIx;
-
-      // Update the balloon count.
       balloons[balloonIx] = balloonSpawn;
     }
 
     public void BalloonDestroyed(int balloonIx) {
-      // Update the balloon count.
       balloons[balloonIx] = null;
       numBalloons--;
-    }
-
-    private bool IsTooClose(Vector3 position) {
-      for (int i = 0; i < TARGET_NUM_BALLOONS; ++i) {
-        if (balloons[i]) {
-          float dist = Vector3.Distance(balloons[i].transform.position, position);
-          if (dist < MIN_DIST_BETWEEN_BALLOONS) {
-            return true;
-          }
-        }
-      }
-      return false;
     }
   }
 }
