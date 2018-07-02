@@ -4,7 +4,7 @@
   "data": [
     {
       "id": 4,
-      "Content": "Main cause of lung cancer",
+      "Content": "Main cause of lung cancer ?",
       "QuestionID": "yte-question1",
       "Option1": "Smoke",
       "Option2": "Alcohol ",
@@ -14,7 +14,7 @@
     },
     {
       "id": 5,
-      "Content": "Number of people affected by lung cancer in VietNam each year",
+      "Content": "How many people are affected lung cancer each year ?",
       "QuestionID": "yte-question2",
       "Option1": "20000",
       "Option2": "21000",
@@ -24,42 +24,82 @@
     },
     {
       "id": 6,
-      "Content": "content 3...",
+      "Content": "How many types of lung cancer ?",
       "QuestionID": "yte-question3",
-      "Option1": "opt 1",
-      "Option2": "opt 2",
-      "Option3": "opt 3",
-      "Option4": "opt 4",
-      "Answer": "Option3"
+      "Option1": "1",
+      "Option2": "2",
+      "Option3": "3",
+      "Option4": "4",
+      "Answer": "Option2"
     },
     {
       "id": 7,
-      "Content": "content4....",
+      "Content": "Symptom of lung cancer ?",
       "QuestionID": "yte-question4",
-      "Option1": "opt 1",
-      "Option2": "opt 2",
-      "Option3": "opt 3",
-      "Option4": "opt 4",
-      "Answer": "Option4"
+      "Option1": "Heart attack",
+      "Option2": "Anorexia",
+      "Option3": "Footsore",
+      "Option4": "DIzzy",
+      "Answer": "Option2"
     },
     {
       "id": 8,
-      "Content": "content 5",
+      "Content": "How many stages of lung cancer ?",
       "QuestionID": "yte-question5",
-      "Option1": "opt 1",
-      "Option2": "opt 2",
-      "Option3": "opt 3",
-      "Option4": "opt 4",
+      "Option1": "5",
+      "Option2": "7",
+      "Option3": "2",
+      "Option4": "8",
       "Answer": "Option1"
     },
     {
       "id": 9,
-      "Content": "Eleusinian Relief xuất phát từ đâu",
-      "QuestionID": "bt-question1-img",
-      "Option1": "Hy Lạp",
-      "Option2": "Roma",
-      "Option3": "Trung Đông",
-      "Option4": "Tây Âu",
+      "Content": "Main cause of Hiv ?",
+      "QuestionID": "yte-question6",
+      "Option1": "Insomnia",
+      "Option2": "Anorexia",
+      "Option3": "No condom",
+      "Option4": "Environment",
+      "Answer": "Option3"
+    },
+    {
+      "id": 10,
+      "QuestionID": "yte-question7",
+      "Content": "How many stages of HIV?",
+      "Option1": "1",
+      "Option2": "2",
+      "Option3": "3",
+      "Option4": "4",
+      "Answer": "Option4"
+    },
+    {
+      "id": 11,
+      "QuestionID": "yte-question8",
+      "Content": "How does Hiv pass down from people to people ?",
+      "Option1": "Air",
+      "Option2": "Food",
+      "Option3": "Enzime",
+      "Option4": "Unsafe sex",
+      "Answer": "Option4"
+    },
+    {
+      "id": 12,
+      "QuestionID": "yte-question9",
+      "Content": "How long does it take from Hiv to AIDS ?",
+      "Option1": "7",
+      "Option2": "15",
+      "Option3": "10",
+      "Option4": "4",
+      "Answer": "Option3"
+    },
+    {
+      "id": 13,
+      "QuestionID": "yte-question10",
+      "Content": "How many people are there suffering in Hiv currently ?",
+      "Option1": "10 millions",
+      "Option2": "25 millions",
+      "Option3": "35 millions",
+      "Option4": "40 millions",
       "Answer": "Option3"
     }
   ]
