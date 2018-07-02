@@ -4,23 +4,23 @@
   "data": [
     {
       "id": 4,
-      "Content": "content 1....",
+      "Content": "Main cause of lung cancer",
       "QuestionID": "yte-question1",
-      "Option1": "opt 1",
-      "Option2": "opt 2",
-      "Option3": "opt 3",
-      "Option4": "opt 4",
+      "Option1": "Smoke",
+      "Option2": "Alcohol ",
+      "Option3": "Sex",
+      "Option4": "Hygiene ",
       "Answer": "Option1"
     },
     {
       "id": 5,
-      "Content": "content 2...",
+      "Content": "Number of people affected by lung cancer in VietNam each year",
       "QuestionID": "yte-question2",
-      "Option1": "opt 1",
-      "Option2": "opt2",
-      "Option3": "opt 3",
-      "Option4": "opt4",
-      "Answer": "Option2"
+      "Option1": "20000",
+      "Option2": "21000",
+      "Option3": "22000",
+      "Option4": "23000",
+      "Answer": "Option3"
     },
     {
       "id": 6,
