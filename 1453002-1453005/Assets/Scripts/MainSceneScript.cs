@@ -34,10 +34,11 @@ public class MainSceneScript : MonoBehaviour {
         }
 
         player = dicPlayers["GVR-1"];
-
-        chooseMenu.SetActive(false);
+       
+        
         if (this.gameObject.scene.name == "Showroom2_01")
         {
+            chooseMenu.SetActive(false);
             MainSceneScript.instance.player.transform.position = new Vector3(0.01f, 1.61f, -12.6f);
             MainSceneScript.instance.player.transform.findChildRecursively("Player").localPosition = new Vector3(0, 0, 0);
         }

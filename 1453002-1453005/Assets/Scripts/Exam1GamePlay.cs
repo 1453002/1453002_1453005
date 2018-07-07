@@ -34,11 +34,12 @@ public class Exam1GamePlay : MonoBehaviour
         d = board.transform.findChildRecursively("D").gameObject;
         b = board.transform.findChildRecursively("B").gameObject;
         content = board.transform.findChildRecursively("Content").gameObject;
-        loadQuestion(currentQuestion);
+       
         maxQuestion = FBGameData.instance.getClassData("Question").objects.Count;
        //maxQ.text = "Total question : " + maxQuestion;
         cubeImage = board.transform.findChildRecursively("cube-image").gameObject;
         cubeImage.SetActive(false);
+        loadQuestion(currentQuestion);
     }	
 	
 
@@ -73,6 +74,10 @@ public class Exam1GamePlay : MonoBehaviour
         }
         if(questionID.Contains("-img"))
         {
+            if (MediaManager.instance.dicImages.Count == 0)
+            {
+                MediaManager.instance.addTexture2Dic();
+            }
             cubeImage.SetActive(true);
             cubeImage.GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages[questionID];
         }

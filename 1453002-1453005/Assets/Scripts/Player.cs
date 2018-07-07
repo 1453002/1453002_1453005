@@ -126,15 +126,15 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-       
+
         //test voice
-       
+
         //UpdateState();
 
-        //if (visualPlayer)
-        //{
-        //    visualPlayer.transform.position = this.transform.position;
-        //    visualPlayer.transform.rotation = this.transform.rotation;
-        //}
+        if (visualPlayer)
+        {
+            visualPlayer.transform.position = this.transform.position;
+            visualPlayer.transform.rotation = this.transform.rotation;
+        }
     }
 }
