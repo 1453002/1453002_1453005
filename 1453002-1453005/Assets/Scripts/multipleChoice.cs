@@ -22,7 +22,7 @@ public class multipleChoice : MonoBehaviour, IPointerDownHandler, IPointerEnterH
         if (this.gameObject.scene.name == "MultipleChoice" || this.gameObject.scene.name == "Baked_MuseumVR_vol1")
         {
             Vector3 scale = gameObject.transform.localScale;
-            this.gameObject.transform.localScale = new Vector3(scale.x*7f, scale.y*7f, scale.z*1f);            
+          //  this.gameObject.transform.localScale = new Vector3(scale.x*7f, scale.y*7f, scale.z*1f);            
         }
         if(this.gameObject.scene.name == "swipeMenuShot")
         {
@@ -34,7 +34,7 @@ public class multipleChoice : MonoBehaviour, IPointerDownHandler, IPointerEnterH
         if (this.gameObject.scene.name == "MultipleChoice" || this.gameObject.scene.name == "Baked_MuseumVR_vol1")
         {
             Vector3 scale = gameObject.transform.localScale;
-            this.gameObject.transform.localScale = new Vector3(scale.x/ 7f, scale.y / 7f, scale.z / 1f);            
+          //  this.gameObject.transform.localScale = new Vector3(scale.x/ 7f, scale.y / 7f, scale.z / 1f);            
         }
         if(this.gameObject.scene.name == "swipeMenuShot")
         {

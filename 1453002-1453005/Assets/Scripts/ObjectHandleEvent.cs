@@ -41,40 +41,52 @@ public class ObjectHandleEvent : MonoBehaviour, IPointerDownHandler, IPointerEnt
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (gameObject.name == "sumerian_sphinx_right")
+        if (Exam1GamePlay.instance.countHovers >=0/* Exam1GamePlay.instance.numObjHoverRequire*/)
         {
-            tmp = GameObject.Find("sumerian_sphinx_left");
-            if(Vector3.Distance(gameObject.transform.position,tmp.transform.position) <35)
+            if (gameObject.name == "sumerian_sphinx_right")
             {
+                tmp = GameObject.Find("sumerian_sphinx_left");
                 Exam1GamePlay.instance.board.SetActive(true);
-                gameObject.transform.DOMoveX(gameObject.transform.position.x - 20, 0.5f);
-                tmp.transform.DOMoveX(tmp.transform.position.x + 20, 0.5f);
+                Exam1GamePlay.instance.roman_augustus.SetActive(false);
+                Exam1GamePlay.instance.initBoard();
+
+                doStatuesMove1(tmp, gameObject);
             }
-            if (Vector3.Distance(gameObject.transform.position, tmp.transform.position) > 35)
+            if (gameObject.name == "sumerian_sphinx_left")
             {
-                Exam1GamePlay.instance.board.SetActive(false);
-                gameObject.transform.DOMoveX(gameObject.transform.position.x + 20, 0.5f);
-                tmp.transform.DOMoveX(tmp.transform.position.x - 20, 0.5f);
+                tmp = GameObject.Find("sumerian_sphinx_right");
+                Exam1GamePlay.instance.board.SetActive(true);
+                Exam1GamePlay.instance.roman_augustus.SetActive(false);
+                Exam1GamePlay.instance.initBoard();
+
+                doStatuesMove1(gameObject, tmp);
+
             }
 
-        }   
-        if (gameObject.name == "sumerian_sphinx_left")
-        {
-            tmp = GameObject.Find("sumerian_sphinx_right");
-            if (Vector3.Distance(gameObject.transform.position, tmp.transform.position) < 35)
-            {
-                Exam1GamePlay.instance.board.SetActive(true);
-                gameObject.transform.DOMoveX(gameObject.transform.position.x + 20, 0.5f);
-                tmp.transform.DOMoveX(tmp.transform.position.x - 20, 0.5f);
-            }
-            if (Vector3.Distance(gameObject.transform.position, tmp.transform.position) > 35)
-            {
-                Exam1GamePlay.instance.board.SetActive(false);
-                gameObject.transform.DOMoveX(gameObject.transform.position.x - 20, 0.5f);
-                tmp.transform.DOMoveX(tmp.transform.position.x+ 20, 0.5f);
-            }
+            //if(gameObject.name == "roman_augustus")
+            //{
+            //    GameObject obj1 = GameObject.Find("sumerian_sphinx_left");
+            //    GameObject obj2 = GameObject.Find("sumerian_sphinx_right");
+            //    Exam1GamePlay.instance.board.SetActive(true);
+            //    Exam1GamePlay.instance.roman_augustus.SetActive(false);
+            //    Exam1GamePlay.instance.initBoard();
+
+            //    doStatuesMove1(obj1, obj2);
+            //}
         }
+    }
+    void doStatuesMove1(GameObject obj1, GameObject obj2)
+    {
+        obj1.transform.DOMoveX(obj1.transform.position.x - 20, 0.5f);
+        obj2.transform.DOMoveX(obj2.transform.position.x + 20, 0.5f);
+        StartCoroutine(doStatuesMove2(obj1, obj2));
+    }
 
+    IEnumerator doStatuesMove2(GameObject obj1, GameObject obj2)
+    {
+        yield return new WaitForSeconds(0.5f);
+        obj1.transform.DOMoveX(obj1.transform.position.x + 20, 0.5f);
+        obj2.transform.DOMoveX(obj2.transform.position.x - 20, 0.5f);
     }
 
     public void OnPointerUp(PointerEventData eventData)

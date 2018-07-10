@@ -18,14 +18,14 @@ new List<GvrPermissionsRequester.PermissionStatus>();
 
     private void Awake()
     {
-        if(this.gameObject.scene.name == "Baked_MuseumVR_vol1")
+        if (this.gameObject.scene.name == "Baked_MuseumVR_vol1")
             spawnPoint = new Vector3(0, -12, 0);
 
-        if (this.gameObject.scene.name == "Showroom2_01")
-        {
-            //Debug.Log("set");
-            //spawnPoint = new Vector3(0.1f, 100f, -11.78f);
-        }
+        //if (this.gameObject.scene.name == "Showroom2_01")
+        //{
+        //    //Debug.Log("set");
+        //    //spawnPoint = new Vector3(0.1f, 100f, -11.78f);
+        //}
 
         instance = this;
     }
@@ -46,19 +46,19 @@ new List<GvrPermissionsRequester.PermissionStatus>();
 	void Update () {
         
 
-        if (GvrControllerInput.ClickButtonDown)
-        {
-            if (Time.time - lastClickTime < catchTime)
-            {
-                //Debug.Log("double click");
-            }
-            else
-            {
-                //normal click
-                //Debug.Log("single click");
-            }
-            lastClickTime = Time.time;
-        }
+        //if (GvrControllerInput.ClickButtonDown)
+        //{
+        //    if (Time.time - lastClickTime < catchTime)
+        //    {
+        //        //Debug.Log("double click");
+        //    }
+        //    else
+        //    {
+        //        //normal click
+        //        //Debug.Log("single click");
+        //    }
+        //    lastClickTime = Time.time;
+        //}
       
     }
 

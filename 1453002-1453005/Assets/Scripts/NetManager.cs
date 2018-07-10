@@ -13,6 +13,7 @@ public class NetManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         PhotonNetwork.ConnectUsingSettings(setting);
+        //0707
         var temp = PhotonVoiceNetwork.Client;
 	}
 	
@@ -50,6 +51,6 @@ public class NetManager : MonoBehaviour {
     {
         Debug.Log("OnJoinedRoom() called by PUN. Now this client is in a room. From here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
 
-        PhotonNetwork.Instantiate(avatarPrefabs.name, GamePlay.instance.spawnPoint, Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(avatarPrefabs.name, new Vector3(Random.Range(-5,5),0,0), Quaternion.identity, 0);
     }
 }

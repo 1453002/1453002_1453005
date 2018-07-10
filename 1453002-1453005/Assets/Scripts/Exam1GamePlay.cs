@@ -6,13 +6,24 @@ using UnityEngine.UI;
 public class Exam1GamePlay : MonoBehaviour
 {
     public static Exam1GamePlay instance;
+    public GameObject roman_augustus;
+
+    public int numObjHoverRequire = 5;
+    //[HideInInspector]
+    public int countHovers = 0;
+    [HideInInspector]
+    public List<string> objectsHovered;
+
     // Use this for initialization
     public GameObject board;
+    public GameObject hintForTest;
     public Dictionary<int, string> answers;
+    [HideInInspector]
     public int currentQuestion = 1;
     public int score = 0;
     GameObject a, b, c, d, content, cubeImage;
     public int maxQuestion = 0;
+    int maxQuestionOfThisTopic = 0;
     public GameObject UI;
     Text maxQ, curQ, scoreUI;
 
@@ -23,26 +34,25 @@ public class Exam1GamePlay : MonoBehaviour
     }
 
     void Start () {
-
-        //maxQ = UI.transform.findChildRecursively("MaxQuestion").gameObject.GetComponent<Text>();
-        //curQ = UI.transform.findChildRecursively("CurQuestion").gameObject.GetComponent<Text>();
-        //scoreUI = UI.transform.findChildRecursively("Score").gameObject.GetComponent<Text>();
-        
-        
+        isVisibleBoard(false);
+        hintForTest.SetActive(false);
+    }	
+	
+    public void initBoard()
+    {
+        isVisibleBoard(true);
         a = board.transform.findChildRecursively("A").gameObject;
         c = board.transform.findChildRecursively("C").gameObject;
         d = board.transform.findChildRecursively("D").gameObject;
         b = board.transform.findChildRecursively("B").gameObject;
         content = board.transform.findChildRecursively("Content").gameObject;
-       
+
         maxQuestion = FBGameData.instance.getClassData("Question").objects.Count;
-       //maxQ.text = "Total question : " + maxQuestion;
+        //maxQ.text = "Total question : " + maxQuestion;
         cubeImage = board.transform.findChildRecursively("cube-image").gameObject;
         cubeImage.SetActive(false);
         loadQuestion(currentQuestion);
-    }	
-	
-
+    }
     public void loadQuestion(int ques)
     {
         FBClassData Questions = FBGameData.instance.getClassData("Question");
@@ -109,6 +119,13 @@ public class Exam1GamePlay : MonoBehaviour
     {
         curQ.text = "current question : " + currentQuestion;
         scoreUI.text = "Score : " + score;
+    }
+    void isVisibleBoard(bool value)
+    {
+        foreach(Transform child in gameObject.transform)
+        {
+            child.gameObject.SetActive(value);
+        }
     }
    
 }

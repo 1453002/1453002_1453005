@@ -42,19 +42,19 @@ public class NetworkPlayer : Photon.MonoBehaviour {
 
     #endregion
 
-    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.isWriting)
-        {
-            stream.SendNext(transform.position);
-            stream.SendNext(transform.rotation);
-        }
-        else
-        {
-            this.correctPos = (Vector3)stream.ReceiveNext();
-            this.correctRot = (Quaternion)stream.ReceiveNext();
-        }
-    }
+    //void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    //{
+    //    if (stream.isWriting)
+    //    {
+    //        stream.SendNext(transform.position);
+    //        stream.SendNext(transform.rotation);
+    //    }
+    //    else
+    //    {
+    //        this.correctPos = (Vector3)stream.ReceiveNext();
+    //        this.correctRot = (Quaternion)stream.ReceiveNext();
+    //    }
+    //}
 
     // Use this for initialization
     void Start () {
@@ -81,7 +81,11 @@ public class NetworkPlayer : Photon.MonoBehaviour {
         //enable voice recorder only if it is mine;
         if(photonView.isMine)
         {
+            //0707
             this.transform.GetComponent<PhotonVoiceRecorder>().enabled = true;
+
+
+            
             //save this avatar to player prefab
             Player.instance.visualPlayer = gameObject;
             //if (playerGO)
@@ -139,11 +143,11 @@ public class NetworkPlayer : Photon.MonoBehaviour {
             }
            
         }
-        else
-        {
-            this.transform.DOMove(correctPos, 1f);
+        //else
+        //{
+        //    this.transform.DOMove(correctPos, 1f);
             
-        }
+        //}
 
 
  
