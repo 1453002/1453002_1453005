@@ -17,10 +17,11 @@ public class MediaManager : MonoBehaviour {
     }
     private void Start()
     {
-        addTexture2Dic();
+        if(this.gameObject.scene.name != "Baked_MuseumVR_vol1")
+            addTexture2Dic();
     }
 
-    void addTexture2Dic()
+    public void addTexture2Dic()
     {
         for (int i = 0; i < listImages.Count; i++)
         {

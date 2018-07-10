@@ -19,42 +19,45 @@ public class SceneObjectManager : MonoBehaviour {
     int startImage2 = 3;
     private void Update()
     {
-         timeLeft -= Time.deltaTime;
-        if (timeLeft < 0)
+        if (this.gameObject.name == "Showroom2_01")
         {
-            GameObject disease1, disease2;
-            disease1 = GameObject.Find("Disease1");
-            disease2 = GameObject.Find("Disease2");
-            int numImg1 = 1;
-            int numImg2 = 2;
-            if (startImage1 >= 3)
-                startImage1 = 0;
-            if (startImage2 >= 6)
-                startImage2 = 3;
-            numImg1= startImage1 + 1;
-            numImg2 = startImage2 + 1;
-            disease1.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-info" + numImg1];
-            disease1.transform.GetChild(1).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-info" + numImg2];
-            disease1.transform.GetChild(2).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-cause" + numImg1];
-            disease1.transform.GetChild(3).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-symptom" + numImg1];
-            disease1.transform.GetChild(4).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-prevention" + numImg1];
-            disease1.transform.GetChild(5).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-example" + numImg1];
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                GameObject disease1, disease2;
+                disease1 = GameObject.Find("Disease1");
+                disease2 = GameObject.Find("Disease2");
+                int numImg1 = 1;
+                int numImg2 = 2;
+                if (startImage1 >= 3)
+                    startImage1 = 0;
+                if (startImage2 >= 6)
+                    startImage2 = 3;
+                numImg1 = startImage1 + 1;
+                numImg2 = startImage2 + 1;
+                disease1.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-info" + numImg1];
+                disease1.transform.GetChild(1).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-info" + numImg2];
+                disease1.transform.GetChild(2).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-cause" + numImg1];
+                disease1.transform.GetChild(3).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-symptom" + numImg1];
+                disease1.transform.GetChild(4).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-prevention" + numImg1];
+                disease1.transform.GetChild(5).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Hiv-example" + numImg1];
 
-            disease2.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-info" + numImg1];
-            disease2.transform.GetChild(1).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-info" + numImg2];
-            disease2.transform.GetChild(2).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-cause" + numImg1];
-            disease2.transform.GetChild(3).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-symptom" + numImg1];
-            disease2.transform.GetChild(4).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-prevention" + numImg1];
-            disease2.transform.GetChild(5).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-example" + numImg1];
+                disease2.transform.GetChild(0).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-info" + numImg1];
+                disease2.transform.GetChild(1).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-info" + numImg2];
+                disease2.transform.GetChild(2).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-cause" + numImg1];
+                disease2.transform.GetChild(3).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-symptom" + numImg1];
+                disease2.transform.GetChild(4).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-prevention" + numImg1];
+                disease2.transform.GetChild(5).GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages["Lung-example" + numImg1];
 
 
 
 
-            startImage1 += 1;
-            startImage2 += 1;
-            timeLeft = 10;
-          
-         }
+                startImage1 += 1;
+                startImage2 += 1;
+                timeLeft = 10;
+
+            }
+        }
     }
     public void initSceneInteractiveObjects(UnityEngine.SceneManagement.Scene scene, GameObject[] rootObjects = null)
     {
@@ -124,6 +127,7 @@ public class SceneObjectManager : MonoBehaviour {
                         GameObject temp = TextCanvas;
                         GameObject createdObject = Instantiate(temp,TextPos);
                         createdObject.transform.position = TextPos.position;
+                      
                     }
                     if(ClipPos)
                     {

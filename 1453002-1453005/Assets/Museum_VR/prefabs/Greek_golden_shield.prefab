@@ -30,7 +30,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &116322
 GameObject:
@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 446796}
   - component: {fileID: 3327526}
   - component: {fileID: 2303390}
+  - component: {fileID: 65794928699758210}
   m_Layer: 0
   m_Name: Greek_golden_shield
   m_TagString: Untagged
@@ -55,12 +56,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 55.315453, y: 5.4909725, z: 18.34858}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 54.758335, y: 13.4, z: 23.82}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 446796}
   - {fileID: 473940}
+  - {fileID: 4862281488283934}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -183,3 +185,43 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 107412}
   m_IsPrefabParent: 1
+--- !u!1 &1546697531740906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4862281488283934}
+  m_Layer: 0
+  m_Name: TextPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4862281488283934
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1546697531740906}
+  m_LocalRotation: {x: -0, y: -0.84676176, z: -0, w: 0.53197235}
+  m_LocalPosition: {x: -7.1, y: -18, z: 1.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 439046}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -115.72201, z: 0}
+--- !u!65 &65794928699758210
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116322}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.498984, y: 14.150956, z: 2.2842598}
+  m_Center: {x: -0.0031909938, y: -0.08520031, z: 0.54182005}

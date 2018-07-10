@@ -379,9 +379,7 @@ public class FBScript : MonoBehaviour
     {
         //HomeScene.instance.global_closeDrawer();
         nextCmd = true;
-    }
-
-  
+    } 
     #endregion
 
 }

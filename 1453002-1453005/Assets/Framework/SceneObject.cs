@@ -110,6 +110,19 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         if (sceneObjectEvent.trigger3 == Trigger.HOVER)    
             implementAction(sceneObjectEvent.action3, sceneObjectEvent.param3);
         
+        if(this.gameObject.scene.name == "Baked_MuseumVR_vol1")
+        {
+            if(!Exam1GamePlay.instance.objectsHovered.Contains(gameObject.name))
+            {
+                Exam1GamePlay.instance.countHovers += 1;
+                Exam1GamePlay.instance.objectsHovered.Add(gameObject.name);
+              if(Exam1GamePlay.instance.countHovers == Exam1GamePlay.instance.numObjHoverRequire)
+                {
+                    Exam1GamePlay.instance.hintForTest.SetActive(true);
+                    
+                }
+            }
+        }
         Player.instance.SetState(Player.PlayerState.Selecting);
         
     }

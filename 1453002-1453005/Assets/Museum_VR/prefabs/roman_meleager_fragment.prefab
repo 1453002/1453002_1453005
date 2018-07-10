@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3326590}
   - component: {fileID: 2322526}
   - component: {fileID: 6420618}
+  - component: {fileID: 65302073395156864}
   m_Layer: 0
   m_Name: roman_meleager_fragment
   m_TagString: Untagged
@@ -83,11 +84,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178830}
   m_LocalRotation: {x: -0.030113745, y: -0.70646524, z: -0.70646536, w: 0.030113753}
-  m_LocalPosition: {x: -41.93, y: 5.39, z: 11.48}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -42.487118, y: 10.82, z: 18}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 463746}
   - {fileID: 412520}
+  - {fileID: 4249991265913234}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: -175.1184, z: 0}
@@ -181,7 +183,7 @@ MeshCollider:
   m_GameObject: {fileID: 108352}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Convex: 0
   m_InflateMesh: 0
@@ -198,3 +200,43 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 178830}
   m_IsPrefabParent: 1
+--- !u!1 &1319288279196206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4249991265913234}
+  m_Layer: 0
+  m_Name: TextPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4249991265913234
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1319288279196206}
+  m_LocalRotation: {x: 0.38750663, y: -0.5914717, z: -0.59147173, w: 0.38750628}
+  m_LocalPosition: {x: -7.7, y: 2, z: -12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 466474}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 203.538, y: 89.99999, z: 89.99999}
+--- !u!65 &65302073395156864
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.6871157, y: 20.782457, z: 16.576662}
+  m_Center: {x: -0.19005501, y: 0.00000048859226, z: -0.03466559}
