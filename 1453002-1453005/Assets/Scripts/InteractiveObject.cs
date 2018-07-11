@@ -62,13 +62,9 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
                 }
 
             }
-            if (this.gameObject.name == "PlayCube1")
+            if (this.gameObject.name.Contains("Video"))
             {
-                    BaseUI.instance.PlayVideo(video1);
-            }
-            if (this.gameObject.name == "PlayCube2")
-            {
-                BaseUI.instance.PlayVideo(video2);
+                    BaseUI.instance.PlayVideo(this.gameObject);
             }
             if (this.gameObject.name.Contains("Upstair") && Player.instance.currentState != Player.PlayerState.PlayingGame)
             {

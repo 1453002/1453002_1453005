@@ -16,7 +16,11 @@ public class MainSceneScript : MonoBehaviour {
     [HideInInspector]
     public GoogleVR.Demos.DemoInputManager demoInputManager;
     public GameObject chooseMenu;
-
+    public GameObject microbe1;
+    public GameObject microbe2;
+    public GameObject microbe3;
+    public GameObject dna;
+    public GameObject cell;
     private void Awake()
     {
         instance = this;
@@ -47,7 +51,12 @@ public class MainSceneScript : MonoBehaviour {
     // Update is called once per frame
     private void Update()
    {
-        if(this.gameObject.scene.name == "Showroom2_01" && GvrController.AppButtonUp)
+        microbe1.transform.Rotate(new Vector3(0, 0, 2), Space.Self);
+        microbe2.transform.Rotate(new Vector3(0, 0, 2), Space.Self);
+        microbe3.transform.Rotate(new Vector3(0, 0, 2), Space.Self);
+        dna.transform.Rotate(new Vector3(0, 2, 0), Space.Self);
+        cell.transform.Rotate(new Vector3(0, 2, 0), Space.Self);
+        if (this.gameObject.scene.name == "Showroom2_01" && GvrController.AppButtonUp)
         {
             if (player.transform.findChildRecursively("Player").transform.position.y >= 3)
             {
