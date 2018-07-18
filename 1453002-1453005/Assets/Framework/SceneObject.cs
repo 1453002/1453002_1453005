@@ -118,7 +118,8 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
                 Exam1GamePlay.instance.objectsHovered.Add(gameObject.name);
               if(Exam1GamePlay.instance.countHovers == Exam1GamePlay.instance.numObjHoverRequire)
                 {
-                    Exam1GamePlay.instance.hintForTest.SetActive(true);
+                    Exam1GamePlay.instance.displayHintTest();
+                    Exam1GamePlay.instance.ActivationTestObject.SetActive(true);
                     
                 }
             }
@@ -166,10 +167,10 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         if (this.gameObject)
         {
             if (action == Action.RUNSCRIPT) FBScriptManager.instance.runScript(param);
-            //if (action == Action.PLAYSOUND) SoundResonanceManager.instance.playSfx(this.gameObject, param);
-            //if (action == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
-            //if (action == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
-            //if (action == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
+            if (action == Action.PLAYSOUND) SoundResonanceManager.instance.playSfx(this.gameObject, param);
+            if (action == Action.PAUSESOUND) SoundResonanceManager.instance.pauseAllSoundOnObj(this.gameObject);
+            if (action == Action.RESUMESOUND) SoundResonanceManager.instance.resumeSound(this.gameObject);
+            if (action == Action.STOPSOUND) SoundResonanceManager.instance.stopAllSoundOnObj(this.gameObject);
             if (action == Action.SHOWTEXT) BaseUI.instance.ShowTextObject(param, this.gameObject);
             if (action == Action.HIDETEXT) BaseUI.instance.HideTextObject(this.gameObject);
             //if (action == Action.SHOWVIDEO) BaseUI.instance.PlayVideo(param, this.gameObject);
