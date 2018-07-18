@@ -141,20 +141,23 @@ namespace DaydreamElements.ObjectManipulation {
       if (State == ObjectState.Selected)
       {
         DragRigidbody();
-                if (isDropable())
+                if (gameObject.scene.name == "Showroom2_01" || gameObject.scene.name == "YTE" )
                 {
-                    float dist = Vector3.Distance(this.gameObject.transform.position, marker.position);
-                    if (dist < 0.25f)
+                    if (isDropable())
                     {
-                        Debug.Log(dist);
-                        Deselect();
-                        Player.instance.SetState(Player.PlayerState.PlayingGame);
-                        if (this.gameObject.GetComponent<Rigidbody>())
-                            this.gameObject.GetComponent<Rigidbody>().useGravity = false;
-                        this.gameObject.transform.DOMove(marker.position, 0.1f);
-                        this.gameObject.SetActive(false);
-                        marker.GetComponent<MeshRenderer>().enabled = true;
+                        float dist = Vector3.Distance(this.gameObject.transform.position, marker.position);
+                        if (dist < 0.25f)
+                        {
+                            Debug.Log(dist);
+                            Deselect();
+                            Player.instance.SetState(Player.PlayerState.PlayingGame);
+                            if (this.gameObject.GetComponent<Rigidbody>())
+                                this.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                            this.gameObject.transform.DOMove(marker.position, 0.1f);
+                            this.gameObject.SetActive(false);
+                            marker.GetComponent<MeshRenderer>().enabled = true;
 
+                        }
                     }
                 }
       }
