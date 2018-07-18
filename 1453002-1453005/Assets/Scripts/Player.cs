@@ -59,8 +59,8 @@ public class Player : MonoBehaviour {
 	}
 
     public void SetState(PlayerState state)
-    { 
-       
+    {
+        currentState = state;
         if (state == PlayerState.None)
         {
             Invoke("enableTeleport", 1f);
@@ -111,11 +111,18 @@ public class Player : MonoBehaviour {
         }
          if (currentState == PlayerState.Selecting)
         {
+            defaultLaser.SetActive(true);
             teleportController.gameObject.SetActive(false);
         }
          if (currentState == PlayerState.PlayingGame)
         {
+            defaultLaser.SetActive(true);
             teleportController.gameObject.SetActive(false);
+        }
+         if(currentState ==PlayerState.Teleporting)
+        {
+            defaultLaser.SetActive(false);
+            teleportController.gameObject.SetActive(true);
         }
 
     }
@@ -129,7 +136,7 @@ public class Player : MonoBehaviour {
 
         //test voice
 
-        //UpdateState();
+        UpdateState();
 
         if (visualPlayer)
         {

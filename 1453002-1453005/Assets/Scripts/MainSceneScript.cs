@@ -21,6 +21,8 @@ public class MainSceneScript : MonoBehaviour {
     public GameObject microbe3;
     public GameObject dna;
     public GameObject cell;
+    [HideInInspector]
+    public GameObject musicObject = null;
     private void Awake()
     {
         instance = this;
@@ -45,6 +47,9 @@ public class MainSceneScript : MonoBehaviour {
             chooseMenu.SetActive(false);
             MainSceneScript.instance.player.transform.position = new Vector3(0.01f, 1.61f, -12.6f);
             MainSceneScript.instance.player.transform.findChildRecursively("Player").localPosition = new Vector3(0, 0, 0);
+            musicObject = GameObject.Find("Microbe");
+            if (musicObject)
+                SoundResonanceManager.instance.playBgm(musicObject, "bgm2", true);
         }
     }
 

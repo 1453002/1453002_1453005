@@ -7,6 +7,8 @@ public class Exam1GamePlay : MonoBehaviour
 {
     public static Exam1GamePlay instance;
     public GameObject roman_augustus;
+    public GameObject Notification;
+    public GameObject ActivationTestObject;
 
     public int numObjHoverRequire = 5;
     //[HideInInspector]
@@ -27,6 +29,8 @@ public class Exam1GamePlay : MonoBehaviour
     public GameObject UI;
     Text maxQ, curQ, scoreUI;
 
+ 
+
     private void Awake()
     {
         instance = this;
@@ -36,6 +40,8 @@ public class Exam1GamePlay : MonoBehaviour
     void Start () {
         isVisibleBoard(false);
         hintForTest.SetActive(false);
+        Notification.SetActive(false);
+        ActivationTestObject.SetActive(false);
     }	
 	
     public void initBoard()
@@ -127,5 +133,19 @@ public class Exam1GamePlay : MonoBehaviour
             child.gameObject.SetActive(value);
         }
     }
-   
+   public void finishMultipleTest()
+    {
+        currentQuestion = 1;
+        score = 0;
+    }
+
+   public void displayHintTest()
+    {
+        hintForTest.SetActive(true);
+        Invoke("disableHintTest", 5);
+    }
+    void disableHintTest()
+    {
+        hintForTest.SetActive(false);
+    }
 }

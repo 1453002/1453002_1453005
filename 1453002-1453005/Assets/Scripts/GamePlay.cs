@@ -19,8 +19,9 @@ new List<GvrPermissionsRequester.PermissionStatus>();
     private void Awake()
     {
         if (this.gameObject.scene.name == "Baked_MuseumVR_vol1")
-            spawnPoint = new Vector3(0, -12, 0);
-
+        {
+            spawnPoint = new Vector3(5.199811f, -10, 100.5099f);
+        }
         //if (this.gameObject.scene.name == "Showroom2_01")
         //{
         //    //Debug.Log("set");
@@ -39,6 +40,11 @@ new List<GvrPermissionsRequester.PermissionStatus>();
 #endif
         //spawn VR player to screen
         VRplayer.transform.position = spawnPoint;
+        if(gameObject.scene.name == "Baked_MuseumVR_vol1")
+        {
+            VRplayer.transform.eulerAngles = new Vector3(0, -179.801f, 0);
+        }
+       
     }
 
 	

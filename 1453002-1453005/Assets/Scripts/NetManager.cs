@@ -22,10 +22,21 @@ public class NetManager : MonoBehaviour {
 		
 	}
 
+
     public virtual void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster() was called by PUN. Now this client is connected and could join a room. Calling: PhotonNetwork.JoinRandomRoom();");
-        PhotonNetwork.JoinOrCreateRoom("room_lobby", new RoomOptions() { MaxPlayers = 4 }, null);
+        string room_name = string.Empty;
+        if (gameObject.scene.name == "Baked_MuseumVR_vol1")
+        {
+            room_name = "Museum";
+        }
+        if(gameObject.scene.name == "Showroom2_01")
+        {
+            room_name = "Medical";
+        }
+        PhotonNetwork.JoinOrCreateRoom(room_name, new RoomOptions() { MaxPlayers = 4 }, null);
+       
     }
 
     public virtual void OnJoinedLobby()
@@ -46,11 +57,13 @@ public class NetManager : MonoBehaviour {
     {
         Debug.LogError("Cause: " + cause);
     }
-
+    
     public void OnJoinedRoom()
     {
         Debug.Log("OnJoinedRoom() called by PUN. Now this client is in a room. From here on, your game would be running. For reference, all callbacks are listed in enum: PhotonNetworkingMessage");
 
         PhotonNetwork.Instantiate(avatarPrefabs.name, new Vector3(Random.Range(-5,5),0,0), Quaternion.identity, 0);
+      //  Debug.Log("Master - room - lobby" + PhotonNetwork.isMasterClient + " " + PhotonNetwork.inRoom + " " + PhotonNetwork.insideLobby);
+       
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class ObjectHandleEvent : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler,
                            IPointerExitHandler, IPointerClickHandler, IPointerUpHandler
@@ -12,27 +13,11 @@ public class ObjectHandleEvent : MonoBehaviour, IPointerDownHandler, IPointerEnt
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(gameObject.name == "sumerian_sphinx_right")
-        {           
-            Debug.Log(gameObject.name +"- hover");
-            Player.instance.SetState(Player.PlayerState.Selecting);
-        }
-        if(gameObject.name == "sumerian_sphinx_left")
-        {            
-            Player.instance.SetState(Player.PlayerState.Selecting);
-        }
-
+        Player.instance.SetState(Player.PlayerState.Selecting);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (gameObject.name == "sumerian_sphinx_right")
-        {        
-            Player.instance.SetState(Player.PlayerState.None);
-        }
-        if (gameObject.name == "sumerian_sphinx_left")
-        {          
-            Player.instance.SetState(Player.PlayerState.None);
-        }
+        Player.instance.SetState(Player.PlayerState.None);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -41,40 +26,44 @@ public class ObjectHandleEvent : MonoBehaviour, IPointerDownHandler, IPointerEnt
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (Exam1GamePlay.instance.countHovers >=0/* Exam1GamePlay.instance.numObjHoverRequire*/)
+        if (Exam1GamePlay.instance.countHovers >= Exam1GamePlay.instance.numObjHoverRequire)
         {
-            if (gameObject.name == "sumerian_sphinx_right")
-            {
-                tmp = GameObject.Find("sumerian_sphinx_left");
+            if (gameObject.name == "TestChoseObj")
+            {                
+                GameObject obj1 = GameObject.Find("sumerian_sphinx_left");
+                GameObject obj2 = GameObject.Find("sumerian_sphinx_right");
                 Exam1GamePlay.instance.board.SetActive(true);
                 Exam1GamePlay.instance.roman_augustus.SetActive(false);
                 Exam1GamePlay.instance.initBoard();
 
-                doStatuesMove1(tmp, gameObject);
+                doStatuesMove1(obj1, obj2);
+                GamePlay.instance.VRplayer.transform.DOMove(gameObject.transform.position, 1);
+                Player.instance.SetState(Player.PlayerState.PlayingGame);
+                disableActivationAfterSeconds(1.2f);
             }
-            if (gameObject.name == "sumerian_sphinx_left")
-            {
-                tmp = GameObject.Find("sumerian_sphinx_right");
-                Exam1GamePlay.instance.board.SetActive(true);
-                Exam1GamePlay.instance.roman_augustus.SetActive(false);
-                Exam1GamePlay.instance.initBoard();
+        }
+        if(gameObject.name == "btnOk")
+        {            
+               
+                Exam1GamePlay.instance.finishMultipleTest();
+                GameObject obj1 = GameObject.Find("sumerian_sphinx_left");
+                GameObject obj2 = GameObject.Find("sumerian_sphinx_right");
+                Exam1GamePlay.instance.board.SetActive(false);
+                Exam1GamePlay.instance.roman_augustus.SetActive(true);
 
-                doStatuesMove1(gameObject, tmp);
-
-            }
-
-            //if(gameObject.name == "roman_augustus")
-            //{
-            //    GameObject obj1 = GameObject.Find("sumerian_sphinx_left");
-            //    GameObject obj2 = GameObject.Find("sumerian_sphinx_right");
-            //    Exam1GamePlay.instance.board.SetActive(true);
-            //    Exam1GamePlay.instance.roman_augustus.SetActive(false);
-            //    Exam1GamePlay.instance.initBoard();
-
-            //    doStatuesMove1(obj1, obj2);
-            //}
+                doStatuesMove1(obj1, obj2);
+                
+                
+         
+            Player.instance.SetState(Player.PlayerState.None);
+        }
+        if(gameObject.name == "btnCancel")
+        {
+            Exam1GamePlay.instance.Notification.SetActive(false);
+            Player.instance.SetState(Player.PlayerState.None);
         }
     }
+
     void doStatuesMove1(GameObject obj1, GameObject obj2)
     {
         obj1.transform.DOMoveX(obj1.transform.position.x - 20, 0.5f);
@@ -92,5 +81,22 @@ public class ObjectHandleEvent : MonoBehaviour, IPointerDownHandler, IPointerEnt
     public void OnPointerUp(PointerEventData eventData)
     {
 
+    }
+    void disableNotifiAfterSeconds(float time)
+    {
+        Invoke("inactiveObject", time);
+    }
+    void disableActivationAfterSeconds(float time)
+    {
+        Invoke("inactiveActivationObj", time);
+    }
+
+    void inactiveNotifi()
+    {
+        Exam1GamePlay.instance.Notification.SetActive(false);
+    }
+    void inactiveActivationObj()
+    {
+        Exam1GamePlay.instance.ActivationTestObject.SetActive(false);
     }
 }
