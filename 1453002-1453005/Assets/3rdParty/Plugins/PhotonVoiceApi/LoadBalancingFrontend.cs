@@ -28,7 +28,7 @@ namespace ExitGames.Client.Photon.Voice
         /// Change if conflicts with other code.
         /// </summary>{    
         public const byte Code0 = 201;
-        static public byte GetCode(int channelID)
+        static public byte GetCode(byte channelID)
         {
             return (byte)(Code0 + channelID);
         }
@@ -179,16 +179,15 @@ namespace ExitGames.Client.Photon.Voice
         public void SendVoicesInfo(IEnumerable<LocalVoice> voices, int channelId, int targetPlayerId)
         {
             object content = voiceClient.buildVoicesInfo(voices, true);
-            
-        var opt = new LoadBalancing.RaiseEventOptions();
-            opt.SequenceChannel = (byte) channelId;
+            var opt = new LoadBalancing.RaiseEventOptions();
+            opt.SequenceChannel = (byte)channelId;
             if (targetPlayerId != 0)
             {
                 opt.TargetActors = new int[] { targetPlayerId };
             }
             lock (sendLock)
             {
-                this.OpRaiseEvent(VoiceEventCode.GetCode(channelId), content, true, opt);
+                this.OpRaiseEvent(VoiceEventCode.GetCode(opt.SequenceChannel), content, true, opt);
             }
 
             if (targetPlayerId == 0) // send debug echo infos to myself if broadcast requested
@@ -209,26 +208,22 @@ namespace ExitGames.Client.Photon.Voice
         public void SendVoiceRemove(LocalVoice voice, int channelId, int targetPlayerId)
         {
             object content = voiceClient.buildVoiceRemoveMessage(voice);
-            
-
             var opt = new LoadBalancing.RaiseEventOptions();
-            opt.SequenceChannel = (byte) channelId;
+            opt.SequenceChannel = (byte)channelId;
             if (targetPlayerId != 0)
             {
                 opt.TargetActors = new int[] { targetPlayerId };
             }
             lock (sendLock)
             {
-                this.OpRaiseEvent(VoiceEventCode.GetCode(channelId), content, true, opt);
+                this.OpRaiseEvent(VoiceEventCode.GetCode(opt.SequenceChannel), content, true, opt);
             }
         }
 
-        public void SendFrame(ArraySegment<byte> data, byte evNumber, byte voiceId, int channelId, LocalVoice localVoice)
-        {
-            object[] content = new object[] { voiceId, evNumber, data };
-            
+        public void SendFrame(object content, int channelId, LocalVoice localVoice)
+        {                        
             var opt = new LoadBalancing.RaiseEventOptions();
-            opt.SequenceChannel = (byte) channelId;
+            opt.SequenceChannel = (byte)channelId;
             if (localVoice.DebugEchoMode)
             {
                 opt.Receivers = LoadBalancing.ReceiverGroup.All;
@@ -236,13 +231,14 @@ namespace ExitGames.Client.Photon.Voice
             opt.InterestGroup = localVoice.Group;
             lock (sendLock)
             {
-                this.OpRaiseEvent((byte)VoiceEventCode.GetCode(channelId), content, true, opt);
+                this.OpRaiseEvent((byte)VoiceEventCode.GetCode(opt.SequenceChannel), content, localVoice.Reliable, opt);
             }
             this.loadBalancingPeer.SendOutgoingCommands();
         }
 
         public string ChannelIdStr(int channelId) { return null; }
         public string PlayerIdStr(int playerId) { return null; }
+        public bool SupportsArraySegmentSerialization { get { return true; } }
         private void onEventActionVoiceClient(EventData ev)
         {
             byte channel;

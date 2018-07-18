@@ -28,10 +28,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
     /// </summary>
     public class FriendInfo
     {
-        [System.Obsolete("Use UserId.")]
-        public string Name { get { return this.UserId; } }
-        public string UserId { get; internal protected set; }
-
+        public string Name { get; internal protected set; }
         public bool IsOnline { get; internal protected set; }
         public string Room { get; internal protected set; }
 
@@ -42,7 +39,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
 
         public override string ToString()
         {
-        return string.Format("{0}\t is: {1}", this.UserId, (!this.IsOnline) ? "offline" : this.IsInRoom ? "playing" : "on master");
+        return string.Format("{0}\t is: {1}", this.Name, (!this.IsOnline) ? "offline" : this.IsInRoom ? "playing" : "on master");
         }
     }
 }

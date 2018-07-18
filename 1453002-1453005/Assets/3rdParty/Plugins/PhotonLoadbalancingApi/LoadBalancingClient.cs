@@ -9,7 +9,6 @@
 // <author>developer@photonengine.com</author>
 // ----------------------------------------------------------------------------
 
-
 #if UNITY_4_7 || UNITY_5 || UNITY_5_0 || UNITY_5_1 || UNITY_2017
 #define UNITY
 #endif
@@ -142,8 +141,6 @@ namespace ExitGames.Client.Photon.LoadBalancing
         CustomAuthenticationFailed,
         /// <summary>OnStatusChanged: The server disconnected this client from within the room's logic (the C# code).</summary>
         DisconnectByServerLogic,
-        /// <summary>The authentication ticket should provide access to any Photon Cloud server without doing another authentication-service call. However, the ticket expired.</summary>
-        AuthenticationTicketExpired
     }
 
     /// <summary>Available server (types) for internally used field: server.</summary>
@@ -236,36 +233,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
         /// When using AuthOnceWss, the client uses a wss-connection on the Nameserver but another protocol on the other servers.
         /// As the Nameserver sends an address, which is different per protocol, it needs to know the expected protocol.
         /// </remarks>
-        private ConnectionProtocol ExpectedProtocol = ConnectionProtocol.Udp;
-
-        /// <summary>Exposes the TransportProtocol of the used PhotonPeer. Settable while not connected.</summary>
-        public ConnectionProtocol TransportProtocol
-        {
-            get { return this.loadBalancingPeer.TransportProtocol; }
-            set
-            {
-                if (this.loadBalancingPeer == null || this.loadBalancingPeer.PeerState != PeerStateValue.Disconnected)
-                {
-                    this.DebugReturn(DebugLevel.WARNING, "Can't set TransportProtocol. Disconnect first! " + ((this.loadBalancingPeer != null) ? "PeerState: " + this.loadBalancingPeer.PeerState : "loadBalancingPeer is null."));
-                    return;
-                }
-                this.loadBalancingPeer.TransportProtocol = value;
-            }
-        }
-
-        /// <summary>Defines which IPhotonSocket class to use per ConnectionProtocol.</summary>
-        /// <remarks>
-        /// Several platforms have special Socket implementations and slightly different APIs.
-        /// To accomodate this, switching the socket implementation for a network protocol was made available.
-        /// By default, UDP and TCP have socket implementations assigned.
-        ///
-        /// You only need to set the SocketImplementationConfig once, after creating a PhotonPeer
-        /// and before connecting. If you switch the TransportProtocol, the correct implementation is being used.
-        /// </remarks>
-        public Dictionary<ConnectionProtocol, Type> SocketImplementationConfig
-        {
-            get { return this.loadBalancingPeer.SocketImplementationConfig; }
-        }
+        public ConnectionProtocol ExpectedProtocol = ConnectionProtocol.Udp;
 
 
         ///<summary>Simplifies getting the token for connect/init requests, if this feature is enabled.</summary>
@@ -702,8 +670,6 @@ namespace ExitGames.Client.Photon.LoadBalancing
 
             this.AuthValues = authValues;
 
-
-            // as this.Connect() checks usage of WebSockets for WebGL exports, this method doesn't
             return this.Connect();
         }
 
@@ -733,13 +699,6 @@ namespace ExitGames.Client.Photon.LoadBalancing
         {
             this.DisconnectedCause = DisconnectCause.None;
 
-            #if UNITY_WEBGL
-            if (this.TransportProtocol == ConnectionProtocol.Tcp || this.TransportProtocol == ConnectionProtocol.Udp)
-            {
-                this.Listener.DebugReturn(DebugLevel.WARNING, "WebGL requires WebSockets. Switching TransportProtocol to WebSocketSecure.");
-                this.TransportProtocol = ConnectionProtocol.WebSocketSecure;
-            }
-            #endif
 
             if (this.loadBalancingPeer.Connect(this.MasterServerAddress, this.AppId, this.TokenForInit))
             {
@@ -2103,7 +2062,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
                     for (int index = 0; index < this.friendListRequested.Length; index++)
                     {
                         FriendInfo friend = new FriendInfo();
-                        friend.UserId = this.friendListRequested[index];
+                        friend.Name = this.friendListRequested[index];
                         friend.Room = roomList[index];
                         friend.IsOnline = onlineList[index];
                         friendList.Insert(index, friend);

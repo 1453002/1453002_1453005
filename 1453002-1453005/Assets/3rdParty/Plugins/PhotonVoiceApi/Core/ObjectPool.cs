@@ -45,11 +45,6 @@ namespace ExitGames.Client.Photon.Voice
             }
         }
 
-        public TInfo Info
-        {
-            get { return info; }
-        }
-
         // Creates from the info given in constructor if fails to get from pool.
         public TType AcquireOrCreate()
         {

@@ -97,19 +97,20 @@ namespace ExitGames.Client.Photon.LoadBalancing
 
             PingImplementation = typeof(PingMono);
             #if UNITY_WEBGL
-            Type pingType = Type.GetType("ExitGames.Client.Photon.PingHttp, Assembly-CSharp", false);
-            PingImplementation = pingType ?? Type.GetType("ExitGames.Client.Photon.PingHttp, Assembly-CSharp-firstpass", false);
+            PingImplementation = typeof(PingHttp);
             #endif
             #if !UNITY_EDITOR && UNITY_WINRT
             PingImplementation = typeof(PingWindowsStore);
             #endif
 
 
-            // to support WebGL export in Unity, we find and assign the SocketWebTcpThread or SocketWebTcpCoroutine class (if it's in the project).
-            Type websocketType = Type.GetType("ExitGames.Client.Photon.SocketWebTcpThread, Assembly-CSharp", false);
-			websocketType = websocketType ?? Type.GetType("ExitGames.Client.Photon.SocketWebTcpThread, Assembly-CSharp-firstpass", false);
-            websocketType = websocketType ?? Type.GetType("ExitGames.Client.Photon.SocketWebTcpCoroutine, Assembly-CSharp", false);
-			websocketType = websocketType ?? Type.GetType("ExitGames.Client.Photon.SocketWebTcpCoroutine, Assembly-CSharp-firstpass", false);
+            // to support WebGL export in Unity, we find and assign the SocketWebTcp class (if it's in the project).
+            // alternatively class SocketWebTcp might be in the Photon3Unity3D.dll
+            Type websocketType = Type.GetType("ExitGames.Client.Photon.SocketWebTcp, Assembly-CSharp", false);
+            if (websocketType == null)
+            {
+                websocketType = Type.GetType("ExitGames.Client.Photon.SocketWebTcp, Assembly-CSharp-firstpass", false);
+            }
             if (websocketType != null)
             {
                 this.SocketImplementationConfig[ConnectionProtocol.WebSocket] = websocketType;
@@ -354,7 +355,7 @@ namespace ExitGames.Client.Photon.LoadBalancing
                 }
             }
 
-            //UnityEngine.Debug.Log("JoinGame: " + SupportClass.DictionaryToString(op));
+            // UnityEngine.Debug.Log("JoinGame: " + SupportClass.DictionaryToString(op));
             return this.OpCustom(OperationCode.JoinGame, op, true);
         }
 
@@ -1389,7 +1390,6 @@ namespace ExitGames.Client.Photon.LoadBalancing
         public const byte ExchangeKeysForEncryption = 250;
 
         /// <summary>(255) Code for OpJoin, to get into a room.</summary>
-        [Obsolete]
         public const byte Join = 255;
 
         /// <summary>(231) Authenticates this peer and connects to a virtual application</summary>
