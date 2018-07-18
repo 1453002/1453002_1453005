@@ -22,9 +22,6 @@ public class testSwipeColor : MonoBehaviour
             instance = this;
             balloonIns = new Dictionary<string, GameObject>();
         }
-        void Start()
-        {
-        }
         public void loadQuestion(int curQues)
         {
             FBClassData Questions = FBGameData.instance.getClassData("Question");
@@ -92,10 +89,12 @@ public class testSwipeColor : MonoBehaviour
         }
         public void UnActiveGame()
         {
-            Destroy(GameObject.Find("A").gameObject);
-            Destroy(GameObject.Find("B").gameObject);
-            Destroy(GameObject.Find("C").gameObject);
-            Destroy(GameObject.Find("D").gameObject);
+            gameObject.transform.findChildRecursively("Content").gameObject.GetComponent<TextMesh>().text = "CONGRATULATIONS !!! YOU HAVE ACHIEVED :"+"  "+ score.ToString() + " SCORE ." + "\n" + " PRESS HOME BUTTON TO OUT GAME ";
+            foreach (var obj in balloonIns)
+            {
+                Destroy(obj.Value);
+            }
+
         }
         void updateUI()
         {
