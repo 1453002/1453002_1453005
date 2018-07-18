@@ -22,7 +22,6 @@ using ExitGames.Client.Photon;
 using Newtonsoft.Json;
 
 
-
 public class AccountService
 {
     private const string ServiceUrl = "https://service.exitgames.com/AccountExt/AccountServiceExt.aspx";
@@ -109,7 +108,7 @@ public class AccountService
         try
         {
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(this.RegistrationUri(email, (byte)origin, serviceType));
-            req.Timeout = 5000; // TODO: The Timeout property has no effect on asynchronous requests made with the BeginGetResponse
+            req.Timeout = 5000;
             req.BeginGetResponse(this.OnRegisterByEmailCompleted, req);
         }
         catch (Exception ex)

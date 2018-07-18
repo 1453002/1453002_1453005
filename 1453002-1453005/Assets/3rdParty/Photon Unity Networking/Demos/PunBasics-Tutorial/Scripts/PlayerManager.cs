@@ -8,6 +8,10 @@
 // <author>developer@exitgames.com</author>
 // --------------------------------------------------------------------------------------------------------------------
 
+#if UNITY_5 && (!UNITY_5_0 && !UNITY_5_1 && !UNITY_5_2 && !UNITY_5_3) || UNITY_6
+#define UNITY_MIN_5_4
+#endif
+
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -100,7 +104,7 @@ namespace ExitGames.Demos.DemoAnimator
                 Debug.LogWarning("<Color=Red><b>Missing</b></Color> PlayerUiPrefab reference on player Prefab.", this);
             }
 
-			#if UNITY_5_4_OR_NEWER
+            #if UNITY_MIN_5_4
             // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
 			UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
             #endif
@@ -109,7 +113,7 @@ namespace ExitGames.Demos.DemoAnimator
 
 		public void OnDisable()
 		{
-			#if UNITY_5_4_OR_NEWER
+			#if UNITY_MIN_5_4
 			UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
 			#endif
 		}
@@ -189,7 +193,7 @@ namespace ExitGames.Demos.DemoAnimator
         }
 
 
-		#if !UNITY_5_4_OR_NEWER
+        #if !UNITY_MIN_5_4
         /// <summary>See CalledOnLevelWasLoaded. Outdated in Unity 5.4.</summary>
         void OnLevelWasLoaded(int level)
         {
@@ -221,7 +225,7 @@ namespace ExitGames.Demos.DemoAnimator
         #region Private Methods
 
 
-		#if UNITY_5_4_OR_NEWER
+		#if UNITY_MIN_5_4
 		void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadingMode)
 		{
 			

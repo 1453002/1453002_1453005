@@ -15,6 +15,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement; 
 
+using Random = UnityEngine.Random;
+
 /// <summary>
 /// Launch manager. Connect, join a random room or create one if none or all full.
 /// </summary>
@@ -109,6 +111,7 @@ namespace ExitGames.Demos.DemoAnimator
 				LogFeedback("Joining Room...");
 				// #Critical we need at this point to attempt joining a Random Room. If it fails, we'll get notified in OnPhotonRandomJoinFailed() and we'll create one.
 				PhotonNetwork.JoinRandomRoom();
+				PhotonNetwork.JoinRandomRoom(null,(byte)(2));
 			}else{
 
 				LogFeedback("Connecting...");
