@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace DaydreamElements.SwipeMenu {
 
-  [RequireComponent(typeof(GvrAudioSource))]
+  //[RequireComponent(typeof(GvrAudioSource))]
   public class PaperPlaneSpawner : MonoBehaviour {
     private const float MENU_OFFSET = 0.2f;
     private const float MIN_TIMEOUT = 0.36f;
@@ -24,7 +24,7 @@ namespace DaydreamElements.SwipeMenu {
     private float timeOut = MIN_TIMEOUT;
     private Vector3 startScale;
     private Vector3 startLocalPosition;
-    private GvrAudioSource audioSource;
+   // private GvrAudioSource audioSource;
 
     public GameObject rigidPaperPlane;
     public GameObject swipeMenu;
@@ -33,7 +33,7 @@ namespace DaydreamElements.SwipeMenu {
     public ColorUtil.Type type = ColorUtil.Type.Yellow;
 
     void Start() {
-      audioSource = GetComponent<GvrAudioSource>();
+    //  audioSource = GetComponent<GvrAudioSource>();
       startScale = transform.localScale;
       startLocalPosition = transform.localPosition;
       ColorUtil.Colorize(type, gameObject);
@@ -42,7 +42,7 @@ namespace DaydreamElements.SwipeMenu {
 
     void Update() {
       if (GvrControllerInput.ClickButtonDown && timeOut >= MIN_TIMEOUT) {
-        audioSource.Play();
+       // audioSource.Play();
         GameObject newPaperPlane = Instantiate(rigidPaperPlane);
         newPaperPlane.GetComponent<RigidPaperAirplane>().type = type;
         newPaperPlane.transform.position = transform.position;

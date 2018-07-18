@@ -77,7 +77,8 @@ public class testSwipeColor : MonoBehaviour
         }
         public void ActiveGame()
         {
-            currentQuestion = 1;
+        SoundResonanceManager.instance.pauseAllSoundOnObj(MainSceneScript.instance.musicObject);
+        currentQuestion = 1;
             score = 0;
             countdown = 50;
             spawnerBalloons.SetActive(true);
@@ -94,6 +95,8 @@ public class testSwipeColor : MonoBehaviour
             {
                 Destroy(obj.Value);
             }
+
+            SoundResonanceManager.instance.resumeSound(MainSceneScript.instance.musicObject);
 
         }
         void updateUI()

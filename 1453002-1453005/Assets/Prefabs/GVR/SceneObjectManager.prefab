@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114746187823973556}
   - component: {fileID: 114758784717787200}
   - component: {fileID: 114676094799321800}
+  - component: {fileID: 114359053098187262}
   m_Layer: 0
   m_Name: SceneObjectManager
   m_TagString: Untagged
@@ -74,6 +75,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114359053098187262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987171411915158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59becf1d1c10066438156eb1c140fbe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listAudio:
+  - {fileID: 8300000, guid: 07c8bc2eb7f466445a3744b2299fff02, type: 3}
+  - {fileID: 8300000, guid: 8541ba236819fbb4da0f086b1621f8b4, type: 3}
 --- !u!114 &114457973930261204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -105,6 +120,12 @@ MonoBehaviour:
   menuPlay: {fileID: 0}
   demoInputManager: {fileID: 0}
   chooseMenu: {fileID: 0}
+  microbe1: {fileID: 0}
+  microbe2: {fileID: 0}
+  microbe3: {fileID: 0}
+  dna: {fileID: 0}
+  cell: {fileID: 0}
+  musicObject: {fileID: 0}
 --- !u!114 &114676094799321800
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,8 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listImages:
-  - {fileID: 2800000, guid: 15c773b05c8eeaa49a324ff1d34be7cc, type: 3}
-  - {fileID: 2800000, guid: 91c18e00a852b27488c2b4b4894a3b9b, type: 3}
+  - {fileID: 2800000, guid: 2133c3a5e49892c42bb99fd6c50e16ba, type: 3}
+  - {fileID: 2800000, guid: 99138c5a3c113a044adf00b05a03c9e8, type: 3}
   - {fileID: 2800000, guid: 4b752edd95d5e08428fe8f4b28d105f3, type: 3}
   - {fileID: 2800000, guid: 8cb420641586fc642bc24c9b92cbcf69, type: 3}
   - {fileID: 2800000, guid: 83cec5a28f28cdd49aa88eebee3e545e, type: 3}

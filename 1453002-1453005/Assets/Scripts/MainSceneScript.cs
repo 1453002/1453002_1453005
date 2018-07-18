@@ -73,6 +73,7 @@ public class MainSceneScript : MonoBehaviour {
                     menuPlay.SetActive(false);
                     Player.instance.SetState(Player.PlayerState.None);
                     testSwipeColor.instance.UnActiveGame();
+                   
                 }
                 else
                 {

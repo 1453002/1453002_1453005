@@ -85,8 +85,7 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
                     t.GetComponent<Rigidbody>().useGravity=true;
                     t.GetComponent<Rigidbody>().isKinematic = false;
                 }
-                fakeWall.SetActive(true);
-                SoundResonanceManager.instance.pauseAllSoundOnObj(MainSceneScript.instance.musicObject);
+                fakeWall.SetActive(true);             
             }
         }
     }
