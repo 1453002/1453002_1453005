@@ -7,15 +7,15 @@ using Voice = ExitGames.Client.Photon.Voice;
 class DelayProcessor : UnityEngine.MonoBehaviour
 {
     // Message sent by PhotonVoiceRecorder
-    void PhotonVoiceCreated(Voice.LocalVoice localVoice)
+    void VoiceCreated(PhotonVoiceRecorder.VoiceCreatedParams p)
     {
-        ((Voice.LocalVoiceAudioFloat)localVoice).AddPreProcessor(new Processor(40000, 0.3f));
+        ((Voice.LocalVoiceAudioFloat)p.Voice).AddPreProcessor(new Processor(40000, 0.3f));
     }
 
     /*
     // Building processing pipeline from the scratch.
     // Gives full control on processing order and resampler implementation.
-    void PhotonVoiceCreated(PhotonVoiceRecorder.VoiceCreatedParams p)
+    void VoiceCreated(PhotonVoiceRecorder.VoiceCreatedParams p)
     {        
         p.Voice.ClearProcessors();
 
@@ -31,7 +31,7 @@ class DelayProcessor : UnityEngine.MonoBehaviour
         // Optional. If added before resampling, use SourceSamplingRate instead of SamplingRate
         var levelMeter = new Voice.AudioUtil.LevelMeterFloat(p.Info.SamplingRate, p.Info.Channels);
         var voiceDetector = new Voice.AudioUtil.VoiceDetectorFloat(p.Info.SamplingRate, p.Info.Channels);        
-        var voiceDetectorCalibration = new Voice.AudioUtil.VoiceDetectorCalibration<float>(voiceDetector, levelMeter, p.Info.SamplingRate, p.Info.Channels);
+        var voiceDetectorCalibration = new Voice.AudioUtil.VoiceDetectorCalibration<float>(voiceDetector, levelMeter, p.Info.SamplingRate * p.Info.Channels);
         p.Voice.AddPostProcessor(levelMeter, voiceDetectorCalibration, voiceDetector); // level meter and calibration should be processed even if no signal detected
 
         // Audio voice properties exposing built-in processor will not work after clear. Use refs to created processors.

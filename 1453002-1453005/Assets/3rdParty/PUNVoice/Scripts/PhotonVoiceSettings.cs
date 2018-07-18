@@ -36,14 +36,6 @@ public class PhotonVoiceSettings : MonoBehaviour
     /// Remote audio stream playback delay to compensate packets latency variations (applied per every speaker instance). Try 100 - 200 if sound is choppy.
     public int PlayDelayMs = 200;                       // set in inspector
 
-    public enum MicAudioSourceType
-    {
-        Unity,
-        Photon
-    }
-
-    /// Default microphone type;
-    public MicAudioSourceType MicrophoneType;
     /// Lost frames simulation ratio.
     public int DebugLostPercent = 0;                    // set in inspector
 

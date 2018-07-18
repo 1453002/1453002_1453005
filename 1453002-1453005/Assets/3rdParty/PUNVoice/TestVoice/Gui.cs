@@ -8,21 +8,11 @@ public class Gui : MonoBehaviour {
 	void Start () {
         PhotonNetwork.networkingPeer.TrafficStatsEnabled = true;
 		PhotonVoiceNetwork.Client.loadBalancingPeer.TrafficStatsEnabled = true;
-
-        // Setting factory below replicates AudioSource.DeviceMicrophone behavior.
-        PhotonVoiceNetwork.AudioSourceFactory = (rec) => new MicWrapper(rec.MicrophoneDevice != null ? rec.MicrophoneDevice : PhotonVoiceNetwork.MicrophoneDevice, (int)PhotonVoiceSettings.Instance.SamplingRate);
-#if UNITY_IOS && !UNITY_EDITOR
-        PhotonVoiceNetwork.AudioSourceFactory = (rec) => new AppleAudioInPusher(-1);
-#endif
-#if UNITY_ANDROID && !UNITY_EDITOR
-        PhotonVoiceNetwork.AudioSourceFactory = (rec) => new AndroidAudioInAEC();       
-#endif
-
         //PhotonVoiceNetwork.Client.loadBalancingPeer.DebugOut = ExitGames.Client.Photon.DebugLevel.ALL;
         //PhotonNetwork.logLevel = PhotonLogLevel.Full;
     }
 
-    float dataRateNextTime = 0;
+	float dataRateNextTime = 0;
     int prevInBytes;
     int prevOutBytes;
     int dataRateIn;
@@ -66,7 +56,11 @@ public class Gui : MonoBehaviour {
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Connect", bStyle))
         {
-            PhotonNetwork.ConnectUsingSettings(string.Format("1.{0}", SceneManagerHelper.ActiveSceneBuildIndex));
+#if UNITY_5_3_OR_NEWER
+                PhotonNetwork.ConnectUsingSettings(string.Format("1.{0}", UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex));
+#else
+                PhotonNetwork.ConnectUsingSettings(string.Format("1.{0}", Application.loadedLevel));
+#endif        
         }
         if (GUILayout.Button("Disconnect", bStyle))
         {
@@ -154,45 +148,6 @@ public class Gui : MonoBehaviour {
             GUILayout.Label("Detector Threshold: " + (rec.VoiceDetector == null ? "" : rec.VoiceDetector.Threshold.ToString("0.000000")), lStyleSmall);
             GUILayout.Label("Audio group (rec): " + rec.AudioGroup.ToString(), lStyleSmall);
             GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            var speexDSP = rec.GetComponent<SpeexDSP>();
-            if (speexDSP != null)
-            {
-                if (GUILayout.Button((speexDSP.AEC ? "[X] AEC" : "[ ] AEC"), bStyle))
-                {
-                    speexDSP.AEC = !speexDSP.AEC;
-                }
-
-                if (GUILayout.Button("Reset", bStyle))
-                {
-                    speexDSP.ResetAEC();
-                }
-
-                GUILayout.BeginHorizontal(GUILayout.ExpandWidth(false));
-                GUILayout.Label("delay:", lStyle);
-                var x = speexDSP.AECPlaybackDelayMs.ToString();
-                var tStyle = new GUIStyle("textfield");
-                tStyle.fontSize = bStyle.fontSize;
-                speexDSP.AECPlaybackDelayMs = Int32.Parse(GUILayout.TextField(x, tStyle));
-                GUILayout.EndHorizontal();
-                
-                if (GUILayout.Button((speexDSP.AECLatencyDetect ? "[X] Latency Detect:" : "[ ] Latency Detect"), bStyle))
-                {
-                    speexDSP.AECLatencyDetect = !speexDSP.AECLatencyDetect;
-                }
-                if (speexDSP.AECLatencyDetect)
-                {
-                    var l = speexDSP.Processor.AECLatencyResult;
-                    GUILayout.Label(l.LatencyMs + "/" + l.LatencyDelayedMs + " ms", lStyle);
-                    GUILayout.Label(
-                        (l.PlayDetected ? "!" : ".") +
-                        (l.PlayDelayedDetected ? "!" : ".") +
-                        (l.RecDetected ? "!" : "."),
-                        lStyle);
-                }                                
-            }
-            GUILayout.EndHorizontal();
         }
         else
         {
@@ -209,49 +164,16 @@ public class Gui : MonoBehaviour {
         }
         GUILayout.EndHorizontal();
 
-        var pvs = PhotonVoiceSettings.Instance;
         GUILayout.BeginHorizontal();
-		GUILayout.Label("Unity Mic: ", lStyleSmall);
-		foreach (var x in Microphone.devices) 
-		{            
-			if (GUILayout.Button ((pvs.MicrophoneType == PhotonVoiceSettings.MicAudioSourceType.Unity && PhotonVoiceNetwork.MicrophoneDevice == x ? "[X] " : "[ ] ") + x, bStyleSmall)) 
-			{
-                pvs.MicrophoneType = PhotonVoiceSettings.MicAudioSourceType.Unity;
-                PhotonVoiceNetwork.MicrophoneDevice = x;
-			}
-		}
-        GUILayout.EndHorizontal();
-
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Photon Mic: ", lStyleSmall);
-
-        if (PhotonVoiceNetwork.PhotonMicrophoneEnumerator.IsSupported) 
-		{
-			for (int i = 0; i < PhotonVoiceNetwork.PhotonMicrophoneEnumerator.Count; i++) 
-			{
-				if (GUILayout.Button ((pvs.MicrophoneType == PhotonVoiceSettings.MicAudioSourceType.Photon && PhotonVoiceNetwork.PhotonMicrophoneDeviceID == PhotonVoiceNetwork.PhotonMicrophoneEnumerator.IDAtIndex(i) ? "[X] " : "[ ] ") + PhotonVoiceNetwork.PhotonMicrophoneEnumerator.NameAtIndex(i), bStyleSmall)) {
-					pvs.MicrophoneType = PhotonVoiceSettings.MicAudioSourceType.Photon;
-					PhotonVoiceNetwork.PhotonMicrophoneDeviceID = PhotonVoiceNetwork.PhotonMicrophoneEnumerator.IDAtIndex(i);
-				}
-			}
-            if (GUILayout.Button("Refresh", bStyleSmall))
+		GUILayout.Label("Mic: ", lStyleSmall);
+        foreach (var x in Microphone.devices)
+        {            
+            if (GUILayout.Button((PhotonVoiceNetwork.MicrophoneDevice == x ? "[X] " : "[ ] ") + x, bStyleSmall))
             {
-                PhotonVoiceNetwork.PhotonMicrophoneEnumerator.Refresh();
+                PhotonVoiceNetwork.MicrophoneDevice = x;
             }
-
-        } 
-		else 
-		{
-			// use 1st device in Unity device enumeration to display default device name (this may be wrong of course)
-			if (Microphone.devices.Length > 0)
-			{
-				if (GUILayout.Button ((pvs.MicrophoneType == PhotonVoiceSettings.MicAudioSourceType.Photon ? "[X] " : "[ ] ") + Microphone.devices[0], bStyleSmall)) {
-					pvs.MicrophoneType = PhotonVoiceSettings.MicAudioSourceType.Photon;
-					PhotonVoiceNetwork.PhotonMicrophoneDeviceID = -1;
-				}
-			}
-		}
-		GUILayout.EndHorizontal();
+        }
+        GUILayout.EndHorizontal();
         GUI.enabled = true;        
-	}
+	}    
 }

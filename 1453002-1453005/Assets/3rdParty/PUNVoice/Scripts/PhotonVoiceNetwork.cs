@@ -89,7 +89,6 @@ public class PhotonVoiceNetwork : MonoBehaviour
         }
 
         destroyed = true;
-        this.photonMicEnumerator.Dispose();
         this.client.Dispose();
     }
 
@@ -112,12 +111,7 @@ public class PhotonVoiceNetwork : MonoBehaviour
             Debug.LogError("PUNVoice: No microphone device found");
         }
 	}
-
-    /// <summary>
-    /// Set the method returning new Voice.IAudioSource instance to be assigned to a new voice created by PhotonVoiceRecorder with Source set to Factory
-    /// </summary>
-    public static Func<PhotonVoiceRecorder, Voice.IAudioSource> AudioSourceFactory { get; set; }
-
+	
     /// <summary>
     /// Connects Voice client to a Master Server of region specified in settings, using the Name Server to find the IP.
     /// </summary>
@@ -158,13 +152,9 @@ public class PhotonVoiceNetwork : MonoBehaviour
     /// <summary>Room name currently joined by Photon Voice client or empty string.</summary>
     public static string CurrentRoomName { get { return instance.client.CurrentRoom == null ? "" : instance.client.CurrentRoom.Name; } }
 
-	public static Voice.AudioInEnumerator PhotonMicrophoneEnumerator { get { return instance.photonMicEnumerator; } }
+    private static string microphoneDevice = null;
 
-    private string unityMicrophoneDevice = null;
-    private int photonMicrophoneDeviceID = -1;
-    private Voice.AudioInEnumerator photonMicEnumerator = new Voice.AudioInEnumerator();
-
-    /// <summary>Global Unity microphone device setting. Applied to all PhotonVoiceRecorders owned by client during initialization in Start().
+    /// <summary>Global microphone device setting. Applied to all PhotonVoiceRecorders owned by client during initialization in Start().
     /// If changed while joined PUN room, rejoin (recorders recreation) required.
     /// </summary>
     /// <remarks>
@@ -172,7 +162,7 @@ public class PhotonVoiceNetwork : MonoBehaviour
     /// </remarks>    
     public static string MicrophoneDevice
     {
-        get { return instance.unityMicrophoneDevice; }
+        get { return microphoneDevice; }
         set
         {
             if (value != null && !Microphone.devices.Contains(value))
@@ -181,10 +171,10 @@ public class PhotonVoiceNetwork : MonoBehaviour
                 return;
             }
 
-            instance.unityMicrophoneDevice = value;
+            microphoneDevice = value;
             if (PhotonVoiceSettings.Instance.DebugInfo)
             {
-                Debug.LogFormat("PUNVoice: Setting global Unity microphone device to {0}", instance.unityMicrophoneDevice);
+                Debug.LogFormat("PUNVoice: Setting global microphone device to {0}", microphoneDevice);
             }
             foreach (var r in FindObjectsOfType<PhotonVoiceRecorder>())
             {
@@ -200,48 +190,14 @@ public class PhotonVoiceNetwork : MonoBehaviour
         }
     }
 
-    /// <summary>Global Photon microphone device setting. Applied to all PhotonVoiceRecorders owned by client during initialization in Start().
-    /// If changed while joined PUN room, rejoin (recorders recreation) required.
-    /// </summary>
-    /// <remarks>
-    /// Use PhotonVoiceRecorder.PhotonMicrophoneDeviceID to set device per recorder.
-    /// </remarks>    
-    public static int PhotonMicrophoneDeviceID
-    {
-        get { return instance.photonMicrophoneDeviceID; }
-        set
-        {
-			if (!PhotonMicrophoneEnumerator.IDIsValid(value))
-            {
-                Debug.LogError("PUNVoice: " + value + " is not a valid Photon microphone device");
-                return;
-            }
-
-            instance.photonMicrophoneDeviceID = value;
-            if (PhotonVoiceSettings.Instance.DebugInfo)
-            {
-                Debug.LogFormat("PUNVoice: Setting global Photon microphone device to {0}", instance.photonMicrophoneDeviceID);
-            }
-            foreach (var r in FindObjectsOfType<PhotonVoiceRecorder>())
-            {
-                if (r.photonView.isMine)
-                {
-                    if (r.PhotonMicrophoneDeviceID == -1)
-                    {
-                        // update mic device
-                        r.PhotonMicrophoneDeviceID = -1;
-                    }
-                }
-            }
-        }
-    }
-
     protected void OnEnable()
     {
         if (this != _instance)
         {
             return;
         }
+
+        Application.RequestUserAuthorization(UserAuthorization.Microphone);        
     }
 
     protected void OnApplicationQuit()
@@ -266,8 +222,57 @@ public class PhotonVoiceNetwork : MonoBehaviour
         this.client.VoiceClient.DebugLostPercent = PhotonVoiceSettings.Instance.DebugLostPercent;
 
         client.Service();
-    }    
+    }
 
+    /// <summary>
+    /// Creates new local voice (outgoing audio stream).
+    /// </summary>
+    /// <param name="voiceInfo">Outgoing audio stream parameters (should be set according to Opus encoder restrictions).</param>
+    /// <param name="serviceableFactory">Optional factory called after LovalVoice<T> initialized to create ILocalVoiceServiceable instance attached to the LocalVoice"/>.</param>
+    /// <returns>Outgoing stream handler.</returns>
+    /// <remarks>
+    /// audioStream.SamplingRate and voiceInfo.SamplingRate may do not match. Automatic resampling will occur in this case.
+    /// </remarks>
+    public static Voice.LocalVoice CreateLocalVoice(Voice.VoiceInfo voiceInfo, Voice.IBufferReader<float> reader)
+    {
+        var localVoice = instance.client.VoiceClient.CreateLocalVoiceAudio<float>(voiceInfo);
+        localVoice.LocalUserServiceable = new Voice.BufferReaderPushAdapterAsyncPool<float>(localVoice, reader);
+        return localVoice;
+    }
+
+    // Reads float buffers. Converts them to short and pushes to LocalVoiceAudioShort
+    class BufferReaderPushAdapterAsyncPoolFloatToShort : Voice.BufferReaderPushAdapterBase<float>
+    {
+        float[] buffer;
+        public BufferReaderPushAdapterAsyncPoolFloatToShort(Voice.LocalVoice localVoice, Voice.IBufferReader<float> reader) : base(reader)
+        {
+            buffer = new float[((Voice.LocalVoiceFramed<short>)localVoice).FrameSize];
+        }
+
+        public override void Service(Voice.LocalVoice localVoice)
+        {
+            var v = ((Voice.LocalVoiceFramed<short>)localVoice);
+            short[] buf = v.PushDataBufferPool.AcquireOrCreate();
+            while (this.reader.Read(buffer))
+            {
+                for (int i = 0;i < buf.Length; i++)
+                {
+                    buf[i] = (short)(buffer[i]*(float)short.MaxValue);
+                }
+                v.PushDataAsync(buf);
+                buf = v.PushDataBufferPool.AcquireOrCreate();
+            }
+            // release unused buffer
+            v.PushDataBufferPool.Release(buf, buf.Length);
+        }
+    }
+
+    public static Voice.LocalVoice CreateLocalVoiceShort(Voice.VoiceInfo voiceInfo, Voice.IBufferReader<float> reader)
+    {
+        var localVoice = instance.client.VoiceClient.CreateLocalVoiceAudio<short>(voiceInfo);
+        localVoice.LocalUserServiceable = new BufferReaderPushAdapterAsyncPoolFloatToShort(localVoice, reader);
+        return localVoice;
+    }
     // PUN room joined
     void OnJoinedRoom()
     {

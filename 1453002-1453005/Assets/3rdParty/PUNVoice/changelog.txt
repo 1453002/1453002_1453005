@@ -1,14 +1,3 @@
-v1.13
-  PUNVoice:
-ADDED: platform plugins (AEC, native microphone input, iOS ForceToSpeaker)
-CHANGED: more control over PhotonVoiceRecorder source and frame type
-  PhotonVoiceAPI:
-FIXED: threading issue causing access violation in opus_egpb.dll
-
-v1.12
-CHANGED: PUN updated to 1.87
-CHANGED: LoadBalancingApi updated to 4.1.1.17
-
 v1.11
 CHANGED: PUN updated to 1.85
 ADDED: missing Windows Store Applications opus files
