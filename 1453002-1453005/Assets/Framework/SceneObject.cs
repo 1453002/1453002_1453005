@@ -116,7 +116,7 @@ public class SceneObject : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
             {
                 Exam1GamePlay.instance.countHovers += 1;
                 Exam1GamePlay.instance.objectsHovered.Add(gameObject.name);
-              if(Exam1GamePlay.instance.countHovers == Exam1GamePlay.instance.numObjHoverRequire)
+              if(Exam1GamePlay.instance.countHovers == Config.instance.numHoveredObjectsToTest)
                 {
                     Exam1GamePlay.instance.displayHintTest();
                     Exam1GamePlay.instance.ActivationTestObject.SetActive(true);
