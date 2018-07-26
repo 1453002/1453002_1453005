@@ -173,9 +173,12 @@ namespace DaydreamElements.ObjectManipulation {
         protected override void OnSelect(){
             if (isDropable())
             {
-                Player.instance.SetState(Player.PlayerState.PlayingGame);
-                if (TestDrop.instance.markers[this.gameObject.name])
-                    marker = TestDrop.instance.markers[this.gameObject.name].transform;
+                if (gameObject.scene.name == "Showroom2_01")
+                {
+                    Player.instance.SetState(Player.PlayerState.PlayingGame);
+                    if (TestDrop.instance.markers[this.gameObject.name])
+                        marker = TestDrop.instance.markers[this.gameObject.name].transform;
+                }
             }
       // Perform the transformation relative to control.
       Vector3 vectorToObject = transform.position - ControlPosition;
