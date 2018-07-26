@@ -32,6 +32,7 @@ public class MainSceneScript : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        FBFade.instance.fadeIn(Config.instance.fadeDuration);
         SceneObjectManager.instance.initSceneInteractiveObjects(this.gameObject.scene);
         listPlayer[1].name = "GVR-2";
         for (int i = 0; i < listPlayer.Count; i++)
@@ -56,39 +57,44 @@ public class MainSceneScript : MonoBehaviour {
     // Update is called once per frame
     private void Update()
    {
-        microbe1.transform.Rotate(new Vector3(0, 0, 2), Space.Self);
-        microbe2.transform.Rotate(new Vector3(0, 0, 2), Space.Self);
-        microbe3.transform.Rotate(new Vector3(0, 0, 2), Space.Self);
-        dna.transform.Rotate(new Vector3(0, 2, 0), Space.Self);
-        cell.transform.Rotate(new Vector3(0, 2, 0), Space.Self);
-        if (this.gameObject.scene.name == "Showroom2_01" && GvrController.AppButtonUp)
+        if(gameObject.scene.name == "Showroom2_01")
         {
-            if (player.transform.findChildRecursively("Player").transform.position.y >= 3)
+            microbe1.transform.Rotate(new Vector3(0, 0, 2), Space.Self);
+            microbe2.transform.Rotate(new Vector3(0, 0, 2), Space.Self);
+            microbe3.transform.Rotate(new Vector3(0, 0, 2), Space.Self);
+            dna.transform.Rotate(new Vector3(0, 2, 0), Space.Self);
+            cell.transform.Rotate(new Vector3(0, 2, 0), Space.Self);
+            if (this.gameObject.scene.name == "Showroom2_01" && GvrController.AppButtonUp)
             {
-                //Game upstair off
-                if (!listPlayer[0].activeSelf)
+                if (player.transform.findChildRecursively("Player").transform.position.y >= 3)
                 {
-                    listPlayer[0].SetActive(true);
-                    listPlayer[1].SetActive(false);
-                    menuPlay.SetActive(false);
-                    Player.instance.SetState(Player.PlayerState.None);
-                    testSwipeColor.instance.UnActiveGame();
-                   
+                    //Game upstair off
+                    if (!listPlayer[0].activeSelf)
+                    {
+                        listPlayer[0].SetActive(true);
+                        listPlayer[1].SetActive(false);
+                        menuPlay.SetActive(false);
+                        Player.instance.SetState(Player.PlayerState.None);
+                        testSwipeColor.instance.UnActiveGame();
+
+                    }
+                    else
+                    {
+                        //Go down stair
+                        Transform getPoint = GameObject.Find("Down-Point").transform;
+                        Vector3 temp = getPoint.transform.position;
+                        player.transform.findChildRecursively("Player").transform.DOMove(temp, 1.5f);
+                    }
                 }
                 else
                 {
-                    //Go down stair
-                    Transform getPoint = GameObject.Find("Down-Point").transform;
-                    Vector3 temp = getPoint.transform.position;
-                    player.transform.findChildRecursively("Player").transform.DOMove(temp, 1.5f);
+                    //Game skeleton out
+                    Player.instance.SetState(Player.PlayerState.None);
+                    TestDrop.instance.onOutGame();
                 }
             }
-            else {
-                //Game skeleton out
-                Player.instance.SetState(Player.PlayerState.None);
-                TestDrop.instance.onOutGame();
-            }
         }
+       
     
     }
     public void createPlayer()

@@ -52,14 +52,14 @@ public class multipleChoice : MonoBehaviour, IPointerDownHandler, IPointerEnterH
         if (this.gameObject.scene.name == "Baked_MuseumVR_vol1")
         {
             if (Exam1GamePlay.instance.getAnswer(Exam1GamePlay.instance.currentQuestion).Equals(this.gameObject.transform.GetChild(0).name))
-                Exam1GamePlay.instance.score += 10;
-            if (Exam1GamePlay.instance.currentQuestion + 1 <= Exam1GamePlay.instance.maxQuestion)
+                Exam1GamePlay.instance.score += Config.instance.scoreEachQuestionMuseum;
+            if (Exam1GamePlay.instance.currentQuestion + 1 <= Exam1GamePlay.instance.maxQuestion/2 + 1)
             {
                 Exam1GamePlay.instance.currentQuestion += 1;
                 Exam1GamePlay.instance.loadQuestion(Exam1GamePlay.instance.currentQuestion);
-                if(Exam1GamePlay.instance.currentQuestion == Exam1GamePlay.instance.maxQuestion)
+                if(Exam1GamePlay.instance.currentQuestion == Exam1GamePlay.instance.maxQuestion/2 + 1)
                 {                
-                    Exam1GamePlay.instance.Notification.SetActive(true);
+                    Exam1GamePlay.instance.Notification.SetActive(true);                    
                 }
             }
         }

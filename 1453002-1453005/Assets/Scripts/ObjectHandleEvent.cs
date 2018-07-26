@@ -9,14 +9,22 @@ public class ObjectHandleEvent : MonoBehaviour, IPointerDownHandler, IPointerEnt
                            IPointerExitHandler, IPointerClickHandler, IPointerUpHandler
 {
     GameObject tmp;
-	// Use this for initialization
+    // Use this for initialization
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if(gameObject.name == "btnOk" || gameObject.name == "btnCancel")
+        {
+            gameObject.transform.localScale *= 1.15f;
+        }
         Player.instance.SetState(Player.PlayerState.Selecting);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (gameObject.name == "btnOk" || gameObject.name == "btnCancel")
+        {
+            gameObject.transform.localScale /= 1.15f;
+        }
         Player.instance.SetState(Player.PlayerState.None);
     }
 
@@ -26,77 +34,53 @@ public class ObjectHandleEvent : MonoBehaviour, IPointerDownHandler, IPointerEnt
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (Exam1GamePlay.instance.countHovers >= Exam1GamePlay.instance.numObjHoverRequire)
+        if (Exam1GamePlay.instance.countHovers >= Config.instance.numHoveredObjectsToTest)
         {
             if (gameObject.name == "TestChoseObj")
-            {                
-                GameObject obj1 = GameObject.Find("sumerian_sphinx_left");
-                GameObject obj2 = GameObject.Find("sumerian_sphinx_right");
+            {
+                Exam1GamePlay.instance.isPlayingGame = true;
+
                 Exam1GamePlay.instance.board.SetActive(true);
                 Exam1GamePlay.instance.roman_augustus.SetActive(false);
                 Exam1GamePlay.instance.initBoard();
-
-                doStatuesMove1(obj1, obj2);
-                GamePlay.instance.VRplayer.transform.DOMove(gameObject.transform.position, 1);
+                Exam1GamePlay.instance.doLeftRightStatueMove();
+                Vector3 pos = new Vector3(8.12f, -14.127f, -33f);
+                GamePlay.instance.VRplayer.transform.DOMove(pos, 1);
                 Player.instance.SetState(Player.PlayerState.PlayingGame);
-                disableActivationAfterSeconds(1.2f);
+               // GamePlay.instance.VRplayer.transform.findChildRecursively("TeleportController").gameObject.SetActive(false);
+                
+                Exam1GamePlay.instance.isVisibleObj(Exam1GamePlay.instance.ActivationTestObject, false);
             }
         }
-        if(gameObject.name == "btnOk")
-        {            
-               
-                Exam1GamePlay.instance.finishMultipleTest();
-                GameObject obj1 = GameObject.Find("sumerian_sphinx_left");
-                GameObject obj2 = GameObject.Find("sumerian_sphinx_right");
-                Exam1GamePlay.instance.board.SetActive(false);
-                Exam1GamePlay.instance.roman_augustus.SetActive(true);
-
-                doStatuesMove1(obj1, obj2);
-                
-                
-         
-            Player.instance.SetState(Player.PlayerState.None);
-        }
-        if(gameObject.name == "btnCancel")
+        if (gameObject.name == "btnOk")
         {
-            Exam1GamePlay.instance.Notification.SetActive(false);
+          
+            Exam1GamePlay.instance.finishMultipleTest();
+            Exam1GamePlay.instance.isVisibleObj(Exam1GamePlay.instance.board, true);          
+            Exam1GamePlay.instance.doLeftRightStatueMove();
             Player.instance.SetState(Player.PlayerState.None);
+            Exam1GamePlay.instance.isVisibleObj(Exam1GamePlay.instance.Notification, false);
+
+            Exam1GamePlay.instance.initBoard();
+        }
+        if (gameObject.name == "btnCancel")
+        {
+            Exam1GamePlay.instance.isPlayingGame = false;
+
+            Player.instance.SetState(Player.PlayerState.None);
+            Exam1GamePlay.instance.isVisibleObj(Exam1GamePlay.instance.board, false);
+            Exam1GamePlay.instance.roman_augustus.SetActive(true);
+            Exam1GamePlay.instance.doLeftRightStatueMove();
+            Player.instance.SetState(Player.PlayerState.None);
+            Exam1GamePlay.instance.isVisibleObj(Exam1GamePlay.instance.Notification, true);
         }
     }
 
-    void doStatuesMove1(GameObject obj1, GameObject obj2)
-    {
-        obj1.transform.DOMoveX(obj1.transform.position.x - 20, 0.5f);
-        obj2.transform.DOMoveX(obj2.transform.position.x + 20, 0.5f);
-        StartCoroutine(doStatuesMove2(obj1, obj2));
-    }
-
-    IEnumerator doStatuesMove2(GameObject obj1, GameObject obj2)
-    {
-        yield return new WaitForSeconds(0.5f);
-        obj1.transform.DOMoveX(obj1.transform.position.x + 20, 0.5f);
-        obj2.transform.DOMoveX(obj2.transform.position.x - 20, 0.5f);
-    }
 
     public void OnPointerUp(PointerEventData eventData)
     {
 
     }
-    void disableNotifiAfterSeconds(float time)
-    {
-        Invoke("inactiveObject", time);
-    }
-    void disableActivationAfterSeconds(float time)
-    {
-        Invoke("inactiveActivationObj", time);
-    }
 
-    void inactiveNotifi()
-    {
-        Exam1GamePlay.instance.Notification.SetActive(false);
-    }
-    void inactiveActivationObj()
-    {
-        Exam1GamePlay.instance.ActivationTestObject.SetActive(false);
-    }
+
 }

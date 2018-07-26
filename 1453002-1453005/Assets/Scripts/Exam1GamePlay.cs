@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Exam1GamePlay : MonoBehaviour
 {
     public static Exam1GamePlay instance;
     public GameObject roman_augustus;
+    public GameObject statue_left, statue_right;
+
     public GameObject Notification;
     public GameObject ActivationTestObject;
 
-    public int numObjHoverRequire = 5;
+    
     //[HideInInspector]
     public int countHovers = 0;
     [HideInInspector]
@@ -27,10 +30,12 @@ public class Exam1GamePlay : MonoBehaviour
     public int maxQuestion = 0;
     int maxQuestionOfThisTopic = 0;
     public GameObject UI;
-    Text maxQ, curQ, scoreUI;
+    GameObject maxQ, curQ, scoreUI;
 
- 
+    [HideInInspector]
+    public bool isPlayingGame = false;
 
+    GameObject teleport;
     private void Awake()
     {
         instance = this;
@@ -38,27 +43,45 @@ public class Exam1GamePlay : MonoBehaviour
     }
 
     void Start () {
-        isVisibleBoard(false);
+        isVisibleObj(board,false);
         hintForTest.SetActive(false);
         Notification.SetActive(false);
         ActivationTestObject.SetActive(false);
-    }	
-	
+        teleport = Player.instance.teleportController.gameObject;
+
+    }
+
+    private void Update()
+    {
+        if(isPlayingGame)
+        {
+            teleport.SetActive(false);
+        }
+        else
+        {
+            teleport.SetActive(true); 
+        }
+    }
     public void initBoard()
     {
-        isVisibleBoard(true);
+        isVisibleObj(board,true);
         a = board.transform.findChildRecursively("A").gameObject;
         c = board.transform.findChildRecursively("C").gameObject;
         d = board.transform.findChildRecursively("D").gameObject;
         b = board.transform.findChildRecursively("B").gameObject;
         content = board.transform.findChildRecursively("Content").gameObject;
 
+        maxQ = gameObject.transform.findChildRecursively("TotalQuestion").gameObject;
+        scoreUI = gameObject.transform.findChildRecursively("Score").gameObject;
+        curQ = gameObject.transform.findChildRecursively("CurrentQuestion").gameObject;
         maxQuestion = FBGameData.instance.getClassData("Question").objects.Count;
-        //maxQ.text = "Total question : " + maxQuestion;
+
+        maxQ.GetComponent<TextMesh>().text = "Total question : " + maxQuestion/2;       
         cubeImage = board.transform.findChildRecursively("cube-image").gameObject;
         cubeImage.SetActive(false);
         loadQuestion(currentQuestion);
     }
+
     public void loadQuestion(int ques)
     {
         FBClassData Questions = FBGameData.instance.getClassData("Question");
@@ -98,7 +121,7 @@ public class Exam1GamePlay : MonoBehaviour
             cubeImage.GetComponent<MeshRenderer>().material.mainTexture = MediaManager.instance.dicImages[questionID];
         }
        
-        //updateUI();
+        updateUI();
     }
   
     public string getAnswer(int ques)
@@ -121,31 +144,49 @@ public class Exam1GamePlay : MonoBehaviour
         return answer;
         
     }
+
     void updateUI()
     {
-        curQ.text = "current question : " + currentQuestion;
-        scoreUI.text = "Score : " + score;
+        curQ.GetComponent<TextMesh>().text = "Current question : " + currentQuestion;
+        scoreUI.GetComponent<TextMesh>().text = "Score : " + score;
     }
-    void isVisibleBoard(bool value)
+
+    public void isVisibleObj(GameObject obj ,bool value)
     {
-        foreach(Transform child in gameObject.transform)
+        foreach(Transform child in obj.transform)
         {
             child.gameObject.SetActive(value);
         }
     }
-   public void finishMultipleTest()
+
+    public void finishMultipleTest()
     {
         currentQuestion = 1;
         score = 0;
     }
 
-   public void displayHintTest()
+    public void displayHintTest()
     {
         hintForTest.SetActive(true);
         Invoke("disableHintTest", 5);
     }
+
     void disableHintTest()
     {
         hintForTest.SetActive(false);
+    }
+
+    public void doLeftRightStatueMove()
+    {
+        statue_left.transform.DOMoveX(statue_left.transform.position.x - 20, 0.5f);
+        statue_right.transform.DOMoveX(statue_right.transform.position.x + 20, 0.5f);
+        StartCoroutine(doStatuesMove(statue_left, statue_right));
+    }
+
+    IEnumerator doStatuesMove(GameObject obj1, GameObject obj2)
+    {
+        yield return new WaitForSeconds(0.5f);
+        obj1.transform.DOMoveX(obj1.transform.position.x + 20, 0.5f);
+        obj2.transform.DOMoveX(obj2.transform.position.x - 20, 0.5f);
     }
 }
