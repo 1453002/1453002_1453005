@@ -199,7 +199,18 @@
       "Option1": "Athena",
       "Option2": "Hera",
       "Option3": "Persephone",
-      "Option4": "Aphrodite"
+      "Option4": "Aphrodite",
+      "Answer": "Option3"
+    },
+    {
+      "id": 25,
+      "Content": "content...",
+      "QuestionID": "bt-question11-img",
+      "Option1": "a",
+      "Option2": "b",
+      "Option3": "c",
+      "Option4": "d",
+      "Answer": "Option2"
     }
   ]
 }
