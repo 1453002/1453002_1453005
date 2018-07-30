@@ -47,8 +47,7 @@ public class ObjectHandleEvent : MonoBehaviour, IPointerDownHandler, IPointerEnt
                 Vector3 pos = new Vector3(8.12f, -14.127f, -33f);
                 GamePlay.instance.VRplayer.transform.DOMove(pos, 1);
                 Player.instance.SetState(Player.PlayerState.PlayingGame);
-               // GamePlay.instance.VRplayer.transform.findChildRecursively("TeleportController").gameObject.SetActive(false);
-                
+               
                 Exam1GamePlay.instance.isVisibleObj(Exam1GamePlay.instance.ActivationTestObject, false);
             }
         }
@@ -72,7 +71,7 @@ public class ObjectHandleEvent : MonoBehaviour, IPointerDownHandler, IPointerEnt
             Exam1GamePlay.instance.roman_augustus.SetActive(true);
             Exam1GamePlay.instance.doLeftRightStatueMove();
             Player.instance.SetState(Player.PlayerState.None);
-            Exam1GamePlay.instance.isVisibleObj(Exam1GamePlay.instance.Notification, true);
+            Exam1GamePlay.instance.isVisibleObj(Exam1GamePlay.instance.Notification, false);
         }
     }
 

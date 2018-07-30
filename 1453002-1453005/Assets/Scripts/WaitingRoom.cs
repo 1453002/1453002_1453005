@@ -35,14 +35,14 @@ public class WaitingRoom : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     {
         if(gameObject.name == "Museum")
         {
-            FBFade.instance.loadSceneAsyncAndFadeOut("Baked_MuseumVR_vol1", 1);
+            FBFade.instance.loadSceneAsyncAndFadeOut("Baked_MuseumVR_vol1", Config.instance.fadeDuration);
 
 
         }
 
        if(gameObject.name == "Medical")
         {
-            FBFade.instance.loadSceneAsyncAndFadeOut("Showroom2_01", 0);
+            FBFade.instance.loadSceneAsyncAndFadeOut("Showroom2_01", Config.instance.fadeDuration);
            // SceneManager.LoadScene("Showroom2_01");
         }
     }  

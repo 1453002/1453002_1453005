@@ -11,12 +11,25 @@ public class Tutorial : MonoBehaviour {
     string showString;
     int count = 2;
     void Start () {
-        tmp1 = "1./ Hover ground and press center button to move for both scenes   ";
-        tmp2 = "2./ Double click to hold moveable objects ";
-        tmp3 = "3./ Rotate controller to rotate object when holding ";
-        tmp4 = "4./ Game 1 on ground : double click to hold bones move to suitable place at picture";
-        tmp5 = "5./ Game 2 on floor  : press center to shoot the arrow and get score ";
-        tmp6 = "6./ Press app button to out game and get down to first floor";
+        if(gameObject.scene.name == "Baked_MuseumVR_vol1")
+        {
+            tmp1 = "1./ Let go around to collect information from illustrated statues";
+            tmp2 = "2./ Hover to display information in detail ";
+            tmp3 = "3./ Tip : try to remember information of statues for test stage";
+            tmp4 = "4./ Click on Activation Object to begin testing";
+            tmp5 = "5./ choose a answer that you think it correct";
+            tmp6 = "6./ Good luck";
+        }
+        else
+        {
+            tmp1 = "1./ Hover ground and press center button to move for both scenes   ";
+            tmp2 = "2./ Double click to hold moveable objects ";
+            tmp3 = "3./ Rotate controller to rotate object when holding ";
+            tmp4 = "4./ Game 1 on ground : double click to hold bones move to suitable place at picture";
+            tmp5 = "5./ Game 2 on floor  : press center to shoot the arrow and get score ";
+            tmp6 = "6./ Press app button to out game and get down to first floor";
+        }
+       
         for (int i = 0; i < tutorial.Count; i++)
         {
             StartCoroutine(ShowTutorial(tutorial[i],count));

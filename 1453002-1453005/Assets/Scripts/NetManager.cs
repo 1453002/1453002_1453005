@@ -35,6 +35,10 @@ public class NetManager : MonoBehaviour {
         {
             room_name = "Medical";
         }
+        if (gameObject.scene.name == "Main")
+        {
+            room_name = "Main";
+        }
         PhotonNetwork.JoinOrCreateRoom(room_name, new RoomOptions() { MaxPlayers = 4 }, null);
        
     }

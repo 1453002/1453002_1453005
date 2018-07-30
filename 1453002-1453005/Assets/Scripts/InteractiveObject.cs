@@ -65,6 +65,7 @@ public class InteractiveObject : MonoBehaviour, IPointerDownHandler, IPointerEnt
             if (this.gameObject.name.Contains("Video"))
             {
                     BaseUI.instance.PlayVideo(this.gameObject);
+                    SoundResonanceManager.instance.stopAllSoundOnObj(MainSceneScript.instance.musicObject);
             }
             if (this.gameObject.name.Contains("Upstair") && Player.instance.currentState != Player.PlayerState.PlayingGame)
             {

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GamePlay : MonoBehaviour {
+public class GamePlay : MonoBehaviour
+{
 
     public GameObject VRplayer;
     public Vector3 spawnPoint;
@@ -17,59 +18,46 @@ public class GamePlay : MonoBehaviour {
 new List<GvrPermissionsRequester.PermissionStatus>();
 
     private void Awake()
-    {
-        if (this.gameObject.scene.name == "Baked_MuseumVR_vol1")
-        {
-            spawnPoint = new Vector3(5.199811f, -10, 100.5099f);
-        }
-        //if (this.gameObject.scene.name == "Showroom2_01")
-        //{
-        //    //Debug.Log("set");
-        //    //spawnPoint = new Vector3(0.1f, 100f, -11.78f);
-        //}
+    { 
 
         instance = this;
     }
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         //get audio permission
-        string[]  permissionNames = { "android.permission.RECORD_AUDIO" };
+        string[] permissionNames = { "android.permission.RECORD_AUDIO" };
         /// request permisson only call when build on devices
 #if !UNITY_EDITOR
         RequestPermissions(permissionNames, status);
 #endif
         //spawn VR player to screen
-        VRplayer.transform.position = spawnPoint;
-        if(gameObject.scene.name == "Baked_MuseumVR_vol1")
-        {
-            VRplayer.transform.eulerAngles = new Vector3(0, -179.801f, 0);
-        }
-       
+      
     }
 
-	
-	// Update is called once per frame
-	void Update () {
-        
+    // Update is called once per frame
+    void Update()
+    {
+
 
         //if (GvrControllerInput.ClickButtonDown)
         //{
         //    if (Time.time - lastClickTime < catchTime)
         //    {
-        //        //Debug.Log("double click");
+        //        Debug.Log("double click");
         //    }
         //    else
         //    {
         //        //normal click
-        //        //Debug.Log("single click");
+        //        Debug.Log("single click");
         //    }
         //    lastClickTime = Time.time;
         //}
-      
+
     }
 
 
-    public void RequestPermissions(string[] permissionNames,Text statusText)
+    public void RequestPermissions(string[] permissionNames, Text statusText)
     {
         if (statusText != null)
         {
@@ -115,16 +103,16 @@ new List<GvrPermissionsRequester.PermissionStatus>();
     public void HideObjectIsNotMine()
     {
         GameObject[] listobj = GameObject.FindGameObjectsWithTag("InteractiveObject");
-        foreach(GameObject obj in listobj)
+        foreach (GameObject obj in listobj)
         {
             PhotonView photonView = obj.GetComponent<PhotonView>();
-            if(photonView && !photonView.isMine)
+            if (photonView && !photonView.isMine)
             {
                 obj.SetActive(false);
             }
-                
+
         }
-       
-           
+
+
     }
 }

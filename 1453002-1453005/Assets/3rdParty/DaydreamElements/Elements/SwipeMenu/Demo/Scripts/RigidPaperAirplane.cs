@@ -17,7 +17,7 @@ using UnityEngine;
 namespace DaydreamElements.SwipeMenu {
 
   [RequireComponent(typeof(Rigidbody))]
-  [RequireComponent(typeof(GvrAudioSource))]
+  //[RequireComponent(typeof(GvrAudioSource))]
   public class RigidPaperAirplane : MonoBehaviour {
     private const float killHeight = -10.0f;
 
@@ -28,7 +28,7 @@ namespace DaydreamElements.SwipeMenu {
     public ColorUtil.Type type;
     int deleteTime = 50;
     void Start() {
-      audioSource = GetComponent<GvrAudioSource>();
+      //audioSource = GetComponent<GvrAudioSource>();
       rigidBody = GetComponent<Rigidbody>();
       rigidBody.maxAngularVelocity = 0.0f;
       rigidBody.freezeRotation = true;
@@ -59,7 +59,7 @@ namespace DaydreamElements.SwipeMenu {
 
     public void Spin() {
       if (!isSpinning) {
-        audioSource.Play();
+        //audioSource.Play();
         rigidBody.freezeRotation = false;
         rigidBody.maxAngularVelocity = 8.0f;
         rigidBody.angularVelocity = Random.onUnitSphere * 8.0f;

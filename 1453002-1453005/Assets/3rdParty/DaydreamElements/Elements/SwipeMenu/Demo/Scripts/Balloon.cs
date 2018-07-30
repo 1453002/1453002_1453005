@@ -139,6 +139,7 @@ namespace DaydreamElements.SwipeMenu {
     }
 
     void OnDestroy() {
+            //SoundResonanceManager.instance.playSfx(gameObject, "Bounce");
       Sign.IncScore();
       if (spawner != null) {
         spawner.BalloonDestroyed(balloonIx);

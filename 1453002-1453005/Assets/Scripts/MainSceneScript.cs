@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 public class MainSceneScript : MonoBehaviour {
 
     public static MainSceneScript instance;
@@ -66,10 +67,11 @@ public class MainSceneScript : MonoBehaviour {
             cell.transform.Rotate(new Vector3(0, 2, 0), Space.Self);
             if (this.gameObject.scene.name == "Showroom2_01" && GvrController.AppButtonUp)
             {
+                SoundResonanceManager.instance.playBgm(musicObject, "bgm2", true);
                 if (player.transform.findChildRecursively("Player").transform.position.y >= 3)
                 {
                     //Game upstair off
-                    if (!listPlayer[0].activeSelf)
+                    if (!listPlayer[0].activeSelf)  
                     {
                         listPlayer[0].SetActive(true);
                         listPlayer[1].SetActive(false);
@@ -94,7 +96,10 @@ public class MainSceneScript : MonoBehaviour {
                 }
             }
         }
-       
+       if(GvrController.AppButtonUp && gameObject.scene.name == "Baked_MuseumVR_vol1")
+        {
+            SceneManager.LoadScene("WaitingRoom");
+        }
     
     }
     public void createPlayer()
